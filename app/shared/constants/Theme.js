@@ -1,5 +1,5 @@
 const COLORS = {
-  ORANGE: '#B6584E',
+  ORANGE: '#ED2224',
   LIGHTGRAY: '#828896',
   BACKGROUND: '#f5f6fa',
   LIGHTGRAYTEXT: '#828489',
@@ -10,7 +10,7 @@ const COLORS = {
   PRIMARY: '#f96332',
   PRETEXT:'#8F94AE',
   LABEL: '#FE2472',
-  INFO: '#0E3A90',
+  INFO: '#6A825D',
   ERROR: '#FF3636',
   SUCCESS: '#18ce0f',
   WARNING: '#e8ebf3',

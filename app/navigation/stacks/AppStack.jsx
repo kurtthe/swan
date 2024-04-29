@@ -59,7 +59,7 @@ function AppStack(props) {
     <MainTab.Navigator
     initialRouteName="Home"
     tabBarOptions={{
-      activeTintColor: '#0E3A90',
+      activeTintColor: '#ED2224',
     }}
     >
       {ConfigRouteMain(MainTab, screens)}
