@@ -43,13 +43,13 @@ const News = (props) => {
 
             <Block row>
               <TouchableOpacity onPress={() => setShowModal(true)}>
-                <Text style={styles.cardRead} size={14} color={'#0E3A90'}>
+                <Text style={styles.cardRead} size={14} color={'#6A825D'}>
                   Read More
                 </Text>
               </TouchableOpacity>
 
               <Block style={{ left: '340%' }}>
-                <Text style={styles.cardDate} size={14} color={'#B6584E'}>
+                <Text style={styles.cardDate} size={14} color={'#ED2224'}>
                   {dateCreate[0]}
                 </Text>
               </Block>
