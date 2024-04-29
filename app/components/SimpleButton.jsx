@@ -14,7 +14,7 @@ const SimpleButton = props => {
 const styles_btn_link = StyleSheet.create({
 
   buttonText: {
-    color: '#0E3A90',
+    color: '#6A825D',
     fontFamily: 'montserrat-bold',
     fontSize: 15,
     textAlign: 'center',

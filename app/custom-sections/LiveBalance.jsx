@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     width: width,
-    backgroundColor: 'rgba(75, 106, 170, 0.5)',
+    backgroundColor: '#F35757',
 
   },
   category: {
