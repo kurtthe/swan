@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
     fontSize: 11.5,
   },
   detailPrice: {
+    color: '#6A825D',
     fontWeight: Platform.OS == 'android' ? 'bold' : '500',
     top: -25,
   },

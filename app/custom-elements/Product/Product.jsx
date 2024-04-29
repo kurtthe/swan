@@ -129,7 +129,7 @@ const Product = (props) => {
       <Block>
         <Button
           color="warning"
-          textStyle={{ fontFamily: 'montserrat-bold', fontSize: 16, color: '#0E3A90' }}
+          textStyle={{ fontFamily: 'montserrat-bold', fontSize: 16, color: '#6A825D' }}
           onPress={() => onAddPressed(props.product)}
           disabled={added ? true : false}
         >
