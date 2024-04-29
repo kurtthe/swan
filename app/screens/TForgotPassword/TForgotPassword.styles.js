@@ -53,7 +53,7 @@ export const makeStyles = () => StyleSheet.create({
   },
   textHelp: {
     textDecorationLine: 'underline',
-    color: '#0E3A90',
+    color: '#6A825D',
     fontFamily: 'montserrat-bold',
     fontSize: 15,
     textAlign: 'center',
