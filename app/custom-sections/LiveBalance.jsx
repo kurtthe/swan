@@ -16,9 +16,7 @@ const LiveBalance = (props) => {
   return (
     <Block flex card center shadow style={styles.category}>
       <ImageBackground
-        source={{
-          uri: 'https://live.staticflickr.com/65535/51227105003_e18d28b6ce_c.jpg',
-        }}
+        source={require('../../assets/imgs/img-background.png')}
         style={[styles.imageBlock, { width: width - theme.SIZES.BASE * 0.1, height: 162 }]}
         imageStyle={{
           width: width - theme.SIZES.BASE * 0.1,
@@ -27,7 +25,7 @@ const LiveBalance = (props) => {
       >
         <Block style={styles.categoryTitle}>
           {props.company || balance.restricted ? (
-            <Text size={28} bold color={theme.COLORS.WHITE}>
+            <Text size={28} bold color={theme.COLORS.BLACK}>
               {balance.company}
             </Text>
           ) : (
@@ -45,7 +43,7 @@ const LiveBalance = (props) => {
                 space="between"
                 style={{ marginBottom: theme.SIZES.BASE, paddingLeft: 0, paddingRight: 6 }}
               >
-                <Text size={28} bold color={theme.COLORS.WHITE}>
+                <Text size={28} bold color={theme.COLORS.BLACK}>
                   {formatMoney.format(balance.total)}
                 </Text>
               </Block>

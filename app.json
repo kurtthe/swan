@@ -9,9 +9,9 @@
     ],
     "version": "1.5.5",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/swan_app_icon.svg",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/swan_app_icon.svg",
       "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },

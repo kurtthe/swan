@@ -19,9 +19,7 @@ const CategoryItem = ({ title,
     <TouchableOpacity onPress={() => handlePress()} style={cardContainer}>
       <Image source={image} style={imageStyles} />
       <ImageBackground
-        source={{
-          uri: 'https://live.staticflickr.com/65535/51227105003_e18d28b6ce_c.jpg',
-        }}
+        source={require('../../../../../assets/imgs/img-background.png')}
         style={styles.imageBlock}
       >
         <Text
