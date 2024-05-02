@@ -108,7 +108,7 @@ class PasswordBeenChange extends React.Component {
                       <Block flex={(Platform.OS === 'ios') ? ( (Dimensions.get('window').height < 670) ? 0.2 :0.45) :  (Dimensions.get('window').height < 870) ? 0.3: 0.4} center  >
                         <Button
                           color="warning"
-                          textStyle={{ fontFamily: 'montserrat-bold', fontSize: 16, color:'#0E3A90' }}
+                          textStyle={{ fontFamily: 'montserrat-bold', fontSize: 16, color:'#6A825D' }}
                           style={styles.button}
                           onPress={() => navigation.navigate("Login")}
                           

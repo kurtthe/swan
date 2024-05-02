@@ -82,7 +82,7 @@ const TAccount = () => {
       <Tabs
         optionsTabsRender={[
           {
-            labelTab: 'Statements',
+            labelTab: 'Balance',
             component: renderAccountDetails(),
           },
           {

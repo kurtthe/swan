@@ -61,7 +61,7 @@ const Store = () => {
         onChangeOption={(option) => handleChangeOptionSelected(option)}
       />
       <Text style={{ fontSize: 14, paddingVertical: 10, color: nowTheme.COLORS.PRETEXT }}>
-        Notes
+        Notes to Store
       </Text>
       <Input
         left

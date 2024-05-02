@@ -101,7 +101,7 @@ const Delivery = () => {
       )}
       <>
         <PickerButton
-          text={`${deliveryText || ''} Date`}
+          text={`${deliveryText || ''} Preferred Delivery Date`}
           placeholder={ !!dateSelected ? dateSelected?.label : "Select date"}
           pickDate={!!dateSelected}
           icon
@@ -119,7 +119,7 @@ const Delivery = () => {
         />
       </>
       <PickerButton
-        text={`${deliveryText || ''} Time`}
+        text={`${deliveryText || ''} Preferred Delivery Time`}
         placeholder={!optionHourSelected? 'Select time': optionHourSelected?.label}
         icon
         error

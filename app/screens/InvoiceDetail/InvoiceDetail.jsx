@@ -205,7 +205,7 @@ export const InvoiceDetails = ({ route }) => {
           <Text style={styles.text}>Delivery Address</Text>
           <Text>{validateEmptyField(invoiceDetail.address)}</Text>
           <Text style={styles.text}>Delivery Date</Text>
-          <Text>{validateEmptyField(invoiceDetail.delivery_date)}</Text>
+          <Text>{validateEmptyField(invoiceDetail.delivery_date, true)}</Text>
         </Block>
         <Block
           card
@@ -218,7 +218,7 @@ export const InvoiceDetails = ({ route }) => {
             </Block>
             <Block flex>
               <Text style={styles.text}>{invoiceDetail?.type} Date</Text>
-              <Text>{validateEmptyField(invoiceDetail.invoice_date)}</Text>
+              <Text>{validateEmptyField(invoiceDetail.invoice_date, true)}</Text>
             </Block>
           </Block>
           <Text style={styles.text}>Branch</Text>
@@ -256,7 +256,7 @@ export const InvoiceDetails = ({ route }) => {
             style={styles.contentTotalAmount}
           />
           <Block row style={styles.contentTotal}>
-            <Text size={14}>Total</Text>
+            <Text size={14}>Total Due</Text>
             <Text
               size={16}
               color={nowTheme.COLORS.INFO}

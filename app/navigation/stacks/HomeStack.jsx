@@ -41,7 +41,7 @@ function HomeStack() {
       component: InvoiceDetails,
       colorBackground: '#FFFFFF',
       header: {
-        title: 'Details',
+        title: 'Invoice details',
         back: true,
       }
     },
