@@ -13,7 +13,7 @@ export const makeStyles = () =>
     },
     cardTitle: {
       fontFamily: 'montserrat-bold',
-      color: 'black'
+      color: 'white'
     },
     horizontalImage: {
       height: 122,

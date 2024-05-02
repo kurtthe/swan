@@ -6,6 +6,7 @@ import { nowTheme } from '@constants';
 import BottomModal from '@custom-elements/BottomModal';
 import WebView from '@custom-elements/WebView';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { validateEmptyField } from '../core/utils/validate-empty-field';
 
 const News = (props) => {
   const [showModal, setShowModal] = useState(false);
@@ -50,7 +51,7 @@ const News = (props) => {
 
               <Block style={{ left: '340%' }}>
                 <Text style={styles.cardDate} size={14} color={'#ED2224'}>
-                  {dateCreate[0]}
+                  {validateEmptyField(dateCreate[0], true)}
                 </Text>
               </Block>
             </Block>

@@ -78,7 +78,7 @@ const Jobs = () => {
           deleteOption
         />
         <Block row>
-          <Text style={styles.text}>Job/Order Number</Text>
+          <Text style={styles.text}>Order name</Text>
           <Text style={styles.errorText}> * </Text>
         </Block>
         <Input
