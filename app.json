@@ -17,7 +17,7 @@
     },
     "updates": {
       "fallbackToCacheTimeout": 0,
-      "url": "https://u.expo.dev/c4c86bf4-7b58-4b5c-bdab-d2582e2a30de"
+      "url": "https://u.expo.dev/55ee96dc-2ba7-4cdd-9859-9ff42d76e65e"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -48,13 +48,13 @@
       "googleServicesFile": "./GoogleAnalytics/google-services.json"
     },
     "description": "Coded by Digital Basis",
-    "extra": {
-      "eas": {
-        "projectId": "c4c86bf4-7b58-4b5c-bdab-d2582e2a30de"
-      }
-    },
     "runtimeVersion": {
       "policy": "appVersion"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "55ee96dc-2ba7-4cdd-9859-9ff42d76e65e"
+      }
     }
   }
 }
