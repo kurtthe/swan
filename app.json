@@ -1,23 +1,23 @@
 {
   "expo": {
     "name": "Swan",
-    "slug": "-Trade-Track-",
+    "slug": "swan",
     "privacy": "public",
     "platforms": [
       "ios",
       "android"
     ],
-    "version": "1.5.5",
+    "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/swan_app_icon.svg",
+    "icon": "./assets/icon.png",
     "splash": {
-      "image": "./assets/swan_splash.png",
+      "image": "./assets/splash.png",
       "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
     "updates": {
       "fallbackToCacheTimeout": 0,
-      "url": "https://u.expo.dev/64a079a5-3b38-4879-9bb1-ee6192444fff"
+      "url": "https://u.expo.dev/c4c86bf4-7b58-4b5c-bdab-d2582e2a30de"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -31,18 +31,12 @@
       "buildNumber": "3",
       "googleServicesFile": "./GoogleAnalytics/GoogleService-Info.plist",
       "infoPlist": {
-        "NSCameraUsageDescription": "Allow Burdens to access your camera to take photos of the products for any requirement in your purchase",
-        "NSPhotoLibraryUsageDescription": "Allow Burdens to access your photos to select photos and then send a requirement of your  purchase",
+        "NSCameraUsageDescription": "Allow Swan to access your camera to take photos of the products for any requirement in your purchase",
+        "NSPhotoLibraryUsageDescription": "Allow Swan to access your photos to select photos and then send a requirement of your  purchase",
         "UIUserInterfaceStyle": "Light"
       }
     },
     "android": {
-      "config": {
-        "networkSecurityConfig": "./NetworkSecurity/network_security_config.xml",
-        "googleMaps": {
-          "apiKey": "AIzaSyBo1S1NNk3JpmZaiPM_kZSq0yz0vVbf194"
-        }
-      },
       "package": "com.tradetrak.Burdens",
       "permissions": [
         "android.permission.READ_EXTERNAL_STORAGE",
@@ -56,7 +50,7 @@
     "description": "Coded by Digital Basis",
     "extra": {
       "eas": {
-        "projectId": ""
+        "projectId": "c4c86bf4-7b58-4b5c-bdab-d2582e2a30de"
       }
     },
     "runtimeVersion": {
