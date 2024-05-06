@@ -40,7 +40,7 @@ const CategoriesProducts = () => {
       <FlatList
         data={categories}
         renderItem={renderCategory}
-        numColumns={2}
+        numColumns={1}
         keyExtractor={(item, index) => `${index}-${item.title}`}
         scrollEnabled={false}
       />
