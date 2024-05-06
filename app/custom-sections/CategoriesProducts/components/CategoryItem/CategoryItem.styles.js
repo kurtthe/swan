@@ -10,13 +10,33 @@ export const makeStyles = () =>
       borderWidth: 0,
       marginBottom: 4,
       flex: 1,
+      height: 152
+    },
+    cardContainer: {
+      width: 'auto',
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center',
+      zIndex: 2,
+      bottom: 70,
+      opacity: 0.6,
     },
     cardTitle: {
-      fontFamily: 'montserrat-bold',
-      color: 'white'
+      fontFamily: 'montserrat',
+      textAlign: 'center',
+      fontSize: 13,
+      opacity: 1,
+      color: '#FFFFFF',
+      alignItems: 'center',
+      backgroundColor: '#000000',
+      borderColor: '#FFFFFF',
+      width: '70%',
+      borderWidth: 1,
+      paddingVertical: 10,
+      bottom: 20
     },
     horizontalImage: {
-      height: 122,
+      height: 152,
       width: 'auto',
       resizeMode: "cover"
     },
@@ -32,10 +52,10 @@ export const makeStyles = () =>
       elevation: 2
     },
     imageBlock: {
-      flexDirection: 'row',
-      alignItems: 'center',
+      fontFamily: 'montserrat',
+      textAlign: 'center',
       paddingHorizontal: 9,
       paddingVertical: 7,
-      height: 48
+      height: 60
     }
   });
