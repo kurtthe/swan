@@ -1,23 +1,23 @@
 {
   "expo": {
     "name": "Swan",
-    "slug": "-Trade-Track-",
+    "slug": "Swan",
     "privacy": "public",
     "platforms": [
       "ios",
       "android"
     ],
-    "version": "1.5.5",
+    "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/swan_app_icon.svg",
+    "icon": "./assets/icon.png",
     "splash": {
-      "image": "./assets/swan_splash.png",
+      "image": "./assets/splash.png",
       "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
     "updates": {
       "fallbackToCacheTimeout": 0,
-      "url": "https://u.expo.dev/64a079a5-3b38-4879-9bb1-ee6192444fff"
+      "url": "https://u.expo.dev/55ee96dc-2ba7-4cdd-9859-9ff42d76e65e"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -28,21 +28,15 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.trade.Burdens",
-      "buildNumber": "3",
+      "buildNumber": "1",
       "googleServicesFile": "./GoogleAnalytics/GoogleService-Info.plist",
       "infoPlist": {
-        "NSCameraUsageDescription": "Allow Burdens to access your camera to take photos of the products for any requirement in your purchase",
-        "NSPhotoLibraryUsageDescription": "Allow Burdens to access your photos to select photos and then send a requirement of your  purchase",
+        "NSCameraUsageDescription": "Allow Swan to access your camera to take photos of the products for any requirement in your purchase",
+        "NSPhotoLibraryUsageDescription": "Allow Swan to access your photos to select photos and then send a requirement of your  purchase",
         "UIUserInterfaceStyle": "Light"
       }
     },
     "android": {
-      "config": {
-        "networkSecurityConfig": "./NetworkSecurity/network_security_config.xml",
-        "googleMaps": {
-          "apiKey": "AIzaSyBo1S1NNk3JpmZaiPM_kZSq0yz0vVbf194"
-        }
-      },
       "package": "com.tradetrak.Burdens",
       "permissions": [
         "android.permission.READ_EXTERNAL_STORAGE",
@@ -54,13 +48,13 @@
       "googleServicesFile": "./GoogleAnalytics/google-services.json"
     },
     "description": "Coded by Digital Basis",
-    "extra": {
-      "eas": {
-        "projectId": ""
-      }
-    },
     "runtimeVersion": {
       "policy": "appVersion"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "55ee96dc-2ba7-4cdd-9859-9ff42d76e65e"
+      }
     }
   }
 }
