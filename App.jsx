@@ -4,11 +4,7 @@ import { Asset } from 'expo-asset';
 import { Block, GalioProvider } from 'galio-framework';
 import { NavigationContainer } from '@react-navigation/native';
 import * as SplashScreen from 'expo-splash-screen';
-import * as Font from 'expo-font';
-
-// Before rendering any navigation stack
-import { enableScreens } from 'react-native-screens';
-enableScreens();
+import {useFonts} from 'expo-font';
 
 import AppStack from '@navigation/index';
 import { Images, nowTheme } from '@constants/index';
@@ -17,6 +13,10 @@ import { store } from '@core/module/store/index';
 import { Provider } from 'react-redux';
 import { QueryClientProvider } from 'react-query';
 import { queryClient } from '@shared/lib'
+// Before rendering any navigation stack
+import { enableScreens } from 'react-native-screens';
+enableScreens();
+
 
 // cache app images
 const assetImages = [
@@ -35,7 +35,7 @@ const assetImages = [
 
 const cacheImages = (images) =>
   images?.map((image) => {
-    if (!image || image === undefined || image === null) {
+    if (!image) {
       return;
     }
 
@@ -62,15 +62,15 @@ const styles = StyleSheet.create({
 
 export default function App() {
   const [appIsReady, setAppIsReady] = useState(false);
+  const [loaded] = useFonts({
+    'montserrat-regular': require('@assets/font/Inter-Regular.ttf'),
+    'montserrat-bold': require('@assets/font/Inter-Bold.ttf'),
+  });
 
   useEffect(() => {
-    async function prepare() {
+    (async() => {
       try {
         await SplashScreen.preventAutoHideAsync();
-        await Font.loadAsync({
-          'montserrat-regular': require('@assets/font/Inter-Regular.ttf'),
-          'montserrat-bold': require('@assets/font/Inter-Bold.ttf'),
-        });
         cacheImages(assetImages);
         await new Promise(resolve => setTimeout(resolve, 2000));
       } catch (e) {
@@ -78,9 +78,7 @@ export default function App() {
       } finally {
         setAppIsReady(true);
       }
-    }
-
-    prepare();
+    })()
   }, []);
 
   const onLayoutRootView = useCallback(async () => {
@@ -89,7 +87,7 @@ export default function App() {
     }
   }, [appIsReady]);
 
-  if (!appIsReady) {
+  if (!appIsReady || !loaded) {
     return null;
   }
 
