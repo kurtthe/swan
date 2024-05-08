@@ -1,7 +1,7 @@
 module.exports = {
   expo: {
     name: "Swan",
-    slug: "-Swan-",
+    slug: "Swan",
     privacy: "public",
     platforms: [
       "ios",
