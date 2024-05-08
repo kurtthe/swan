@@ -47,7 +47,7 @@ module.exports = {
         usesNonExemptEncryption: false
       },
       supportsTablet: true,
-      bundleIdentifier: "com.trade.Burdens",
+      bundleIdentifier: "com.trade.Swan",
       buildNumber: "10",
       googleServicesFile: "./GoogleAnalytics/GoogleService-Info.plist",
       userInterfaceStyle: "light",
@@ -64,7 +64,7 @@ module.exports = {
           apiKey: "AIzaSyBo1S1NNk3JpmZaiPM_kZSq0yz0vVbf194"
         }
       },
-      package: "com.tradetrak.Burdens",
+      package: "com.tradetrak.Swan",
       permissions: [
         "android.permission.READ_EXTERNAL_STORAGE",
         "android.permission.WRITE_EXTERNAL_STORAGE",
@@ -81,7 +81,7 @@ module.exports = {
     description: "Coded by Digital Basis",
     extra: {
       eas: {
-        projectId: "64a079a5-3b38-4879-9bb1-ee6192444fff"
+        projectId: "55ee96dc-2ba7-4cdd-9859-9ff42d76e65e"
       }
     },
     runtimeVersion: {
