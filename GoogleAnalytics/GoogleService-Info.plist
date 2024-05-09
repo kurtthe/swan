@@ -2,22 +2,18 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CLIENT_ID</key>
-	<string>607896113360-plrs3dpo467ibs11df5ueg3l713ct9cv.apps.googleusercontent.com</string>
-	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.607896113360-plrs3dpo467ibs11df5ueg3l713ct9cv</string>
 	<key>API_KEY</key>
-	<string>AIzaSyDe_iXGGyvMG7wgPQ5qhe2XdPxSjc9jPdI</string>
+	<string>AIzaSyBoIlBraf98JUidDNUZnkaA6zqFLGiYgi0</string>
 	<key>GCM_SENDER_ID</key>
-	<string>607896113360</string>
+	<string>157361329942</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.trade.Burdens</string>
+	<string>com.splumbings.Swan</string>
 	<key>PROJECT_ID</key>
-	<string>burdnes</string>
+	<string>swan-47301</string>
 	<key>STORAGE_BUCKET</key>
-	<string>burdnes.appspot.com</string>
+	<string>swan-47301.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:607896113360:ios:a819141b6363fe4f844ed5</string>
+	<string>1:157361329942:ios:b401722e89a0f205f0e237</string>
 </dict>
 </plist>
