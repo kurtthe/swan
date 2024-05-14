@@ -17,7 +17,7 @@ module.exports = {
     },
     updates: {
       fallbackToCacheTimeout: 0,
-      url: "https://u.expo.dev/64a079a5-3b38-4879-9bb1-ee6192444fff"
+      url: "https://u.expo.dev/aaa753a7-a92a-40c6-af95-d9859fbe899a"
     },
     assetBundlePatterns: [
       "**/*"
@@ -81,7 +81,7 @@ module.exports = {
     description: "Coded by Digital Basis",
     extra: {
       eas: {
-        projectId: "55ee96dc-2ba7-4cdd-9859-9ff42d76e65e"
+        projectId: "aaa753a7-a92a-40c6-af95-d9859fbe899a"
       }
     },
     runtimeVersion: {
