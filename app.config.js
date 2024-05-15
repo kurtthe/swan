@@ -1,13 +1,13 @@
 module.exports = {
   expo: {
     name: "Swan",
-    slug: "-Swan-",
+    slug: "Swan",
     privacy: "public",
     platforms: [
       "ios",
       "android"
     ],
-    version: "1.5.7",
+    version: "1.0.0",
     orientation: "portrait",
     icon: "./assets/icon.png",
     splash: {
@@ -17,7 +17,7 @@ module.exports = {
     },
     updates: {
       fallbackToCacheTimeout: 0,
-      url: "https://u.expo.dev/64a079a5-3b38-4879-9bb1-ee6192444fff"
+      url: "https://u.expo.dev/aaa753a7-a92a-40c6-af95-d9859fbe899a"
     },
     assetBundlePatterns: [
       "**/*"
@@ -47,13 +47,13 @@ module.exports = {
         usesNonExemptEncryption: false
       },
       supportsTablet: true,
-      bundleIdentifier: "com.trade.Swan",
+      bundleIdentifier: "com.splumbings.Swan",
       buildNumber: "10",
       googleServicesFile: "./GoogleAnalytics/GoogleService-Info.plist",
       userInterfaceStyle: "light",
       infoPlist: {
-        NSCameraUsageDescription: "Allow Burdens to access your camera to take photos of the products for any requirement in your purchase",
-        NSPhotoLibraryUsageDescription: "Allow Burdens to access your photos to select photos and then send a requirement of your  purchase",
+        NSCameraUsageDescription: "Allow Swan to access your camera to take photos of the products for any requirement in your purchase",
+        NSPhotoLibraryUsageDescription: "Allow Swan to access your photos to select photos and then send a requirement of your  purchase",
         UIUserInterfaceStyle: "Light"
       }
     },
@@ -64,7 +64,7 @@ module.exports = {
           apiKey: "AIzaSyBo1S1NNk3JpmZaiPM_kZSq0yz0vVbf194"
         }
       },
-      package: "com.tradetrak.Swan",
+      package: "com.splumbings.Swan",
       permissions: [
         "android.permission.READ_EXTERNAL_STORAGE",
         "android.permission.WRITE_EXTERNAL_STORAGE",
@@ -81,7 +81,7 @@ module.exports = {
     description: "Coded by Digital Basis",
     extra: {
       eas: {
-        projectId: "55ee96dc-2ba7-4cdd-9859-9ff42d76e65e"
+        projectId: "aaa753a7-a92a-40c6-af95-d9859fbe899a"
       }
     },
     runtimeVersion: {
