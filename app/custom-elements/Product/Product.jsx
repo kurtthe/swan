@@ -99,37 +99,19 @@ const Product = (props) => {
           <Block row style={{ width: '100%' }}>
             <Block flex>
               <Text color={nowTheme.COLORS.LIGHTGRAY} style={styles.priceGrayText}>
-                Price:{' '}
+                RRP: {formatMoney.format(props.product.price.retail_price)}
               </Text>
               <Text style={styles.price}>
-                {formatMoney.format(props.product.price.retail_price)}
+                {props.myPrice ? null : (showPriceProduct())}
               </Text>
             </Block>
-            {props.myPrice ? null : (
-              <>
-                <View
-                  style={{
-                    borderWidth: 0.5,
-                    marginHorizontal: 10,
-                    height: '100%',
-                    borderColor: nowTheme.COLORS.LIGHTGRAY,
-                  }}
-                ></View>
-                <Block flex>
-                  <Text color={nowTheme.COLORS.LIGHTGRAY} style={styles.priceGrayText}>
-                    {props.product.price.cost_price < 0 ? 'Get Price ' : 'My Price'}
-                  </Text>
-                  {showPriceProduct()}
-                </Block>
-              </>
-            )}
           </Block>
         </Block>
       </TouchableWithoutFeedback>
       <Block>
         <Button
-          color="warning"
-          textStyle={{ fontFamily: 'montserrat-bold', fontSize: 16, color: '#6A825D' }}
+          color="info"
+          textStyle={{ fontFamily: 'montserrat-bold', fontSize: 16, color: 'white' }}
           onPress={() => onAddPressed(props.product)}
           disabled={added ? true : false}
         >

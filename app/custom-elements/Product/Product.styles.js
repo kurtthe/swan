@@ -22,11 +22,11 @@ export const makeStyles = () =>
       resizeMode: 'contain'
     },
     priceGrayText: {
-      fontSize: 13,
+      fontSize: 16,
     },
     price: {
       fontFamily: 'montserrat-bold',
-      fontSize: 12,
+      fontSize: 16,
       color: nowTheme.COLORS.ORANGE,
     },
     contentNameProduct: {
