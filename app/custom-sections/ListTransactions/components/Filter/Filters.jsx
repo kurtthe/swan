@@ -223,7 +223,7 @@ const Filters = ({getValues, hideFilterType}) => {
       {rangeDate()}
       {typeSearch()}
       <Search
-        inputStyle={styles.inputStyle}
+        inputStyle={styles.searchInput}
         placeholder="By description or invoice number"
         onChangeText={(text) => debouncedOnChange('text', text)}
       />
@@ -237,6 +237,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     flexDirection: 'column',
     height: '35%'
+  },
+  searchInput: {
+    color: '#000000',
+    fontSize: 16,
+    borderRadius:0,
+    borderColor: '#000000',
+    borderWidth: 2
   },
   contentFilterBtn: {
     flexDirection: 'row',

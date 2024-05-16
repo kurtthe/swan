@@ -86,7 +86,7 @@ const TAccount = () => {
             component: renderAccountDetails(),
           },
           {
-            labelTab: 'Transactions',
+            labelTab: 'Statements',
             component: renderInvoices(),
           },
         ]}

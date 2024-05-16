@@ -22,12 +22,12 @@ class Search extends React.Component {
           <Input
             {...this.props}
             right
-            color="black"
+            color="#000000"
             autoFocus={false}
             autoCorrect={false}
             autoCapitalize="none"
             iconContent={
-                <Icon size={16} color={theme.COLORS.MUTED} name="magnifying-glass" family="entypo" />
+                <Icon size={16} color={theme.COLORS.BLACK} name="magnifying-glass" family="entypo" />
             }
             style={[styles.search, inputStyle]}
             placeholder={placeholder}

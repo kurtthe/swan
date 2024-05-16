@@ -1,20 +1,23 @@
 import {StyleSheet} from 'react-native'
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import { nowTheme } from '@constants';
+import { theme } from 'galio-framework';
 
 export const makeStyles = () => StyleSheet.create({
   container: {
     backgroundColor: "transparent",
     flex: 1,
     paddingVertical: 10,
-    shadowColor: nowTheme.COLORS.BLACK,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 3,
-    shadowOpacity: 0.1,
-    elevation: 2,
     height: 'auto',
-    borderRadius: 3,
-    marginBottom: 5,
+    borderRadius: 3
+  },
+  button: {
+    alignItems: 'center',
+    marginBottom: 3,
+    fontSize: 5,
+    width: 80,
+    height: 30,
+    padding: 2
   },
   line: {
     borderBottomWidth: 2,

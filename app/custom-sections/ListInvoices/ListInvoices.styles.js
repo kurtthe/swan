@@ -4,7 +4,6 @@ import { nowTheme } from '@constants';
 export const makeStyles = () => StyleSheet.create({
   card: {
     backgroundColor: nowTheme.COLORS.WHITE,
-    marginTop: 10,
     shadowColor: nowTheme.COLORS.BLACK,
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 3,
@@ -19,7 +18,7 @@ export const makeStyles = () => StyleSheet.create({
     fontSize: 15,
     fontFamily: 'montserrat-regular',
     right: 15,
-    color: nowTheme.COLORS.HEADER
+    color: nowTheme.COLORS.BLACK
   },
   textTransactions: {
     fontSize: 18,

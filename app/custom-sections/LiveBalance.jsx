@@ -17,26 +17,19 @@ const LiveBalance = (props) => {
     <Block flex card center shadow style={styles.category}>
       <ImageBackground
         source={require('../../assets/imgs/img-background.png')}
-        style={[styles.imageBlock, { width: width - theme.SIZES.BASE * 0.1, height: 162 }]}
+        style={[styles.imageBlock, { width: width - theme.SIZES.BASE * 0.1, height: 132 }]}
         imageStyle={{
           width: width - theme.SIZES.BASE * 0.1,
-          height: 162,
+          height: 132,
         }}
       >
         <Block style={styles.categoryTitle}>
           {props.company || balance.restricted ? (
-            <Text size={28} bold color={theme.COLORS.BLACK}>
+            <Text size={35} bold color={theme.COLORS.BLACK}>
               {balance.company}
             </Text>
           ) : (
             <>
-              <Text
-                color={nowTheme.COLORS.TIME}
-                style={{ fontFamily: 'montserrat-bold', paddingLeft: 0 }}
-                size={14}
-              >
-                Balance
-              </Text>
               <Block
                 row
                 middle

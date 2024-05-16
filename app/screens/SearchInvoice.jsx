@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
     marginHorizontal: theme.SIZES.BASE,
     marginBottom: theme.SIZES.BASE,
     borderWidth: 1,
-    borderRadius: 30,
+    borderRadius: 0,
   },
   header: {
     backgroundColor: theme.COLORS.WHITE,

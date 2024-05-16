@@ -9,6 +9,7 @@ import { validateEmptyField } from '@core/utils/validate-empty-field';
 import moment from 'moment';
 import { useNavigation } from '@react-navigation/native';
 import { makeStyles } from './Invoice.styles';
+import { Button } from '../../components';
 
 export const Invoice = (props) => {
   const navigation = useNavigation();
@@ -31,22 +32,29 @@ export const Invoice = (props) => {
 
   return (
     <>
-      <TouchableOpacity onPress={() => handleShowDetails()} style={styles.container}>
+      <TouchableOpacity style={styles.container}>
         <Block row>
           <Block flex style={{ paddingRight: 3, paddingLeft: 15 }}>
             <Block row space='between' style={{ height: 20 }}>
               <Block row>
                 <Text
-                  color={nowTheme.COLORS.DEFAULT}
-                  style={{ fontFamily: nowTheme.FONT.primaryBold }}
-                  size={14}
+                  color={nowTheme.COLORS.BLACK}
+                  style={{ fontFamily: nowTheme.FONT.primaryRegular }}
+                  size={16}
                 >
-                  {props.invoice.type}
+                  {validateEmptyField(props.invoice.order_number)}
                 </Text>
+                {/*<Text*/}
+                {/*  color={nowTheme.COLORS.DEFAULT}*/}
+                {/*  style={{ fontFamily: nowTheme.FONT.primaryBold }}*/}
+                {/*  size={14}*/}
+                {/*>*/}
+                {/*  {props.invoice.type}*/}
+                {/*</Text>*/}
               </Block>
               <Block row>
                 <Text
-                  color={nowTheme.COLORS.TIME}
+                  color={nowTheme.COLORS.BLACK}
                   style={{
                     fontFamily: nowTheme.FONT.primaryRegular,
                     paddingRight: 10,
@@ -57,15 +65,15 @@ export const Invoice = (props) => {
                 </Text>
               </Block>
             </Block>
-            <Block row justifyContent='space-between'>
-              <Text
-                color={nowTheme.COLORS.INFO}
-                style={{ fontFamily: nowTheme.FONT.primaryRegular }}
-                size={14}
-              >
-                REF {validateEmptyField(props.invoice.order_number)}
-              </Text>
-            </Block>
+            {/*<Block row justifyContent='space-between'>*/}
+            {/*<Text*/}
+            {/*  color={nowTheme.COLORS.DEFAULT}*/}
+            {/*  style={{ fontFamily: nowTheme.FONT.primaryBold }}*/}
+            {/*  size={14}*/}
+            {/*>*/}
+            {/*  {props.invoice.type}*/}
+            {/*</Text>*/}
+            {/*</Block>*/}
 
             <Block row justifyContent='space-between' style={{ top: 8 }}>
               <Text
@@ -75,38 +83,40 @@ export const Invoice = (props) => {
               >
                 {validateEmptyField(props.invoice.description)}
               </Text>
-              <Icon
-                style={{ left: -20 }}
-                size={14}
-                color={nowTheme.COLORS.LIGHTGRAY}
-                name='right'
-                family='AntDesign'
-              />
-            </Block>
-            <Block row>
-              <View style={props.invoice.type !== 'Invoice' ? styles.bg_purple : styles.bg_green}>
-                <Text
-                  style={{ fontFamily: nowTheme.FONT.primaryRegular, textAlign: 'center' }}
-                  size={theme.SIZES.BASE * 0.8}
-                  color={
-                    props.invoice.type !== 'Invoice'
-                      ? nowTheme.COLORS.PURPLEINVOICE
-                      : nowTheme.COLORS.SUCCESS
-                  }
-                >
-                  {validateEmptyField(props.invoice.type)}
-                </Text>
-              </View>
             </Block>
             <Block bottom>
+              <Button
+                color="info"
+                textStyle={{ fontFamily: 'montserrat-bold', fontSize: 14 }}
+                style={styles.button}
+                onPress={() => handleShowDetails()}
+              >
+                View
+              </Button>
+              {/*<View style={props.invoice.type !== 'Invoice' ? styles.bg_purple : styles.bg_green}>*/}
+              {/*  <Text*/}
+              {/*    style={{ fontFamily: nowTheme.FONT.primaryRegular, textAlign: 'center' }}*/}
+              {/*    size={theme.SIZES.BASE * 0.8}*/}
+              {/*    color={*/}
+              {/*      props.invoice.type !== 'Invoice'*/}
+              {/*        ? nowTheme.COLORS.PURPLEINVOICE*/}
+              {/*        : nowTheme.COLORS.SUCCESS*/}
+              {/*    }*/}
+              {/*  >*/}
+              {/*    {validateEmptyField(props.invoice.type)}*/}
+              {/*  </Text>*/}
+              {/*</View>*/}
+            </Block>
+            <Block row>
               <Text
-                style={{ fontFamily: nowTheme.FONT.primaryBold, marginTop: -22.5, left: -12 }}
+                style={{ fontFamily: nowTheme.FONT.primaryBold, marginTop: -25.5 }}
                 size={theme.SIZES.BASE * 1}
                 color={nowTheme.COLORS.HEADER}
               >
                 {formatMoney.format(props.invoice.total_amount)}
               </Text>
             </Block>
+            <View style={{flex: 1, height: 1, backgroundColor: '#dddddd', marginTop:10}} />
           </Block>
         </Block>
       </TouchableOpacity>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import { StyleSheet, View, Dimensions } from 'react-native';
+import { StyleSheet, View, Dimensions, Platform } from 'react-native';
 import { theme, Text, Block } from 'galio-framework';
 import { nowTheme } from '@constants';
 import GrayLine from '@components/GrayLine';

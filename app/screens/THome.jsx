@@ -177,7 +177,7 @@ class Home extends React.Component {
 const styles = StyleSheet.create({
   home: {
     width: width,
-    backgroundColor: '#e5e5e5',
+    backgroundColor: '#FFFFFF',
   },
   articles: {
     width: width - theme.SIZES.BASE * 0.1,
@@ -230,8 +230,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   searchInput: {
-    color: 'black',
+    color: '#000000',
     fontSize: 16,
+    borderRadius:0,
+    borderColor: '#000000',
+    borderWidth: 2
   },
   search: {
     width: width - 32,
