@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Dimensions, FlatList } from 'react-native';
+import { StyleSheet, View, Dimensions, FlatList, Platform } from 'react-native';
 import { Block, Text, theme, Button } from 'galio-framework';
 import { nowTheme } from '@constants/index';
 import DetailOrder from '@custom-elements/DetailOrder';
@@ -60,7 +60,7 @@ const DetailsOrders = (props) => {
           <Text
             size={16}
             color={nowTheme.COLORS.ORANGE}
-            style={{ fontWeight: Platform.OS == 'android' ? 'bold' : '600' }}
+            style={{ fontWeight: Platform.OS === 'android' ? 'bold' : '600' }}
           >
             {orderTotal()}
           </Text>

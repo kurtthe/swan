@@ -4,11 +4,9 @@ import {
   Dimensions,
   ScrollView,
   Image,
-  Platform,
   View,
-  Animated,
   TouchableWithoutFeedback,
-  KeyboardAvoidingView,
+  KeyboardAvoidingView, Platform,
 } from 'react-native';
 
 import { Block, Text, Button, theme } from 'galio-framework';
@@ -103,7 +101,7 @@ class Product extends React.Component {
   render() {
     const { productDetail } = this.state;
 
-    if (!productDetail || productDetail == undefined || productDetail === undefined) {
+    if (!productDetail) {
       return <LoadingComponent />;
     }
 
