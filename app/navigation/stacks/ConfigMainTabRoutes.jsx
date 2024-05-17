@@ -1,5 +1,6 @@
 import React from 'react';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
+import { Image } from 'react-native';
 
 const putIcon = (color,size, typeIcon, icon)=>{
   if(typeIcon === 'Ionicons'){
@@ -16,7 +17,12 @@ export const ConfigRouteMain = (MainTab, screens) => {
       component={component}
       options={{
         tabBarLabel: title,
-        tabBarIcon: ({ color, size }) => putIcon(color, size, typeIcon, icon),
+        tabBarIcon: ({ focused }) => (
+          <Image
+            source={icon}
+            style={{ tintColor: focused ? '#ED2224' : '#000000', width: 20, height: 20 }}
+          />
+        ),
         tabBarBadge: badge && badge.textBadge !== 0 ? badge.textBadge : null
       }}
     />

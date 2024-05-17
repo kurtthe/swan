@@ -18,23 +18,26 @@ function AppStack(props) {
     {
       name: 'Home',
       component: HomeStack,
-      typeIcon: 'Ionicons',
-      icon: 'home',
+      // typeIcon: 'Ionicons',
+      // icon: 'home',
+      icon: require('./../../../assets/imgs/Icons/home.png'),
       title: 'Home'
     },
     {
       name: 'Products',
       component: ProductsStack,
-      typeIcon: 'Ionicons',
-      icon: 'file-tray-stacked',
+      // typeIcon: 'Ionicons',
+      // icon: 'file-tray-stacked',
+      icon: require('./../../../assets/imgs/Icons/products.png'),
       title: 'Products'
     },
     {
       name: 'Cart',
       component: CartStack,
       typeIcon: 'Ionicons',
-      icon: 'cart',
-      title: 'Cart',
+      // icon: 'cart',
+      // title: 'Cart',
+      icon: require('./../../../assets/imgs/Icons/cart.png'),
       badge: {
         textBadge: props.cartProducts.length
       }
@@ -42,15 +45,16 @@ function AppStack(props) {
     {
       name: 'Account',
       component: AccountStack,
-      typeIcon: 'MaterialIcons',
-      icon: 'request-quote',
+      // typeIcon: 'MaterialIcons',
+      // icon: 'request-quote',
+      icon: require('./../../../assets/imgs/Icons/account.png'),
       title: 'Account'
     },
     {
       name: 'Job Management',
       component: TradeTrakStack,
-      typeIcon: 'MaterialIcons',
-      icon: 'business-center',
+      // typeIcon: 'MaterialIcons',
+      icon: require('./../../../assets/imgs/Icons/trak.png'),
       title: 'Trak'
     },
   ];
