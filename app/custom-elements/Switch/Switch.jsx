@@ -27,14 +27,15 @@ const SwitchComponent = (props) => {
   if (props.card) {
     return (
       <Block row flex style={styles.switchBlock}>
-        <Text size={16} style={styles.title}>
-          {props.title}
-        </Text>
-        {props.description && (
-          <Text style={{ fontFamily: 'montserrat-regular' }} size={14.5} color={'#848893'}>
-            {props.description}
-          </Text>)}
-
+        <Block column>
+          <Text size={16} style={styles.title}>
+            {props.title}
+          </Text>
+          {props.description && (
+            <Text style={{ fontFamily: 'montserrat-regular' }} size={14.5} color={'#848893'}>
+              {props.description}
+            </Text>)}
+        </Block>
         <Block center style={{ width: '20%', alignItems: 'flex-end' }}>
           {renderSwitch()}
         </Block>

@@ -4,5 +4,5 @@ const { width } = Dimensions.get('screen');
 export const makeStyles = () =>
   StyleSheet.create({
     container: { paddingBottom: 30, width, paddingHorizontal:5 },
-    content: { paddingVertical: 8, }
+    content: { paddingVertical: 8 }
   })

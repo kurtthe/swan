@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView, View, Text } from 'react-native';
 
 import { Block } from 'galio-framework';
 
@@ -31,20 +31,29 @@ const TProducts = ({ cartProducts, changeClientFriendly, updateProducts }) => {
 
   return (
     <Block flex center backgroundColor={nowTheme.COLORS.BACKGROUND}>
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.container}
-      >
-        <Block style={styles.content}>
+      <View style={{flex: 1}}>
+        <View style={{flex: 7}}>
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={styles.container}
+
+          >
+            <Block style={styles.content}>
+              <CategoriesProducts />
+            </Block>
+          </ScrollView>
+        </View>
+
+        <View style={{flex: 1}}>
           <Switch
             card={true}
             title="Client Friendly Mode"
+            description={'Enable this to hide "My price"'}
             onChange={(value) => handleChangeSwitch(value)}
           />
-          <CategoriesProducts />
-        </Block>
+        </View>
 
-      </ScrollView>
+      </View>
     </Block>
   );
 }
