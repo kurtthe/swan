@@ -16,7 +16,7 @@ const LiveBalance = (props) => {
   return (
     <Block flex card center shadow style={styles.category}>
       <ImageBackground
-        source={require('../../assets/imgs/img-background.png')}
+        source={require('../../assets/imgs/swan-banner.png')}
         style={[styles.imageBlock, { width: width - theme.SIZES.BASE * 0.1, height: 132 }]}
         imageStyle={{
           width: width - theme.SIZES.BASE * 0.1,
