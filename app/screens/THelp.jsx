@@ -90,7 +90,7 @@ class Help extends React.Component {
                     <Block>
 
                       <Block
-                        flex={(Platform.OS === 'ios') ? ((Dimensions.get('window').height < 670) ? 0.3 : 0.19) : (Dimensions.get('window').height < 870) ? 0.255 : 0.15}
+                        flex={(Platform.OS === 'ios') ? ((Dimensions.get('window').height < 670) ? 0.3 : 0.19) : (Dimensions.get('window').height < 870) ? 0.255 : 0.25}
                         style={{
                           marginTop:
                             (Platform.OS === 'ios') ? ((Dimensions.get('window').height < 670) ? -20 : -80) : (Dimensions.get('window').height < 870) ? -20 : -80,
@@ -103,16 +103,13 @@ class Help extends React.Component {
                           muted
                           numberOfLines={2}
                           size={(Platform.OS === 'ios') ? ((Dimensions.get('window').height < 670) ? 15 : 20) : (Dimensions.get('window').height < 870) ? 15 : 20}
-
                         >
-                          This app is only for Swan Trade Customers.
+                          This app is only for Swan Plumbing Supplies trade account customers.
                         </Text>
-
-
                       </Block>
 
                       <Block
-                        flex={(Platform.OS === 'ios') ? ((Dimensions.get('window').height < 670) ? 0.3 : 0.25) : (Dimensions.get('window').height < 870) ? 0.255 : 0.15}
+                        flex={(Platform.OS === 'ios') ? ((Dimensions.get('window').height < 670) ? 0.3 : 0.25) : (Dimensions.get('window').height < 870) ? 0.255 : 0.25}
                         style={{
                           marginTop:
                             (Platform.OS === 'ios') ? ((Dimensions.get('window').height < 670) ? -30 : 10) : (Dimensions.get('window').height < 870) ? 10 : 0,
@@ -127,7 +124,7 @@ class Help extends React.Component {
                           size={(Platform.OS === 'ios') ? ((Dimensions.get('window').height < 670) ? 15 : 20) : (Dimensions.get('window').height < 870) ? 15 : 20}
 
                         >
-                          If you need help to get access to your trade account or to open one, please contact us on:
+                          If you don't have an account, or need help to access your account, please contact us:
                         </Text>
 
 

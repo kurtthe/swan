@@ -145,14 +145,14 @@ class Home extends React.Component {
               >
                 Book a Trak Demo
               </Button>
-              <Button
-                color="info"
-                textStyle={{ fontFamily: 'montserrat-bold', fontSize: 16 }}
-                style={styles.buttonEstimator}
-                onPress={() => navigation.navigate('Estimator')}
-              >
-                Roof Estimator
-              </Button>
+              {/*<Button*/}
+              {/*  color="info"*/}
+              {/*  textStyle={{ fontFamily: 'montserrat-bold', fontSize: 16 }}*/}
+              {/*  style={styles.buttonEstimator}*/}
+              {/*  onPress={() => navigation.navigate('Estimator')}*/}
+              {/*>*/}
+              {/*  Roof Estimator*/}
+              {/*</Button>*/}
             </Block>
             <Block center style={{ top: -15.5 }}>
               <Button

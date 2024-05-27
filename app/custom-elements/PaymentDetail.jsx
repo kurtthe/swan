@@ -117,16 +117,16 @@ const PaymentDetail = () => {
             <Block></Block>
           </Block>
         </Block>
-        <Block row style={{ justifyContent: 'center' }}>
-          <Button
-            color="info"
-            textStyle={{ fontFamily: 'montserrat-bold', fontSize: 16 }}
-            style={styles.button}
-            onPress={() => handlePayment()}
-          >
-            Pay via Credit Card
-          </Button>
-        </Block>
+        {/*<Block row style={{ justifyContent: 'center' }}>*/}
+        {/*  <Button*/}
+        {/*    color="info"*/}
+        {/*    textStyle={{ fontFamily: 'montserrat-bold', fontSize: 16 }}*/}
+        {/*    style={styles.button}*/}
+        {/*    onPress={() => handlePayment()}*/}
+        {/*  >*/}
+        {/*    Pay via Credit Card*/}
+        {/*  </Button>*/}
+        {/*</Block>*/}
         <GrayLine style={{ width: '100%', alignSelf: 'center', bottom: 15 }} />
       </Block>
 

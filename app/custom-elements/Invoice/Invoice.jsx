@@ -116,7 +116,7 @@ export const Invoice = (props) => {
                 {formatMoney.format(props.invoice.total_amount)}
               </Text>
             </Block>
-            <View style={{flex: 1, height: 1, backgroundColor: '#dddddd', marginTop:10}} />
+            {/*<View style={{flex: 1, height: 1, backgroundColor: '#dddddd', marginTop:10}} />*/}
           </Block>
         </Block>
       </TouchableOpacity>

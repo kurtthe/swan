@@ -161,7 +161,7 @@ class Login extends React.Component {
                     }
                   >
                     Welcome Back,{'\n'}
-                    Please sign in with your account
+                    Please enter your details to login
                   </Text>
                 </Block>
               </Block>
