@@ -134,9 +134,9 @@ const PlaceOrders = () => {
     console.log('shareOrder::', shareOrder, url, data);
   };
 
-  const changesValidationsField = (newDataFields) => {
-    setDataFieldsValidation(newDataFields);
-  };
+  // const changesValidationsField = (newDataFields) => {
+  //   setDataFieldsValidation(newDataFields);
+  // };
 
   if (dataOrder?.restricted || restricted) {
     return <Restricted />;
@@ -147,9 +147,9 @@ const PlaceOrders = () => {
       <Block flex center style={styles.cart}>
         <Block center>
           <JobsForm />
-          <OrderValidationFields
-            onChanges={(newDataFields) => changesValidationsField(newDataFields)}
-          />
+          {/*<OrderValidationFields*/}
+          {/*  onChanges={(newDataFields) => changesValidationsField(newDataFields)}*/}
+          {/*/>*/}
           <DeliveryForm />
           <StoreForm />
           <DetailOrders cartProducts={cartProducts} orderHandler={placeOrderHandler} />

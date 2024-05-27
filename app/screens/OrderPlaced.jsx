@@ -89,7 +89,7 @@ class OrderPlaced extends React.Component {
                 <Block center>
                   <Button
                     color="warning"
-                    textStyle={{ fontFamily: 'montserrat-bold', fontSize: 16, color: '#0E3A90' }}
+                    textStyle={{ fontFamily: 'montserrat-bold', fontSize: 16, color: '#6A825D' }}
                     style={styles.button}
                     onPress={() => navigation.navigate('Cart')}
                   >
