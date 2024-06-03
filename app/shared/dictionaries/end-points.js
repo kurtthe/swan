@@ -15,7 +15,7 @@ export const endPoints = {
   invoicesDetail: `${apiService}swan/:id?expand=structure,storeLocation&include_products=true`,
   invoicesDetailWTracking: `${apiService}swan/:id?expand=tracking,storeLocation&include_products=true`,
   downloadInvoicesDetail: `${apiService}swan/invoices/:id/download?base64=true`,
-  news: `${apiService}news`,
+  news: `${apiService}news?category=swan_blog`,
   statements: `${apiService}swan/statements?sort=id_desc`,
   downloadStatementDetail: `${apiService}swan/statements/:id/download?base64=true`,
   searchInvoices: `${apiService}swan/search?sort=id_desc`,
