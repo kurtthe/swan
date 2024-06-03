@@ -35,8 +35,8 @@ export const endPoints = {
   preferredStore: `${apiService}swan/stores/preferred`,
   shareOrder: `${apiService}material-orders/:id/share`,
   orders: `${apiService}material-orders?sort=id_desc&include_products=true`,
-  estimatorRoofing:
-    'https://burdenstradetrakroofestimator.paperform.co/?email=:emailUser&name=:fullName&company=:companyName&burdens_account=:accountNumber',
+  // estimatorRoofing:
+  //   'https://burdenstradetrakroofestimator.paperform.co/?email=:emailUser&name=:fullName&company=:companyName&burdens_account=:accountNumber',
   forgotPassword: `${apiService}reset-password`,
-  getValidationRules: `${apiService}swan/validation-rules`,
+  // getValidationRules: `${apiService}swan/validation-rules`,
 };
