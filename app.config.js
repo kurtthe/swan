@@ -1,7 +1,7 @@
 module.exports = {
   expo: {
-    name: "Swan",
-    slug: "Swan",
+    name: "Swan Plumbing",
+    slug: "Swan Plumbing",
     privacy: "public",
     platforms: [
       "ios",
@@ -64,7 +64,7 @@ module.exports = {
           apiKey: "AIzaSyBo1S1NNk3JpmZaiPM_kZSq0yz0vVbf194"
         }
       },
-      package: "com.splumbings.Swan",
+      package: "com.splumbings.SwanPluming",
       permissions: [
         "android.permission.READ_EXTERNAL_STORAGE",
         "android.permission.WRITE_EXTERNAL_STORAGE",
