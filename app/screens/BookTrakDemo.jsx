@@ -5,7 +5,7 @@ import WebViewComponent from '@custom-elements/WebView';
 const BookTrakDemo = () => {
   return (
     <View style={styles.webViewContainer}>
-      <WebViewComponent url="https://links.trak.co/burdens/demo.html" />
+      <WebViewComponent url="https://links.trak.co/swan/demo.html" />
     </View>
   );
 };

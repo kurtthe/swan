@@ -5,7 +5,7 @@ import WebViewComponent from '@custom-elements/WebView';
 const AppFeedback = () => {
   return (
     <View style={styles.webViewContainer}>
-      <WebViewComponent url="https://links.trak.co/burdens/feedback.html" />
+      <WebViewComponent url="https://links.trak.co/swan/feedback.html" />
     </View>
   );
 };
