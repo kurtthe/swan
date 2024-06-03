@@ -120,7 +120,7 @@ class Home extends React.Component {
           <Block style={styles.cardHeader}>
             <Block row middle space="between" style={{ paddingLeft: 15, marginTop: 5 }}>
               <Text size={18} style={{ fontFamily: 'montserrat-bold' }} color={'#363C4A'}>
-                Burdens News
+                Swan News
               </Text>
               <TouchableOpacity onPress={() => navigation.navigate('AllNews')}>
                 <Text

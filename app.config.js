@@ -47,8 +47,8 @@ module.exports = {
         usesNonExemptEncryption: false
       },
       supportsTablet: true,
-      bundleIdentifier: "com.splumbings.Swan",
-      buildNumber: "10",
+      bundleIdentifier: "com.splumbings.SwanPluming",
+      buildNumber: "1",
       googleServicesFile: "./GoogleAnalytics/GoogleService-Info.plist",
       userInterfaceStyle: "light",
       infoPlist: {
