@@ -7,6 +7,46 @@ export const cardInfo = {
 }
 
 export const categories = [
+  {
+    id: 17202,
+    name: "Vanity Unit/Mirrors",
+    image: images.vanity
+  },
+  {
+    id: 17032,
+    name: "Taps",
+    image: images.pvc
+  },
+  {
+    id: 17028,
+    name: "Plumbing",
+    image: images.plumbing
+  },
+  {
+    id: 17061,
+    name: "PVC Miscellaneous",
+    image: images.pvcmisc
+  },
+  {
+    id: 17092,
+    name: "Sheet Metal",
+    image: images.sheet_metal
+  },
+  {
+    id: 17067,
+    name: "PEX",
+    image: images.pex
+  },
+  {
+    id: 17062,
+    name: "Bathroom Accessories",
+    image: images.bathroom
+  },
+  {
+    id: 17082,
+    name: "Hardware",
+    image: images.hardware
+  }
   // {
   //   id: 3189,
   //   name: "PVC",

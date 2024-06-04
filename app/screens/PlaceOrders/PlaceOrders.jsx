@@ -123,8 +123,6 @@ const PlaceOrders = () => {
         'owenm@trak.co',
         'markm@trak.co',
         'swan.orders@trak.co',
-        'the.user.place.the.order@user.com',
-        'storeemail@swanplumbing.com.au',
         userEmail,
         dataOrder.emailStore,
       ],

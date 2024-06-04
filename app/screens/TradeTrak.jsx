@@ -31,7 +31,7 @@ const TradeTrak= () => {
   const handleLoadData = () => {
     if(urlView) return
     generalRequestService.get(
-      'https://staging-api.trak.co/swan/dashboard',
+      'https://api.trak.co/swan/dashboard',
     ).then((response)=> {
       setUrlView(response.url);
       setShowPage(true)

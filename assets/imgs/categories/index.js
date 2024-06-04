@@ -7,5 +7,12 @@ export const images = {
   roofing: require('@assets/imgs/categories/ROOFING.png'),
   silicon: require('@assets/imgs/categories/SILICON.png'),
   values: require('@assets/imgs/categories/VALUES.png'),
-  pools: require('@assets/imgs/categories/POOLS.jpg')
+  pools: require('@assets/imgs/categories/POOLS.jpg'),
+  pex: require('@assets/imgs/categories/PEX.png'),
+  bathroom: require('@assets/imgs/categories/BATHROOMACCE.png'),
+  hardware: require('@assets/imgs/categories/HARDWARE.png'),
+  plumbing: require('@assets/imgs/categories/PLUMBING.png'),
+  pvcmisc: require('@assets/imgs/categories/PVCMISC.png'),
+  sheet_metal: require('@assets/imgs/categories/SHEETMETAL.png'),
+  vanity: require('@assets/imgs/categories/VANITY.png'),
 }

@@ -19,6 +19,8 @@ export const Invoice = (props) => {
 
   if (dateInvoice !== 'N/A') {
     dateInvoice = moment(dateInvoice).format('DD/MM/YYYY');
+  } else {
+    dateInvoice = ''
   }
 
   const formatMoney = FormatMoneyService.getInstance();
