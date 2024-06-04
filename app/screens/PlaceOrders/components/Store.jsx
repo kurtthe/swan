@@ -19,24 +19,28 @@ const Store = () => {
 
 
   const {data: stores } = useGetStores();
-  const {data: preferredStore} = useGetPreferredStore();
+  // const {data: preferredStore} = useGetPreferredStore();
 
   useEffect(()=>{
     if(!stores?.locations?.length){
       return
     }
 
-    const storesAsRadioButton = setOptionsPicker(stores.locations, preferredStore)
+    // const storesAsRadioButton = setOptionsPicker(stores.locations, preferredStore)
+    const storesAsRadioButton = setOptionsPicker(stores.locations)
     setOptionsSelectStores(storesAsRadioButton)
-  },[stores?.locations, preferredStore])
+  // },[stores?.locations, preferredStore])
+  },[stores?.locations])
 
   useEffect(()=>{
-    if(!preferredStore){
-      return
-    }
+    // if(!preferredStore){
+    //   return
+    // }
 
-    dispatch(setDataStore({...preferredStore, notes }))
-  },[preferredStore, notes])
+    // dispatch(setDataStore({...preferredStore, notes }))
+    dispatch(setDataStore({ notes }))
+  // },[preferredStore, notes])
+  },[notes])
 
   const handleChangeOptionSelected = (option) => {
     dispatch(setDataStore(option))
