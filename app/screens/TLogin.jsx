@@ -81,7 +81,7 @@ class Login extends React.Component {
   }
 
   handleLogin = async () => {
-    this.setState({ loading: true });
+    this.setState({ loading: true, email: this.state.email, password: this.state.password });
 
     const dataLogin = {
       username: this.state.email,
@@ -90,13 +90,19 @@ class Login extends React.Component {
 
     const resLogin = await this.generalRequest.auth(dataLogin);
 
+    if (!resLogin.logged) {
+      this.redirectLogin();
+    }
+
     if (!!resLogin) {
       const data = {
         ...resLogin.body,
         company: resLogin.headers['tradetrak-company'],
       };
-      this.setState({ email: '', password: '' });
+      this.setState({ email: this.state.email, password: this.state.password });
       this.props.sign(data);
+      this.redirectLogin()
+      this.setState({ loading: false });
     }
 
     this.setState({ loading: false });
@@ -161,7 +167,7 @@ class Login extends React.Component {
                     }
                   >
                     Welcome Back,{'\n'}
-                    Please sign in with your account
+                    Please enter your details to login
                   </Text>
                 </Block>
               </Block>

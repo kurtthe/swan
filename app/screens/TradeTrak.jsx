@@ -1,96 +1,57 @@
 import React, { useEffect, useState } from 'react';
-import { Dimensions, Platform, StyleSheet, View } from 'react-native';
+import {SafeAreaView, View} from 'react-native';
+import {useFocusEffect, useNavigation} from "@react-navigation/native";
+import WebApp from "@custom-elements/WebApp";
+import Loading from '@custom-elements/Loading';
 import { GeneralRequestService } from '@core/services/general-request.service';
-import Restricted from '@custom-elements/Restricted';
-import Loading from '../custom-elements/Loading';
-import RenderHTML from 'react-native-render-html';
-import WebView from 'react-native-webview';
-import IframeRenderer, { iframeModel } from '@native-html/iframe-plugin';
 
 const generalRequestService = GeneralRequestService.getInstance();
-const renderers = {
-  iframe: IframeRenderer
-};
 
-const customHTMLElementModels = {
-  iframe: iframeModel
-};
-const contentWidth = Dimensions.get("screen").width * 0.9;
+const TradeTrak= () => {
+  const navigation = useNavigation()
+  const [isLoading, setIsLoading] = useState(true)
+  const [urlView, setUrlView] = useState(undefined);
+  const [showPage, setShowPage] = useState(true)
 
-const Register = () => {
-  const [urlView, setUrlView] = useState(null);
-  const [restricted, setRestricted] = useState(false);
+  const handleCloseView = () => {
+    navigation.goBack()
+    setShowPage(false)
+    setUrlView(undefined)
+  };
+
+  useFocusEffect(
+    React.useCallback(() => {
+      handleLoadData()
+    }, [])
+  );
 
   useEffect(() => {
-    (
-      async () => {
-        const response = await generalRequestService.get(
-          'https://api.tradetrak.com.au/burdens/dashboard',
-        );
-
-        if(response.restricted) {
-          setRestricted(true)
-        }
-        setUrlView(response.url);
-      }
-    )()
+    handleLoadData()
   }, []);
+  const handleLoadData = () => {
+    if(urlView) return
+    generalRequestService.get(
+      'https://api.trak.co/swan/dashboard',
+    ).then((response)=> {
+      setUrlView(response.url);
+      setShowPage(true)
+      setIsLoading(false)
+    })
+  }
 
-  if(!urlView) return <Loading />
-
-
-  if (restricted) {
+  if(isLoading || !urlView){
     return (
-      <View style={styles.restrictedContainer}>
-        <Restricted />
-      </View>
+      <SafeAreaView>
+        <View style={{padding:10}}>
+          <Loading />
+        </View>
+      </SafeAreaView>
     )
   }
-  const contentWidth = Dimensions.get("screen").width * 1;
-  const content = `<iframe src='${urlView}' allowfullscreen></iframe>`;
 
-  return (
-    <View style={styles.item}>
-    <View style={styles.webViewContainer}>
-    <RenderHTML
-              renderers={renderers}
-              WebView={WebView}
-              source={{
-                html: content,
-              }}
-              customHTMLElementModels={customHTMLElementModels}
-              tagsStyles={{
-
-                iframe: {
-
-                  borderRadius: 5,
-                  marginHorizontal: 0,
-                  height:Platform.OS === "android" ? 690 : 690,
-                  width:contentWidth
-                },
-
-              }}
-            />
-    </View>
-    </View>
-  );
+  return  (
+    <WebApp onClose={handleCloseView} visible={showPage} url={urlView} />
+  )
 };
 
-const styles = StyleSheet.create({
-  webViewContainer: {
-    flex: 1,
-  },
-  restrictedContainer: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  item: {
-    marginTop: 60,
-   // backgroundColor: "red",
-    height:Platform.OS === "android" ? 650 : 650
-
-  },
-});
-
-export default Register;
+export default TradeTrak;

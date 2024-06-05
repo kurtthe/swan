@@ -3,53 +3,93 @@ import { images } from '@assets/imgs/categories'
 export const cardInfo = {
   id: '',
   name: 'ALL PRODUCTS',
-  image: { uri: 'https://live.staticflickr.com/65535/51356873868_2db763db5b_w.jpg' },
+  image: { uri: 'https://5145345.app.netsuite.com/c.5145345/site/Homepage%20Images/swanonline%20Main%20Banner.png' },
 }
 
 export const categories = [
   {
-    id: 3189,
-    name: "PVC",
+    id: 17202,
+    name: "Vanity Unit/Mirrors",
+    image: images.vanity
+  },
+  {
+    id: 17032,
+    name: "Taps",
     image: images.pvc
   },
   {
-    id: 3125,
-    name: "METAL PIPE & FITTINGS",
-    image: images.pipe
+    id: 17028,
+    name: "Plumbing",
+    image: images.plumbing
   },
   {
-    id: 3149,
-    name: "PEX PIPE & FITTINGS",
-    image: images.pipe_pex
+    id: 17061,
+    name: "PVC Miscellaneous",
+    image: images.pvcmisc
   },
   {
-    id: 3404,
-    name: "VALVES",
-    image: images.values
+    id: 17092,
+    name: "Sheet Metal",
+    image: images.sheet_metal
   },
   {
-    id: 3234,
-    name: "ROOFING (EXCL FLASHINGS)",
-    image: images.roofing
+    id: 17067,
+    name: "PEX",
+    image: images.pex
   },
   {
-    id: 3069,
-    name: "HOT WATER",
-    image: images.hot_water
+    id: 17062,
+    name: "Bathroom Accessories",
+    image: images.bathroom
   },
   {
-    id: 3171,
-    name: "POLY",
-    image: images.poly
-  },
-  {
-    id: 3010,
-    name: "FASTENERS, GLUES, SILICON",
-    image: images.silicon
-  },
-  {
-    id: "Pools",
-    name: "POOLS",
-    image: images.pools
-  },
+    id: 17082,
+    name: "Hardware",
+    image: images.hardware
+  }
+  // {
+  //   id: 3189,
+  //   name: "PVC",
+  //   image: images.pvc
+  // },
+  // {
+  //   id: 3125,
+  //   name: "METAL PIPE & FITTINGS",
+  //   image: images.pipe
+  // },
+  // {
+  //   id: 3149,
+  //   name: "PEX PIPE & FITTINGS",
+  //   image: images.pipe_pex
+  // },
+  // {
+  //   id: 3404,
+  //   name: "VALVES",
+  //   image: images.values
+  // },
+  // {
+  //   id: 3234,
+  //   name: "ROOFING (EXCL FLASHINGS)",
+  //   image: images.roofing
+  // },
+  // {
+  //   id: 3069,
+  //   name: "HOT WATER",
+  //   image: images.hot_water
+  // },
+  // {
+  //   id: 3171,
+  //   name: "POLY",
+  //   image: images.poly
+  // },
+  // {
+  //   id: 3010,
+  //   name: "FASTENERS, GLUES, SILICON",
+  //   image: images.silicon
+  // },
+  // {
+  //   id: "Pools",
+  //   name: "POOLS",
+  //   image: images.pools
+  // },
 ]

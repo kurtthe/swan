@@ -185,18 +185,18 @@ export const InvoiceDetails = ({ route }) => {
               onPress={() => openViewerPdf()}
             />
           )}
-          <ButtonInvoice
-            disabled={!invoiceDetail.tracking.link}
-            iconName={'map-outline'}
-            text={'Track'}
-            onPress={() => handleTrack()}
-          />
-          <ButtonInvoice
-            disabled={invoiceDetail.balance <= 0}
-            iconName={'logo-usd'}
-            text={'Pay'}
-            onPress={() => handleInvoice()}
-          />
+          {/*<ButtonInvoice*/}
+          {/*  disabled={!invoiceDetail.tracking.link}*/}
+          {/*  iconName={'map-outline'}*/}
+          {/*  text={'Track'}*/}
+          {/*  onPress={() => handleTrack()}*/}
+          {/*/>*/}
+          {/*<ButtonInvoice*/}
+          {/*  disabled={invoiceDetail.balance <= 0}*/}
+          {/*  iconName={'logo-usd'}*/}
+          {/*  text={'Pay'}*/}
+          {/*  onPress={() => handleInvoice()}*/}
+          {/*/>*/}
         </Block>
         <Block card style={styles.content}>
           <Text style={styles.text}>Customer</Text>

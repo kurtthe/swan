@@ -51,10 +51,10 @@ export const TForgotPassword = ({ navigation }) => {
 
           <View style={styles.content}>
             <Text style={styles.textTitle}>
-              Forgot your current Password?
+              Forgot your password?
             </Text>
             <Text style={styles.subTitle}>
-              Enter the form to send you an {'\n'}email for changes the password
+              Enter your email address to reset{'\n'}your password.
             </Text>
           </View>
 

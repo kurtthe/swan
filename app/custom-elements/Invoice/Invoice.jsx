@@ -19,6 +19,8 @@ export const Invoice = (props) => {
 
   if (dateInvoice !== 'N/A') {
     dateInvoice = moment(dateInvoice).format('DD/MM/YYYY');
+  } else {
+    dateInvoice = ''
   }
 
   const formatMoney = FormatMoneyService.getInstance();
@@ -116,7 +118,7 @@ export const Invoice = (props) => {
                 {formatMoney.format(props.invoice.total_amount)}
               </Text>
             </Block>
-            <View style={{flex: 1, height: 1, backgroundColor: '#dddddd', marginTop:10}} />
+            {/*<View style={{flex: 1, height: 1, backgroundColor: '#dddddd', marginTop:10}} />*/}
           </Block>
         </Block>
       </TouchableOpacity>

@@ -22,9 +22,9 @@ export const makeStyles = () =>
       opacity: 0.6,
     },
     cardTitle: {
-      fontFamily: 'montserrat',
+      fontFamily: 'montserrat-bold',
       textAlign: 'center',
-      fontSize: 13,
+      fontSize: 14,
       opacity: 1,
       color: '#FFFFFF',
       alignItems: 'center',

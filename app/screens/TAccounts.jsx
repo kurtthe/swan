@@ -82,12 +82,12 @@ const TAccount = () => {
       <Tabs
         optionsTabsRender={[
           {
-            labelTab: 'Balance',
-            component: renderAccountDetails(),
+            labelTab: 'Transactions',
+            component: renderInvoices(),
           },
           {
-            labelTab: 'Statements',
-            component: renderInvoices(),
+            labelTab: 'Balance',
+            component: renderAccountDetails(),
           },
         ]}
         tabIndexSelected={customStyleIndex}

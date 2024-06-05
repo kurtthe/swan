@@ -1,7 +1,7 @@
 module.exports = {
   expo: {
-    name: "Swan",
-    slug: "Swan",
+    name: "Swan Plumbing",
+    slug: "Swan Plumbing",
     privacy: "public",
     platforms: [
       "ios",
@@ -47,8 +47,8 @@ module.exports = {
         usesNonExemptEncryption: false
       },
       supportsTablet: true,
-      bundleIdentifier: "com.splumbings.Swan",
-      buildNumber: "10",
+      bundleIdentifier: "co.splumbings.SwanPluming",
+      buildNumber: "1",
       googleServicesFile: "./GoogleAnalytics/GoogleService-Info.plist",
       userInterfaceStyle: "light",
       infoPlist: {
@@ -64,7 +64,7 @@ module.exports = {
           apiKey: "AIzaSyBo1S1NNk3JpmZaiPM_kZSq0yz0vVbf194"
         }
       },
-      package: "com.splumbings.Swan",
+      package: "co.splumbings.SwanPluming",
       permissions: [
         "android.permission.READ_EXTERNAL_STORAGE",
         "android.permission.WRITE_EXTERNAL_STORAGE",

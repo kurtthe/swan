@@ -100,7 +100,7 @@ const PlaceOrders = () => {
           contact_number: dataOrder?.delivery_instructions.contact_number,
           contact_name: dataOrder?.delivery_instructions.contact_name,
         },
-        burdens_data: dataFieldsValidations,
+        // burdens_data: dataFieldsValidations,
       },
     };
     const placedOrder = await generalRequest.put(endPoints.generateOrder, data);
@@ -119,14 +119,15 @@ const PlaceOrders = () => {
   const handleOrderShare = async (id) => {
     const data = {
       emails: [
-        'burdens.orders@tradetrak.com.au',
-        'matt.celima@burdens.com.au',
-        'owenm@tradetrak.com.au',
+        'steveb@trak.co',
+        'owenm@trak.co',
+        'markm@trak.co',
+        'swan.orders@trak.co',
         userEmail,
         dataOrder.emailStore,
       ],
       message:
-        'Thanks for your order - it has been received by our team. An email notification will be sent to the account owner when it has been processed by the store. Please contact us at 03 9703 8400. Thank you, the Burdens App Team.',
+        'Thanks for placing an order with Swan Plumbing Supplies. Please contact the Swan team 1800 571 060 if you have any queries. Regards, Swan Plumbing Supplies',
     };
 
     const url = endPoints.shareOrder.replace(':id', id);
@@ -134,9 +135,9 @@ const PlaceOrders = () => {
     console.log('shareOrder::', shareOrder, url, data);
   };
 
-  const changesValidationsField = (newDataFields) => {
-    setDataFieldsValidation(newDataFields);
-  };
+  // const changesValidationsField = (newDataFields) => {
+  //   setDataFieldsValidation(newDataFields);
+  // };
 
   if (dataOrder?.restricted || restricted) {
     return <Restricted />;
@@ -147,9 +148,9 @@ const PlaceOrders = () => {
       <Block flex center style={styles.cart}>
         <Block center>
           <JobsForm />
-          <OrderValidationFields
-            onChanges={(newDataFields) => changesValidationsField(newDataFields)}
-          />
+          {/*<OrderValidationFields*/}
+          {/*  onChanges={(newDataFields) => changesValidationsField(newDataFields)}*/}
+          {/*/>*/}
           <DeliveryForm />
           <StoreForm />
           <DetailOrders cartProducts={cartProducts} orderHandler={placeOrderHandler} />

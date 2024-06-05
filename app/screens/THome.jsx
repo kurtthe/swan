@@ -120,7 +120,7 @@ class Home extends React.Component {
           <Block style={styles.cardHeader}>
             <Block row middle space="between" style={{ paddingLeft: 15, marginTop: 5 }}>
               <Text size={18} style={{ fontFamily: 'montserrat-bold' }} color={'#363C4A'}>
-                Burdens News
+                Swan News
               </Text>
               <TouchableOpacity onPress={() => navigation.navigate('AllNews')}>
                 <Text
@@ -145,14 +145,14 @@ class Home extends React.Component {
               >
                 Book a Trak Demo
               </Button>
-              <Button
-                color="info"
-                textStyle={{ fontFamily: 'montserrat-bold', fontSize: 16 }}
-                style={styles.buttonEstimator}
-                onPress={() => navigation.navigate('Estimator')}
-              >
-                Roof Estimator
-              </Button>
+              {/*<Button*/}
+              {/*  color="info"*/}
+              {/*  textStyle={{ fontFamily: 'montserrat-bold', fontSize: 16 }}*/}
+              {/*  style={styles.buttonEstimator}*/}
+              {/*  onPress={() => navigation.navigate('Estimator')}*/}
+              {/*>*/}
+              {/*  Roof Estimator*/}
+              {/*</Button>*/}
             </Block>
             <Block center style={{ top: -15.5 }}>
               <Button
