@@ -15,4 +15,5 @@ export const images = {
   pvcmisc: require('@assets/imgs/categories/PVCMISC.png'),
   sheet_metal: require('@assets/imgs/categories/SHEETMETAL.png'),
   vanity: require('@assets/imgs/categories/VANITY.png'),
+  taps: require('@assets/imgs/categories/TAPS.png'),
 }

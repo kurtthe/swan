@@ -15,7 +15,7 @@ export const categories = [
   {
     id: 17032,
     name: "Taps",
-    image: images.pvc
+    image: images.taps
   },
   {
     id: 17028,
