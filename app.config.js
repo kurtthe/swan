@@ -73,7 +73,6 @@ module.exports = {
         "android.permission.ACCESS_COARSE_LOCATION",
         "android.permission.ACCESS_FINE_LOCATION",
         "android.permission.FOREGROUND_SERVICE",
-        "android.permission.ACCESS_BACKGROUND_LOCATION"
       ],
       versionCode: 59,
       googleServicesFile: "./GoogleAnalytics/google-services.json"
