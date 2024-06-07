@@ -2,7 +2,7 @@ import { images } from '@assets/imgs/categories'
 
 export const cardInfo = {
   id: '',
-  name: 'ALL PRODUCTS',
+  name: 'All products',
   image: { uri: 'https://5145345.app.netsuite.com/c.5145345/site/Homepage%20Images/swanonline%20Main%20Banner.png' },
 }
 

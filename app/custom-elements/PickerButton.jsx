@@ -242,6 +242,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
   },
   radioStyle: {
+    width: '100%',
     alignItems: 'flex-start',
   },
 });

@@ -34,7 +34,7 @@ const MarkMap = (props) => {
 
           <TouchableOpacity
             onPress={() =>
-              Linking.openURL(`mailto: ${props.mark.email}?subject= Burdens App &body=Hi There`)
+              Linking.openURL(`mailto: ${props.mark.email}?subject= Swan App &body=Hi There`)
             }
           >
             <Text color={nowTheme.COLORS.PRICE_COLOR} style={styles.MapsText_}>
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
   buttoNavigate: {
     paddingHorizontal: 12,
     paddingVertical: 8,
-    backgroundColor: '#0E3A90',
+    backgroundColor: nowTheme.COLORS.INFO,
     borderRadius: 5,
     flexDirection: 'row',
     alignItems: 'center',

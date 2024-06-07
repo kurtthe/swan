@@ -142,6 +142,10 @@ const Filters = ({getValues, hideFilterType}) => {
               icon={require('@assets/imgs/img/calendar.png')}
               onPress={() => handleOpenDatePicker(false)}
             />
+            <FilterButton
+              text={dateEndValue === '' ? 'X' : dateEndValue}
+              onPress={() => debouncedOnChange()}
+            />
           </Block>
         </Block>
         <DateTimePicker
@@ -195,31 +199,8 @@ const Filters = ({getValues, hideFilterType}) => {
     );
   };
 
-  const btnClearFilter = () => {
-    return (
-      <Block style={styles.contentFilterBtn}>
-        <View style={{ marginRight: 20 }}>
-          <Text style={{ fontWeight: 'bold' }}>Search</Text>
-        </View>
-        <Block>
-          <View style={styles.cleanFilter}>
-            <Button
-              mode="outlined"
-              onPress={() => debouncedOnChange()}
-              labelStyle={styles.labelCleanFilter}
-              style={styles.btnClean}
-            >
-              Clear
-            </Button>
-          </View>
-        </Block>
-      </Block>
-    );
-  };
-
   return (
     <View style={styles.container}>
-      {btnClearFilter()}
       {rangeDate()}
       {typeSearch()}
       <Search

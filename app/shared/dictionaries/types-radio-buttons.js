@@ -68,14 +68,14 @@ export const radioButtonTypeTransactions = [
     containerStyle: styleContainer,
     selected: false,
   },
-  {
-    id: 3333,
-    label: 'OTHER V',
-    value: 'Other',
-    color: nowTheme.COLORS.INFO,
-    labelStyle: styleLabel,
-    containerStyle: styleContainer,
-    selected: false,
-  },
+  // {
+  //   id: 3333,
+  //   label: 'OTHER V',
+  //   value: 'Other',
+  //   color: nowTheme.COLORS.INFO,
+  //   labelStyle: styleLabel,
+  //   containerStyle: styleContainer,
+  //   selected: false,
+  // },
 ];
 

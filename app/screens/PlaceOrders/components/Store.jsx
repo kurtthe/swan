@@ -26,6 +26,8 @@ const Store = () => {
       return
     }
 
+    console.log(stores.locations);
+
     // const storesAsRadioButton = setOptionsPicker(stores.locations, preferredStore)
     const storesAsRadioButton = setOptionsPicker(stores.locations)
     setOptionsSelectStores(storesAsRadioButton)

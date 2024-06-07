@@ -125,8 +125,8 @@ class Home extends React.Component {
               <TouchableOpacity onPress={() => navigation.navigate('AllNews')}>
                 <Text
                   size={15}
-                  style={{ fontFamily: 'montserrat-regular', right: 15 }}
-                  color={nowTheme.COLORS.HEADER}
+                  style={{ fontFamily: 'montserrat-regular', right: 15, color: nowTheme.COLORS.INFO }}
+                  color={nowTheme.COLORS.INFO}
                 >
                   See all
                 </Text>

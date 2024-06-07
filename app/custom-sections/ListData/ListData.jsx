@@ -73,7 +73,7 @@ const ListData = ({
   const renderNotFound = () => {
     return (
       <View style={styles.notfound}>
-        <Text style={{ fontFamily: 'montserrat-regular' }} size={18} color={nowTheme.COLORS.TEXT}>
+        <Text style={{ fontFamily: 'montserrat-regular' }} size={18} color={nowTheme.COLORS.INFO}>
           No results found for search options selected.
         </Text>
       </View>

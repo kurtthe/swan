@@ -58,15 +58,15 @@ const TAccount = () => {
         <>
           <PaymentDetail />
           <Balance />
-          {restricted ?
-              <Restricted horizontal /> :
-            <ListData
-              endpoint={endPoints.statements}
-              renderItems={renderItemsStatement}
-              actionData={(data) => dispatch(getStatements(data))}
-              typeData={STATEMENTS}
-            />
-          }
+          {/*{restricted ?*/}
+          {/*    <Restricted horizontal /> :*/}
+          {/*  <ListData*/}
+          {/*    endpoint={endPoints.statements}*/}
+          {/*    renderItems={renderItemsStatement}*/}
+          {/*    actionData={(data) => dispatch(getStatements(data))}*/}
+          {/*    typeData={STATEMENTS}*/}
+          {/*  />*/}
+          {/*}*/}
         </>
       }
     </>

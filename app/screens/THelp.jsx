@@ -143,8 +143,8 @@ class Help extends React.Component {
                       </Block>
                       <Block width={width * 0.9}>
                         <TouchableWithoutFeedback activeOpacity={0.6}
-                                                  onPress={() => Linking.openURL('mailto:ar@burdens.com.au?subject=Access to the Burdens portal&body=Hi There')}
-                                                  title='ar@burdens.com.au'>
+                                                  onPress={() => Linking.openURL('mailto:info@swanonline.com.au?subject=Access to the Swan portal&body=Hi There')}
+                                                  title='info@swanonline.com.au'>
                           <Text
                             color={'#444857'}
                             size={(Platform.OS === 'ios') ? ((Dimensions.get('window').height < 670) ? 18 : 22) : (Dimensions.get('window').height < 870) ? 18 : 22}
@@ -172,7 +172,7 @@ class Help extends React.Component {
                       </Block>
                       <Block width={width * 0.9}>
                         <TouchableWithoutFeedback activeOpacity={0.6} onPress={() => {
-                          this.dialCall('03 9703 8400');
+                          this.dialCall('1800 571 060');
                         }}>
                           <Text
                             color={'#444857'}

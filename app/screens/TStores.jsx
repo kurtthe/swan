@@ -9,9 +9,9 @@ import Restricted from '@custom-elements/Restricted';
 
 const { width, height } = Dimensions.get('window');
 const ASPECT_RATIO = width / height;
-const LATITUDE = -37.81308016558449;
-const LONGITUDE = 144.96438183271417;
-const LATITUDE_DELTA = 3;
+const LATITUDE = -32.81308016558449;
+const LONGITUDE = 148.96438183271417;
+const LATITUDE_DELTA = 25;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
 class TStores extends Component {
