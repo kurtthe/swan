@@ -53,7 +53,7 @@ const PaymentDetail = () => {
           <Block row flex center justifyContent={'space-between'}>
             <Block>
               <Text color={nowTheme.COLORS.LIGHTGRAY}>BSB</Text>
-              <Text>083-125</Text>
+              <Text>083004</Text>
             </Block>
             <Block center flex>
               <TouchableOpacity onPress={setBsbClipboard}>
@@ -64,7 +64,7 @@ const PaymentDetail = () => {
           <Block row flex center justifyContent={'space-between'}>
             <Block>
               <Text color={nowTheme.COLORS.LIGHTGRAY}>Account</Text>
-              <Text>04-828-4743</Text>
+              <Text>900444694</Text>
             </Block>
             <Block>
               <TouchableOpacity onPress={setAccountClipboard}>
