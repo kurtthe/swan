@@ -22,7 +22,7 @@ export class HttpCommonService {
       return
     }
 
-    this.showError(error.response);
+    // this.showError(error.response);
   }
 
   showError(appError, title ="Alert!", message=false) {
