@@ -12,7 +12,6 @@ import { endPoints } from '@shared/dictionaries/end-points';
 import { clear } from '@core/module/store/placeOrders/placeOrders';
 import { getSupplierId } from '@core/hooks/getSupplierId.service';
 import Restricted from '../../custom-elements/Restricted';
-import OrderValidationFields from './components/OrderValidationFields';
 
 const generalRequest = GeneralRequestService.getInstance();
 
