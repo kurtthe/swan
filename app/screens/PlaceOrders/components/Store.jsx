@@ -34,7 +34,7 @@ const Store = () => {
   // },[stores?.locations, preferredStore])
   },[stores?.locations])
 
-  useEffect(()=>{
+/*   useEffect(()=>{
     // if(!preferredStore){
     //   return
     // }
@@ -42,7 +42,7 @@ const Store = () => {
     // dispatch(setDataStore({...preferredStore, notes }))
     dispatch(setDataStore({ notes }))
   // },[preferredStore, notes])
-  },[notes])
+  },[notes]) */
 
   const handleChangeOptionSelected = (option) => {
     dispatch(setDataStore(option))
