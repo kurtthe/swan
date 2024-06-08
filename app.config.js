@@ -1,7 +1,7 @@
 module.exports = {
   expo: {
     name: "Swan Plumbing",
-    slug: "Swan Plumbing",
+    slug: "Swan",
     privacy: "public",
     platforms: [
       "ios",
@@ -80,7 +80,7 @@ module.exports = {
     description: "Coded by Digital Basis",
     extra: {
       eas: {
-        projectId: "aaa753a7-a92a-40c6-af95-d9859fbe899a"
+        projectId: "27ee5839-71d0-44b3-bc25-e86c40742718"
       }
     },
     runtimeVersion: {
