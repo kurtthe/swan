@@ -48,7 +48,7 @@ module.exports = {
       },
       supportsTablet: true,
       bundleIdentifier: "co.splumbings.SwanPluming",
-      buildNumber: "1",
+      buildNumber: "9",
       googleServicesFile: "./GoogleAnalytics/GoogleService-Info.plist",
       userInterfaceStyle: "light",
       infoPlist: {
@@ -74,7 +74,7 @@ module.exports = {
         "android.permission.ACCESS_FINE_LOCATION",
         "android.permission.FOREGROUND_SERVICE",
       ],
-      versionCode: 1,
+      versionCode: 2,
       googleServicesFile: "./GoogleAnalytics/google-services.json"
     },
     description: "Coded by Digital Basis",
