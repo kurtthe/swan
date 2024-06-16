@@ -13,19 +13,20 @@ import Restricted from './Restricted';
 const { width } = Dimensions.get('screen');
 
 const PaymentDetail = () => {
+
   const balanceLive = useSelector((state) => state.liveBalanceReducer);
   const [showPaymentBalance, setShowPaymentBalance] = useState(false);
 
   const setBsbClipboard = async () => {
-    await Clipboard.setString('083125');
+    await Clipboard.setString('083004');
   };
 
   const setAccountClipboard = async () => {
-    await Clipboard.setString('048284743');
+    await Clipboard.setString('900444694');
   };
 
   const setReferenceClipboard = async () => {
-    await Clipboard.setString('63673');
+    await Clipboard.setString(balanceLive.company);
   };
 
   const handlePayment = () => {
@@ -53,7 +54,7 @@ const PaymentDetail = () => {
           <Block row flex center justifyContent={'space-between'}>
             <Block>
               <Text color={nowTheme.COLORS.LIGHTGRAY}>BSB</Text>
-              <Text>083-125</Text>
+              <Text>083004</Text>
             </Block>
             <Block center flex>
               <TouchableOpacity onPress={setBsbClipboard}>
@@ -64,7 +65,7 @@ const PaymentDetail = () => {
           <Block row flex center justifyContent={'space-between'}>
             <Block>
               <Text color={nowTheme.COLORS.LIGHTGRAY}>Account</Text>
-              <Text>04-828-4743</Text>
+              <Text>900444694</Text>
             </Block>
             <Block>
               <TouchableOpacity onPress={setAccountClipboard}>
@@ -90,7 +91,7 @@ const PaymentDetail = () => {
                     : 16
                 }
               >
-                {balanceLive.client_number}
+                {balanceLive.company}
               </Text>
             </Block>
             <Block center flex>

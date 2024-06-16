@@ -1,7 +1,7 @@
 module.exports = {
   expo: {
     name: "Swan Plumbing",
-    slug: "Swan Plumbing",
+    slug: "Swan",
     privacy: "public",
     platforms: [
       "ios",
@@ -64,7 +64,7 @@ module.exports = {
           apiKey: "AIzaSyBo1S1NNk3JpmZaiPM_kZSq0yz0vVbf194"
         }
       },
-      package: "co.splumbings.SwanPluming",
+      package: "com.splumbings.Swan",
       permissions: [
         "android.permission.READ_EXTERNAL_STORAGE",
         "android.permission.WRITE_EXTERNAL_STORAGE",
@@ -73,15 +73,14 @@ module.exports = {
         "android.permission.ACCESS_COARSE_LOCATION",
         "android.permission.ACCESS_FINE_LOCATION",
         "android.permission.FOREGROUND_SERVICE",
-        "android.permission.ACCESS_BACKGROUND_LOCATION"
       ],
-      versionCode: 59,
+      versionCode: 1,
       googleServicesFile: "./GoogleAnalytics/google-services.json"
     },
     description: "Coded by Digital Basis",
     extra: {
       eas: {
-        projectId: "aaa753a7-a92a-40c6-af95-d9859fbe899a"
+        projectId: "27ee5839-71d0-44b3-bc25-e86c40742718"
       }
     },
     runtimeVersion: {

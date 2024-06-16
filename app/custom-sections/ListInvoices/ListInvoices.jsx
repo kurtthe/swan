@@ -15,7 +15,7 @@ export const ListInvoices = ({ data, title, backAccount, restricted }) => {
   const handleRedirectAllInvoices = () => {
     navigation.navigate('Account', {
       screen: 'AccountDetails',
-      params: { tabIndexSelected: 1 },
+      params: { tabIndexSelected: 0 },
     });
   };
 

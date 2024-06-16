@@ -26,13 +26,15 @@ const Store = () => {
       return
     }
 
+    console.log(stores.locations);
+
     // const storesAsRadioButton = setOptionsPicker(stores.locations, preferredStore)
     const storesAsRadioButton = setOptionsPicker(stores.locations)
     setOptionsSelectStores(storesAsRadioButton)
   // },[stores?.locations, preferredStore])
   },[stores?.locations])
 
-  useEffect(()=>{
+/*   useEffect(()=>{
     // if(!preferredStore){
     //   return
     // }
@@ -40,7 +42,7 @@ const Store = () => {
     // dispatch(setDataStore({...preferredStore, notes }))
     dispatch(setDataStore({ notes }))
   // },[preferredStore, notes])
-  },[notes])
+  },[notes]) */
 
   const handleChangeOptionSelected = (option) => {
     dispatch(setDataStore(option))

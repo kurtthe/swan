@@ -2,6 +2,7 @@ import { nowTheme } from '@constants/index';
 
 export const setOptionsPicker = (data=[], toSame=undefined) => {
 
+  data.sort((a, b) => a.name.localeCompare(b.name));
 
   return data.map((c) => ({
     ...c,
