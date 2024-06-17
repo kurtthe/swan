@@ -6,7 +6,7 @@ export default [
     horizontal: true
   },
   {
-    title: 'Hot Water Services Available from Burdens',
+    title: 'Hot Water Services Available from Swan',
     image: 'https://live.staticflickr.com/65535/51227729934_0ab1cc0002_w.jpg',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',

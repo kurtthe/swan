@@ -13,7 +13,7 @@ export const Restricted = ( {horizontal = false} ) => {
         />
         <View style={styles.containerColumn}>
           <Text style={{ fontFamily: 'montserrat-regular', fontSize: 16, textAlign: 'left' }}>
-            Forbidden: You do not have permission to view Burdens information
+            Forbidden: You do not have permission to view Swan information
           </Text>
           <Text style={{ fontFamily: 'montserrat-regular', fontSize: 10, textAlign: 'left' }}>
             Please contact your company administrator to request access.
@@ -32,7 +32,7 @@ export const Restricted = ( {horizontal = false} ) => {
       style={{marginBottom: 10}}
     />
     <Text style={{ fontFamily: 'montserrat-regular', fontSize: 18, textAlign:'center' }}>
-      Forbidden: You do not have permission to view Burdens information
+      Forbidden: You do not have permission to view Swan information
     </Text>
     <Text style={{ fontFamily: 'montserrat-regular', fontSize: 10, textAlign:'center' }}>
       Please contact your company administrator to request access.

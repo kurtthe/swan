@@ -113,8 +113,8 @@ class SignUp extends React.Component {
                       </Block>
                       <Block width={width * 0.9}>
                         <TouchableWithoutFeedback activeOpacity={0.6}
-                                                  onPress={() => Linking.openURL('mailto:help@burdens.com.au?subject=Access to the Burdens portal&body=Hi There')}
-                                                  title='help@burdens.com.au'>
+                                                  onPress={() => Linking.openURL('mailto:info@swanonline.com.au?subject=Access to the Swan portal&body=Hi There')}
+                                                  title='info@swanonline.com.au'>
                           <Text
                             color={'#444857'}
                             size={(Platform.OS === 'ios') ? ((Dimensions.get('window').height < 670) ? 18 : 22) : (Dimensions.get('window').height < 870) ? 18 : 22}
