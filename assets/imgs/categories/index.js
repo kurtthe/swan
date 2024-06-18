@@ -16,4 +16,5 @@ export const images = {
   sheet_metal: require('@assets/imgs/categories/SHEETMETAL.png'),
   vanity: require('@assets/imgs/categories/VANITY.png'),
   taps: require('@assets/imgs/categories/TAPS.png'),
+  all_products: require('@assets/imgs/categories/ALLPRODUCTS.png'),
 }

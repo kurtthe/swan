@@ -30,10 +30,10 @@ const Product = (props) => {
   }, [cartProducts]);
 
   const onAddPressed = async (productItem) => {
-    if (productItem.price.cost_price < 0) {
+    if (productItem.cost_price < 0) {
       props.handleNewPrice && (await props.handleNewPrice(props.product.id));
     }
-    const priceProduct = props.myPrice ? productItem.price.rrp : productItem.price.cost_price;
+    const priceProduct = props.myPrice ? productItem.rrp : productItem.cost_price;
 
     const addProduct = {
       ...productItem,
@@ -99,11 +99,11 @@ const Product = (props) => {
           <Block row style={{ width: '100%' }}>
             <Block flex>
               <Text color={nowTheme.COLORS.LIGHTGRAY} style={styles.priceGrayText}>
-                RRP: {formatMoney.format(props.product.price.retail_price)}
+                RRP: {formatMoney.format(props.product.rrp)}
               </Text>
-              <Text style={styles.price}>
-                {props.myPrice ? null : (showPriceProduct())}
-              </Text>
+              {/*<Text style={styles.price}>*/}
+              {/*  {props.myPrice ? null : (showPriceProduct())}*/}
+              {/*</Text>*/}
             </Block>
           </Block>
         </Block>
