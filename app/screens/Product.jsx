@@ -19,6 +19,7 @@ import { FormatMoneyService } from '@core/services/format-money.service';
 import LoadingComponent from '@custom-elements/Loading';
 import FavoriteIcon from '@custom-elements/FavoriteIcon'
 import { updatePreOrder } from '@core/module/store/cart/preCart';
+import { endPoints } from '@shared/dictionaries/end-points';
 
 const { width } = Dimensions.get('window');
 const sizeConstantSmall =
@@ -52,18 +53,23 @@ class Product extends React.Component {
     this.formatMoney = FormatMoneyService.getInstance();
   }
 
-  componentDidMount() {
+  async componentDidMount() {
+
+    console.log(this.props.route?.params?.product);
     this.setState({
       hideMyPrice: this.props.route?.params?.hideMyPrice,
       productDetail: this.props.route?.params?.product,
     });
+
     this.focusListener = this.props.navigation.addListener("focus", () => {
       this.updateCuantity()
     });
   }
 
   componentWillUnmount() {
-    this.focusListener();
+    if (this.focusListener) {
+      this.focusListener.remove();
+    }
   }
 
   updateCuantity () {
