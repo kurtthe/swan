@@ -7,7 +7,7 @@ module.exports = {
       "ios",
       "android"
     ],
-    version: "1.0.1",
+    version: "1.0.3",
     orientation: "portrait",
     icon: "./assets/icon.png",
     splash: {
@@ -48,7 +48,7 @@ module.exports = {
       },
       supportsTablet: true,
       bundleIdentifier: "co.splumbings.SwanPluming",
-      buildNumber: "2",
+      buildNumber: "1",
       googleServicesFile: "./GoogleAnalytics/GoogleService-Info.plist",
       userInterfaceStyle: "light",
       infoPlist: {

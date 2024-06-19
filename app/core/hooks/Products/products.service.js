@@ -20,9 +20,9 @@ export const getProducts = async (options) => {
   const response = await generalRequestService.getWithHeaders(endPoints.products, {},
     {
       'per-page': 20,
-      update_prices: true,
+      // update_prices: true,
       favourites_only: only_favourite || false,
-      expand: 'price',
+      // expand: 'price',
       //supplier_id: supplierId,
       ...paramsPetition
     })

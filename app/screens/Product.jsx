@@ -57,13 +57,14 @@ class Product extends React.Component {
       hideMyPrice: this.props.route?.params?.hideMyPrice,
       productDetail: this.props.route?.params?.product,
     });
+
     this.focusListener = this.props.navigation.addListener("focus", () => {
       this.updateCuantity()
     });
   }
 
   componentWillUnmount() {
-    this.focusListener();
+    this.focusListener;
   }
 
   updateCuantity () {
@@ -77,7 +78,7 @@ class Product extends React.Component {
 
 
   onAddCartPressed = (productItem) => {
-    const priceProduct = this.state.hideMyPrice ? productItem?.price.retail_price : productItem?.price.cost_price;
+    const priceProduct = this.state.hideMyPrice ? productItem?.rrp : productItem?.cost_price;
 
     if (this.props?.cartProducts.some((element) => element.id === productItem.id)) {
       let sum = this.productCart.quantity ? this.productCart.quantity + this.state.cantProduct : this.state.cantProduct;
@@ -167,7 +168,7 @@ class Product extends React.Component {
                     color={nowTheme.COLORS.ORANGE}
                     size={sizeConstantBig}
                   >
-                    {this.formatMoney.format(productDetail.price.retail_price)}
+                    {this.formatMoney.format(productDetail.rrp)}
                   </Text>
                 </Block>
                 {!this.state.hideMyPrice && (
@@ -192,7 +193,7 @@ class Product extends React.Component {
                         color={nowTheme.COLORS.ORANGE}
                         size={sizeConstantBig}
                       >
-                        {this.formatMoney.format(productDetail?.price.cost_price)}
+                        {this.formatMoney.format(productDetail?.cost_price)}
                       </Text>
                     </Block>
                   </>

@@ -14,6 +14,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { makeStyles, sizeConstant } from './Product.styles';
 import FavoriteIcon from '../FavoriteIcon';
 import IconTopSell from '../IconTopSell';
+import { endPoints } from '../../shared/dictionaries/end-points';
+import { GeneralRequestService } from '../../core/services/general-request.service';
+
+const generalRequestService = GeneralRequestService.getInstance()
 
 const Product = (props) => {
   const cartProducts = useSelector((state) => state.productsReducer.products);
@@ -30,30 +34,53 @@ const Product = (props) => {
   }, [cartProducts]);
 
   const onAddPressed = async (productItem) => {
-    if (productItem.price.cost_price < 0) {
-      props.handleNewPrice && (await props.handleNewPrice(props.product.id));
-    }
-    const priceProduct = props.myPrice ? productItem.price.rrp : productItem.price.cost_price;
 
-    const addProduct = {
-      ...productItem,
-      price: parseFloat(priceProduct).toFixed(2),
-      myPrice: props.myPrice,
-    };
-    const productAdd = productCart.addCart(addProduct);
-    dispatch(updateProducts(productAdd));
+    const urlPetition = endPoints.newPrice.replace(":id", productItem.id);
+    const data = await generalRequestService.get(`${urlPetition}`);
+    console.log(data);
+
+    if (data[0] && data[0].retail_price && data[0].cost_price) {
+
+      productItem.rrp = data[0].retail_price;
+      productItem.cost_price = data[0].cost_price;
+
+      const priceProduct = props.myPrice ? data[0].retail_price : data[0].cost_price;
+
+      const addProduct = {
+        ...productItem,
+        price: parseFloat(priceProduct).toFixed(2),
+        myPrice: props.myPrice,
+      };
+      const productAdd = productCart.addCart(addProduct);
+      dispatch(updateProducts(productAdd));
+
+    } else {
+      console.error("We coudn't get the new prices");
+    }
+
   };
 
   const onProductPressed = async (productItem) => {
-    if (productItem.cost_price < 0) {
-      props.handleNewPrice && (await props.handleNewPrice(props.product.id));
+
+    const urlPetition = endPoints.newPrice.replace(":id", productItem.id);
+    const data = await generalRequestService.get(`${urlPetition}`);
+    console.log(data);
+
+    if (data[0] && data[0].retail_price && data[0].cost_price) {
+
+      productItem.rrp = data[0].retail_price;
+      productItem.cost_price = data[0].cost_price;
+
+      navigation?.navigate('Product', {
+        hideMyPrice: props.myPrice,
+        product: productItem,
+        headerTitle: 'Product',
+        updateProducts: props.updateList,
+      });
+    } else {
+      console.error("We coudn't get the new prices");
     }
-    navigation?.navigate('Product', {
-      hideMyPrice: props.myPrice,
-      product: productItem,
-      headerTitle: 'Product',
-      updateProducts: props.updateList,
-    });
+
   };
 
   const showPriceProduct = () => {
@@ -99,11 +126,11 @@ const Product = (props) => {
           <Block row style={{ width: '100%' }}>
             <Block flex>
               <Text color={nowTheme.COLORS.LIGHTGRAY} style={styles.priceGrayText}>
-                RRP: {formatMoney.format(props.product.price.retail_price)}
+                RRP: {formatMoney.format(props.product.rrp)}
               </Text>
-              <Text style={styles.price}>
-                {props.myPrice ? null : (showPriceProduct())}
-              </Text>
+              {/*<Text style={styles.price}>*/}
+              {/*  {props.myPrice ? null : (showPriceProduct())}*/}
+              {/*</Text>*/}
             </Block>
           </Block>
         </Block>
