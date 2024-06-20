@@ -27,6 +27,7 @@ import { expo } from '../../app.config.js';
 
 import { connect } from 'react-redux';
 import Search from '@custom-elements/Search';
+import { Icon } from '../components';
 
 const { width } = Dimensions.get('screen');
 
@@ -93,13 +94,24 @@ class Home extends React.Component {
             />
             <Pressable
               style={{
-                height: 40,
-                width: 40,
+                height: 48,
+                width: 80,
                 position: 'absolute',
-                right: 25,
+                backgroundColor: nowTheme.COLORS.INFO,
+                right: 15,
+                flex: 1,
+                flexDirection: "row",
+                alignItems: 'center',
+                justifyContent: 'center',
               }}
-              onPress={() => this.handleSearch(this.state.textSearch)}
-            />
+            >
+              <Icon family="NowExtra" size={15} name="zoom-bold2x" color={'#FFF'} style={{marginHorizontal: 2}} />
+              <Text
+                style={{
+                  color: '#fff'
+                }}
+              >Search</Text>
+            </Pressable>
           </View>
 
           <Button
