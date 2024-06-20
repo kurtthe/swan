@@ -47,9 +47,6 @@ export const SearchProducts = ({route}) => {
   useEffect(() => {
     setLoadingData(true)
     setTextSearch(textSearchHome)
-    console.log(textSearch)
-    console.log(textSearchHome)
-    console.log(textSearch)
     handleSearch()
   }, [textSearchHome])
 
@@ -104,6 +101,7 @@ export const SearchProducts = ({route}) => {
   }
 
   const handleSearch = () => {
+    console.log(textSearch)
     changeText(textSearch)
   };
 
