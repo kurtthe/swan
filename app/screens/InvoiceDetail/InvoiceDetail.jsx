@@ -64,6 +64,7 @@ export const InvoiceDetails = ({ route }) => {
   };
 
   useEffect(() => {
+    console.log(route)
     handleGetData()
   }, [route.params.invoice])
 
@@ -221,8 +222,17 @@ export const InvoiceDetails = ({ route }) => {
               <Text>{validateEmptyField(invoiceDetail.invoice_date, true)}</Text>
             </Block>
           </Block>
-          <Text style={styles.text}>Branch</Text>
-          <Text>{invoiceDetail.storeLocation === null ? "N/A" : validateEmptyField(invoiceDetail.storeLocation.name)}</Text>
+          <Block row>
+            <Block flex>
+              <Text style={styles.text}>{invoiceDetail?.type} Name</Text>
+              <Text>{validateEmptyField(invoiceDetail.description)}</Text>
+            </Block>
+            <Block flex>
+              <Text style={styles.text}>Branch</Text>
+              <Text>{invoiceDetail.storeLocation === null ? "" : validateEmptyField(invoiceDetail.storeLocation.name)}</Text>
+            </Block>
+          </Block>
+
         </Block>
         <Block card style={styles.content}
         >
