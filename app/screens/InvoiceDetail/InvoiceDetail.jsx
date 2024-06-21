@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, ScrollView } from 'react-native';
+import { View, ScrollView, RefreshControl } from 'react-native';
 import { Block, Text, Button } from 'galio-framework';
 import { nowTheme } from '@constants/index';
 import { GetDataPetitionService } from '@core/services/get-data-petition.service';
@@ -45,6 +45,7 @@ export const InvoiceDetails = ({ route }) => {
   const [showWebView, setShowWebView] = useState(false);
   const [urlFilePdf, setUrlFilePdf] = useState()
   const [loadingLoadPdf, setLoadingLoadPdf] = useState(false)
+  const [refreshing, setRefreshing] = useState(false)
   const [generalRequestService] = useState(GeneralRequestService.getInstance())
   const [urlDownloadFile, setUrlDownloadFile] = useState()
   const [urlWebView, setUrlWebView] = useState()
@@ -93,6 +94,7 @@ export const InvoiceDetails = ({ route }) => {
   }, [invoiceDetail?.structure?.items])
 
   const handleGetData = async () => {
+
     setInvoiceDetail(null)
     const { invoice, nameRouteGoing } = route.params;
     const url = endPoints.invoicesDetail.replace(':id', invoice);
@@ -158,9 +160,18 @@ export const InvoiceDetails = ({ route }) => {
     return <SkeletonInvoiceDetail />;
   }
 
+  const handleRefresh = () => {
+    setRefreshing(true);
+    handleGetData().then(() =>{
+      setRefreshing(false);
+    })
+  }
+
   return (
     <>
-      <ScrollView style={styles.cart}>
+      <ScrollView style={styles.cart} refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={handleRefresh} />
+      }>
         <Block flex row space='around' style={styles.button_alignment}>
           {invoiceDetail.structure.items.length > 0 && (
             <ButtonInvoice
@@ -221,8 +232,17 @@ export const InvoiceDetails = ({ route }) => {
               <Text>{validateEmptyField(invoiceDetail.invoice_date, true)}</Text>
             </Block>
           </Block>
-          <Text style={styles.text}>Branch</Text>
-          <Text>{invoiceDetail.storeLocation === null ? "N/A" : validateEmptyField(invoiceDetail.storeLocation.name)}</Text>
+          <Block row>
+            <Block flex>
+              <Text style={styles.text}>{invoiceDetail?.type} Name</Text>
+              <Text>{validateEmptyField(invoiceDetail.description)}</Text>
+            </Block>
+            <Block flex>
+              <Text style={styles.text}>Branch</Text>
+              <Text>{invoiceDetail.storeLocation === null ? "" : validateEmptyField(invoiceDetail.storeLocation.name)}</Text>
+            </Block>
+          </Block>
+
         </Block>
         <Block card style={styles.content}
         >

@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useMemo, useCallback} from 'react';
-import { View, FlatList, Text } from 'react-native'
+import { View, FlatList, Text, Button, Pressable } from 'react-native';
 import debounce from "lodash.debounce";
 
 import Search from '@custom-elements/Search';
@@ -11,6 +11,7 @@ import { useSelector } from 'react-redux';
 import ButtonLoadingMore from '@custom-elements/ButtonLoadingMore'
 import LoadingComponent from '@custom-elements/Loading';
 import { nowTheme } from '@constants';
+import { Icon } from '../../components';
 
 export const SearchProducts = ({route}) => {
   const { text: textSearchHome } = route.params
@@ -35,7 +36,6 @@ export const SearchProducts = ({route}) => {
     refetch
   } = useGetProducts(optionsProducts)
 
-
   const styles = makeStyles()
 
   useEffect(() => {
@@ -47,7 +47,7 @@ export const SearchProducts = ({route}) => {
   useEffect(() => {
     setLoadingData(true)
     setTextSearch(textSearchHome)
-    debouncedOnChange(textSearchHome)
+    handleSearch()
   }, [textSearchHome])
 
   useEffect(() => {
@@ -70,10 +70,6 @@ export const SearchProducts = ({route}) => {
     }
     setShowLoadingMore(optionsProducts.page < products?.headers['x-pagination-page-count'])
   }, [products?.headers, optionsProducts.page])
-
-  useEffect(() => {
-    debouncedOnChange(textSearch)
-  }, [textSearch]);
 
   const changeText = (text) => {
     setKeepData(false)
@@ -104,10 +100,10 @@ export const SearchProducts = ({route}) => {
     return null
   }
 
-  const debouncedOnChange = useCallback(
-    debounce(changeText , 300),
-    [],
-  );
+  const handleSearch = () => {
+    console.log(textSearch)
+    changeText(textSearch)
+  };
 
   const renderItem = ({ item }) => {
     return (<Product
@@ -154,10 +150,38 @@ export const SearchProducts = ({route}) => {
         onChangeText={setTextSearch}
         value={textSearch}
         style={styles.search}
-        inputStyle={styles.searchInput}
+        inputStyle={{color: '#000000',
+          borderRadius:0,
+          borderColor: '#000000',
+          borderWidth: 2}}
       />
+      <Pressable
+        style={{
+          height: 48,
+          width: 80,
+          position: 'absolute',
+          backgroundColor: nowTheme.COLORS.INFO,
+          right: 15,
+          top: 8,
+          flex: 1,
+          flexDirection: "row",
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+        onPress={handleSearch}
+      >
+        <Icon family="NowExtra" size={15} name="zoom-bold2x" color={'#FFF'} style={{marginHorizontal: 2}} />
+        <Text
+          style={{
+            color: '#fff'
+          }}
+        >
+          Search
+        </Text>
+      </Pressable>
       {!empty && putContent()}
     </View>
 
   );
+
 }

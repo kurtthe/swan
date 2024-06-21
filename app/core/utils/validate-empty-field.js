@@ -12,6 +12,10 @@ export function validateEmptyField(data = '', isDate = false) {
     if (!value || value === '' || value === null || value === undefined) {
       return 'N/A';
     }
+
+    if (value < 0) {
+      return '';
+    }
   }
 
   return value;

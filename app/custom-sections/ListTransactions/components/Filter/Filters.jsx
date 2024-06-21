@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, FlatList } from 'react-native';
+import { View, StyleSheet, FlatList, Pressable } from 'react-native';
 import { Block, Text } from 'galio-framework';
 
 import FilterButton from '@components/FilterButton';
@@ -12,6 +12,7 @@ import Search from '@custom-elements/Search';
 import { BottomSheet } from 'react-native-sheet';
 import RadioGroup from 'react-native-radio-buttons-group';
 import nowTheme from '@constants/Theme';
+import { Icon } from '../../../../components';
 
 
 const Filters = ({getValues, hideFilterType}) => {
@@ -203,11 +204,40 @@ const Filters = ({getValues, hideFilterType}) => {
     <View style={styles.container}>
       {rangeDate()}
       {typeSearch()}
-      <Search
-        inputStyle={styles.searchInput}
-        placeholder="By description or invoice number"
-        onChangeText={(text) => debouncedOnChange('text', text)}
-      />
+      <View style={{flex: 1}}>
+        <Search
+          inputStyle={{color: '#000000',
+            borderRadius:0,
+            borderColor: '#000000',
+            borderWidth: 2}}
+          placeholder="By description or invoice number"
+          onChangeText={setTextSearch}
+        />
+        <Pressable
+          style={{
+            height: 48,
+            width: 80,
+            position: 'absolute',
+            backgroundColor: nowTheme.COLORS.INFO,
+            right: 0,
+            top: 8,
+            flex: 1,
+            flexDirection: "row",
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+          onPress={() => changeValuesFilters('text', textSearch)}
+        >
+          <Icon family="NowExtra" size={15} name="zoom-bold2x" color={'#FFF'} style={{marginHorizontal: 2}} />
+          <Text
+            style={{
+              color: '#fff'
+            }}
+          >
+            Search
+          </Text>
+        </Pressable>
+      </View>
     </View>
   );
 }

@@ -1,5 +1,5 @@
 import React, { memo, useState, useEffect } from 'react';
-import { Image, TouchableWithoutFeedback, View, TouchableOpacity } from 'react-native';
+import { Image, TouchableWithoutFeedback, View, TouchableOpacity, FlatList } from 'react-native';
 
 import { Button } from '@components';
 import { Block, Text } from 'galio-framework';
@@ -8,6 +8,7 @@ import { useNavigation } from '@react-navigation/native';
 import { nowTheme } from '@constants';
 import { FormatMoneyService } from '@core/services/format-money.service';
 import { updateProducts } from '@core/module/store/cart/cart';
+import LoadingComponent from '@custom-elements/Loading'
 import { ProductCart } from '@core/services/product-cart.service';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useSelector, useDispatch } from 'react-redux';
@@ -25,6 +26,8 @@ const Product = (props) => {
   const productCart = ProductCart.getInstance(cartProducts);
   const formatMoney = FormatMoneyService.getInstance();
   const [added, setProductAdded] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingPrice, setIsLoadingPrice] = useState(false);
   const styles = makeStyles();
   const navigation = useNavigation();
 
@@ -36,6 +39,7 @@ const Product = (props) => {
   const onAddPressed = async (productItem) => {
 
     const urlPetition = endPoints.newPrice.replace(":id", productItem.id);
+    setIsLoading(true);
     const data = await generalRequestService.get(`${urlPetition}`);
     console.log(data);
 
@@ -58,10 +62,13 @@ const Product = (props) => {
       console.error("We coudn't get the new prices");
     }
 
+    setIsLoading(false);
+
   };
 
   const onProductPressed = async (productItem) => {
 
+    setIsLoadingPrice(true);
     const urlPetition = endPoints.newPrice.replace(":id", productItem.id);
     const data = await generalRequestService.get(`${urlPetition}`);
     console.log(data);
@@ -80,6 +87,7 @@ const Product = (props) => {
     } else {
       console.error("We coudn't get the new prices");
     }
+    setIsLoadingPrice(false);
 
   };
 
@@ -136,14 +144,30 @@ const Product = (props) => {
         </Block>
       </TouchableWithoutFeedback>
       <Block>
-        <Button
-          color="info"
-          textStyle={{ fontFamily: 'montserrat-bold', fontSize: 16, color: 'white' }}
-          onPress={() => onAddPressed(props.product)}
-          disabled={added ? true : false}
-        >
-          {added ? 'Added' : 'Add'}
-        </Button>
+        {
+          isLoadingPrice && (
+            <View style={styles.contentLoading}>
+              <LoadingComponent size='large' />
+            </View>
+          )
+        }
+        {
+          isLoading ? (
+            <View style={styles.contentLoading}>
+              <LoadingComponent size='large' />
+            </View>
+          ): (
+            <Button
+              color="info"
+              textStyle={{ fontFamily: 'montserrat-bold', fontSize: 16, color: 'white' }}
+              onPress={() => onAddPressed(props.product)}
+              disabled={added ? true : false}
+            >
+              {isLoadingPrice ? 'Loading' : added ? 'Added' : 'Add'}
+            </Button>
+          )
+        }
+
       </Block>
     </Block>
   );

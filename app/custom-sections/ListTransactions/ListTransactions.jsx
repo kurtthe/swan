@@ -51,7 +51,6 @@ export const ListTransactions = () => {
   }, [transactions?.headers, optionsTransactions.page])
 
   useEffect(() => {
-    console.log(transactions);
     updateListTransactions(transactions?.body)
   }, [transactions?.body])
 

@@ -40,9 +40,19 @@ export const ListInvoices = ({ data, title, backAccount, restricted }) => {
         </Block>
       )}
 
-      <Block style={styles.card}>
-        {restricted ? <Restricted horizontal /> : <>{renderListData()}</>}
-      </Block>
+      {data && data.length > 0 ? (
+        <Block style={styles.card}>
+          {restricted ? <Restricted horizontal /> : <>{renderListData()}</>}
+        </Block>
+      ) : (
+        <Block row>
+          <Block flex style={{ paddingRight: 3, paddingLeft: 15, marginTop: 5 }}>
+            <Text>No invoices available</Text>
+          </Block>
+        </Block>
+
+      )}
+
     </>
   );
 };
