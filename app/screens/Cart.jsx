@@ -1,5 +1,5 @@
-import React from 'react';
-import { StyleSheet, Dimensions, Platform } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Dimensions, Platform, RefreshControl, ScrollView } from 'react-native';
 import { Block} from 'galio-framework';
 import { connect } from 'react-redux';
 import { FormatMoneyService } from '@core/services/format-money.service';
@@ -21,6 +21,7 @@ import Restricted from '@custom-elements/Restricted';
 
 const { width } = Dimensions.get('screen');
 class Cart extends React.Component {
+
   constructor(props) {
     super(props)
 
@@ -29,6 +30,7 @@ class Cart extends React.Component {
       deleteAction: false,
       myPrice: false,
       restricted: false,
+      refreshing: false
     };
 
     this.alertService = new AlertService();
@@ -40,7 +42,7 @@ class Cart extends React.Component {
   async componentDidMount() {
     if (!!this.props.cartProducts[0]?.myPrice) {
       this.setState({
-        myPrice: this.props.cartProducts[0]?.myPrice,
+        myPrice: this.props.cartProducts[0]?.myPrice
       });
     }
 
@@ -84,17 +86,41 @@ class Cart extends React.Component {
     <Order item={item} />
   )
 
-  renderPreviousOrder = () => (
-    <Block style={{ height: Platform.OS === 'ios' ? hp('59%') : hp('76%') }}>
-      {this.state.restricted ?
-          <Restricted /> :
-        <ListData
-          endpoint={endPoints.orders}
-          renderItems={this.renderItemsPrevious}
-          typeData={ORDERS}
-        />
+  handleRefresh = async () => {
+    this.setState({ refreshing: true });
+
+    try {
+      const response = await this.getDataPetition.getInfo(endPoints.orders, this.props.getOrders);
+
+      if (response.restricted) {
+        this.setState({ restricted: true });
+      } else {
+        this.setState({ restricted: false });
       }
-    </Block>
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    } finally {
+      this.setState({ refreshing: false });
+    }
+  };
+
+  renderPreviousOrder = () => (
+    <ScrollView style={styles.cart}
+                refreshControl={<RefreshControl refreshing={this.state.refreshing} onRefresh={this.handleRefresh} />}
+    >
+      <Block style={{ height: Platform.OS === 'ios' ? hp('59%') : hp('76%') }}>
+        {this.state.restricted ?
+            <Restricted /> :
+
+          <ListData
+            endpoint={endPoints.orders}
+            renderItems={this.renderItemsPrevious}
+            typeData={ORDERS}
+          />
+
+        }
+      </Block>
+    </ScrollView>
   );
 
   render() {

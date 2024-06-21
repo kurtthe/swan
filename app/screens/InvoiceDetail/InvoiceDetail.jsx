@@ -94,7 +94,7 @@ export const InvoiceDetails = ({ route }) => {
   }, [invoiceDetail?.structure?.items])
 
   const handleGetData = async () => {
-    
+
     setInvoiceDetail(null)
     const { invoice, nameRouteGoing } = route.params;
     const url = endPoints.invoicesDetail.replace(':id', invoice);
