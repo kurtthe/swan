@@ -88,14 +88,15 @@ class Home extends React.Component {
             <Search
               placeholder="What are you looking for?"
               onChangeText={(text) => this.setState({ textSearch: text })}
-              onSubmitEditing={({ nativeEvent: { text } }) => this.handleSearch(text)}
+              onSubmitEditing={({ nativeEvent: { text } }) => this.handleSearch(this.state.textSearch)}
               style={styles.search}
               inputStyle={styles.searchInput}
             />
             <Pressable
+              onPress={() => this.handleSearch(this.state.textSearch)}
               style={{
                 height: 48,
-                width: 80,
+                width: 90,
                 position: 'absolute',
                 backgroundColor: nowTheme.COLORS.INFO,
                 right: 15,
@@ -103,6 +104,9 @@ class Home extends React.Component {
                 flexDirection: "row",
                 alignItems: 'center',
                 justifyContent: 'center',
+                borderBottomRightRadius: 5,
+                borderTopRightRadius: 5,
+                paddingHorizontal: 10
               }}
             >
               <Icon family="NowExtra" size={15} name="zoom-bold2x" color={'#FFF'} style={{marginHorizontal: 2}} />
@@ -244,8 +248,8 @@ const styles = StyleSheet.create({
   searchInput: {
     color: '#000000',
     fontSize: 16,
-    borderRadius:0,
-    borderColor: '#000000',
+    borderRadius: 5,
+    borderColor: '#D9D9D9',
     borderWidth: 2
   },
   search: {

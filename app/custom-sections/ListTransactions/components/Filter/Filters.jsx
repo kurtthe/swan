@@ -207,11 +207,12 @@ const Filters = ({getValues, hideFilterType}) => {
       <View style={{flex: 1}}>
         <Search
           inputStyle={{color: '#000000',
-            borderRadius:0,
-            borderColor: '#000000',
+            borderRadius: 5,
+            borderColor: '#D9D9D9',
             borderWidth: 2}}
           placeholder="By description or invoice number"
           onChangeText={setTextSearch}
+          onSubmitEditing={() => changeValuesFilters('text', textSearch)}
         />
         <Pressable
           style={{
@@ -225,6 +226,9 @@ const Filters = ({getValues, hideFilterType}) => {
             flexDirection: "row",
             alignItems: 'center',
             justifyContent: 'center',
+            borderBottomRightRadius: 5,
+            borderTopRightRadius: 5,
+            paddingHorizontal: 10
           }}
           onPress={() => changeValuesFilters('text', textSearch)}
         >
@@ -247,7 +251,7 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     paddingHorizontal: 10,
     flexDirection: 'column',
-    height: '35%'
+    height: '25%'
   },
   searchInput: {
     color: '#000000',

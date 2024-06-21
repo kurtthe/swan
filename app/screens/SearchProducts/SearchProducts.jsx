@@ -102,7 +102,10 @@ export const SearchProducts = ({route}) => {
 
   const handleSearch = () => {
     console.log(textSearch)
-    changeText(textSearch)
+    if (textSearch) {
+      changeText(textSearch)
+    }
+
   };
 
   const renderItem = ({ item }) => {
@@ -148,17 +151,18 @@ export const SearchProducts = ({route}) => {
       <Search
         placeholder="What are you looking for?"
         onChangeText={setTextSearch}
+        onSubmitEditing={({ nativeEvent: { text } }) => handleSearch()}
         value={textSearch}
         style={styles.search}
         inputStyle={{color: '#000000',
           borderRadius:0,
-          borderColor: '#000000',
+          borderColor: '#D9D9D9',
           borderWidth: 2}}
       />
       <Pressable
         style={{
           height: 48,
-          width: 80,
+          width: 90,
           position: 'absolute',
           backgroundColor: nowTheme.COLORS.INFO,
           right: 15,
@@ -167,6 +171,9 @@ export const SearchProducts = ({route}) => {
           flexDirection: "row",
           alignItems: 'center',
           justifyContent: 'center',
+          borderBottomRightRadius: 5,
+          borderTopRightRadius: 5,
+          paddingHorizontal: 10
         }}
         onPress={handleSearch}
       >
