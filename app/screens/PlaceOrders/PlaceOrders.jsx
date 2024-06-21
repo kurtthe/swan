@@ -77,6 +77,8 @@ const PlaceOrders = () => {
         supplier: supplierId,
         job: dataOrder.job,
         issued_on: date.toISOString('2015-05-14').slice(0, 10),
+        swan_store_location_id: 20,
+        description: dataOrder.notes,
         notes: dataOrder.notes,
         tax_exclusive: true,
         sections: [
