@@ -26,6 +26,7 @@ export const endPoints = {
   stores: `${apiService}swan/stores`,
   jobs: `${apiService}jobs`,
   products: `${apiService}products`,
+  product: `${apiService}products/:id`,
 
   setFavorite: `${apiService}products/:id/favourite`,
   suppliers: `${apiService}swan/supplier`,

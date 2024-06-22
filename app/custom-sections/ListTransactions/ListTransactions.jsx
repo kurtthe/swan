@@ -22,6 +22,7 @@ export const ListTransactions = () => {
   const [valuesFilters, setValuesFilters] = useState({});
   const styles = makeStyles();
   const [restricted, setRestricted] = useState(false);
+  const [refreshing, setRefreshing] = useState(false);
 
   const [optionsTransactions, setOptionsTransactions] = useState({
     page: 1,
@@ -53,6 +54,14 @@ export const ListTransactions = () => {
   useEffect(() => {
     updateListTransactions(transactions?.body)
   }, [transactions?.body])
+
+  const onRefresh = async () => {
+    setRefreshing(true);
+    const response = await getTransaction({ ...optionsTransactions, ...valuesFilters, page: 1 });
+    setOptionsTransactions({ ...optionsTransactions, page: 1 });
+    setTransaction(response);
+    setRefreshing(false);
+  };
 
   const handleLoadingMore = () => {
     const { page } = optionsTransactions;
@@ -116,6 +125,8 @@ export const ListTransactions = () => {
               <LoadingComponent size='large' />
             </View>
           ): <FlatList
+            onRefresh={onRefresh}
+            refreshing={refreshing}
             data={dataTransactions}
             renderItem={renderTransactions}
             keyExtractor={(item, index) => `${index}-transaction-${item?.id}`}

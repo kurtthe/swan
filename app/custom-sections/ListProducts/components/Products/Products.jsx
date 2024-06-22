@@ -23,9 +23,10 @@ export const Products = () => {
   const restricted = useSelector((state) => state.filterReducer.restricted)
   const page = useSelector((state) => state.filterReducer.page)
 
-  const [loadingMoreData, setLoadingMoreData] = useState(false)
-  const [showLoadingMore, setShowLoadingMore] = useState(false)
-  const [isLoading, setIsLoading] = useState(true)
+  const [loadingMoreData, setLoadingMoreData] = useState(false);
+  const [showLoadingMore, setShowLoadingMore] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
 
   const {
     data: products,
@@ -91,6 +92,12 @@ export const Products = () => {
     return null
   }
 
+  const onRefresh = async () => {
+    setRefreshing(true);
+    await refetch();
+    setRefreshing(false);
+  };
+
   return (
     <>
       {restricted && <Restricted />}
@@ -101,8 +108,8 @@ export const Products = () => {
           </View>
         ): (
           <FlatList
-            onRefresh={() => refetch()}
-            refreshing={isLoading}
+            onRefresh={onRefresh}
+            refreshing={refreshing || isLoading}
             data={dataProducts}
             renderItem={renderItem}
             keyExtractor={(item, index) => `${item.sku}-${index}`}

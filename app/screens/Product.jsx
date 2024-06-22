@@ -1,15 +1,17 @@
 import React from 'react';
 import {
-  StyleSheet,
   Dimensions,
-  ScrollView,
   Image,
-  View,
+  KeyboardAvoidingView,
+  Platform,
+  RefreshControl,
+  ScrollView,
+  StyleSheet,
   TouchableWithoutFeedback,
-  KeyboardAvoidingView, Platform,
+  View,
 } from 'react-native';
 
-import { Block, Text, Button, theme } from 'galio-framework';
+import { Block, Button, Text, theme } from 'galio-framework';
 import QuantityCounterWithInput from '@components/QuantityCounterWithInput';
 import nowTheme from '@constants/Theme';
 import { connect } from 'react-redux';
@@ -17,8 +19,12 @@ import { updateProducts } from '@core/module/store/cart/cart';
 import { ProductCart } from '@core/services/product-cart.service';
 import { FormatMoneyService } from '@core/services/format-money.service';
 import LoadingComponent from '@custom-elements/Loading';
-import FavoriteIcon from '@custom-elements/FavoriteIcon'
+import FavoriteIcon from '@custom-elements/FavoriteIcon';
 import { updatePreOrder } from '@core/module/store/cart/preCart';
+import { GeneralRequestService } from '../core/services/general-request.service';
+import { endPoints } from '../shared/dictionaries/end-points';
+
+const generalRequestService = GeneralRequestService.getInstance();
 
 const { width } = Dimensions.get('window');
 const sizeConstantSmall =
@@ -46,6 +52,7 @@ class Product extends React.Component {
       hideMyPrice: false,
       productDetail: null,
       cantProduct: 1,
+      refreshing: false,
     };
 
     this.productCart = ProductCart.getInstance(props?.cartProducts);
@@ -76,6 +83,22 @@ class Product extends React.Component {
     }
   }
 
+  fetchProductDetails = async (productId) => {
+    try {
+      const urlPetition = endPoints.product.replace(":id", productId)
+      const productDetail = await generalRequestService.get(urlPetition);
+      this.setState({ productDetail });
+    } catch (error) {
+      console.error('Error fetching product:', error);
+    }
+  };
+
+  handleRefresh = async () => {
+    const { productDetail } = this.state;
+    this.setState({ refreshing: true });
+    await this.fetchProductDetails(productDetail.id);
+    this.setState({ refreshing: false });
+  };
 
   onAddCartPressed = (productItem) => {
     const priceProduct = this.state.hideMyPrice ? productItem?.rrp : productItem?.cost_price;
@@ -108,7 +131,9 @@ class Product extends React.Component {
 
     return (
       <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={120} style={styles.product}>
-        <ScrollView>
+        <ScrollView
+          refreshControl={<RefreshControl refreshing={this.state.refreshing} onRefresh={this.handleRefresh} />}
+        >
           <Block
             row
             flex
