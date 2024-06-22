@@ -1,36 +1,33 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { StyleSheet, Dimensions, Platform, RefreshControl, ScrollView } from 'react-native';
-import { Block} from 'galio-framework';
+import { Block } from 'galio-framework';
 import { connect } from 'react-redux';
 import { FormatMoneyService } from '@core/services/format-money.service';
 import { ProductCart as ProductCartService } from '@core/services/product-cart.service';
-
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
-
 import Tabs from '@custom-elements/Tabs';
 import { AlertService } from '@core/services/alert.service';
 import Order from '@custom-elements/Order';
-
-import ListCart from '@custom-sections/ListCart'
+import ListCart from '@custom-sections/ListCart';
 import { getOrders } from '@core/module/store/orders/orders';
 import { GetDataPetitionService } from '@core/services/get-data-petition.service';
 import { endPoints } from '@shared/dictionaries/end-points';
 import ListData from '@custom-sections/ListData';
-import { ORDERS } from '@shared/dictionaries/typeDataSerialize'
+import { ORDERS } from '@shared/dictionaries/typeDataSerialize';
 import Restricted from '@custom-elements/Restricted';
 
 const { width } = Dimensions.get('screen');
-class Cart extends React.Component {
 
+class Cart extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       customStyleIndex: 0,
       deleteAction: false,
       myPrice: false,
       restricted: false,
-      refreshing: false
+      refreshing: false,
     };
 
     this.alertService = new AlertService();
@@ -40,18 +37,16 @@ class Cart extends React.Component {
   }
 
   async componentDidMount() {
-    if (!!this.props.cartProducts[0]?.myPrice) {
-      this.setState({
-        myPrice: this.props.cartProducts[0]?.myPrice
-      });
+    if (this.props.cartProducts[0]?.myPrice) {
+      this.setState({ myPrice: this.props.cartProducts[0]?.myPrice });
     }
 
     const response = await this.getDataPetition.getInfo(endPoints.orders, this.props.getOrders);
-    if(response.restricted) {
-      this.setState({restricted: true})
-      return
+    if (response.restricted) {
+      this.setState({ restricted: true });
+      return;
     }
-    this.setState({restricted: false})
+    this.setState({ restricted: false });
   }
 
   componentDidUpdate(prevProps) {
@@ -59,12 +54,9 @@ class Cart extends React.Component {
       this.productCartService = ProductCartService.getInstance(this.props.cartProducts);
 
       if (
-        !!this.props.cartProducts[0]?.myPrice ||
         this.props.cartProducts[0]?.myPrice !== prevProps.cartProducts[0]?.myPrice
       ) {
-        this.setState({
-          myPrice: this.props.cartProducts[0]?.myPrice,
-        });
+        this.setState({ myPrice: this.props.cartProducts[0]?.myPrice });
       }
     }
   }
@@ -74,7 +66,7 @@ class Cart extends React.Component {
       this.alertService.show('Alert!', 'Cannot checkout in client mode, please disable');
       return;
     }
-    this.props.navigation.navigate('PlaceOrders', {nameRouteGoing: 'Cart'});
+    this.props.navigation.navigate('PlaceOrders', { nameRouteGoing: 'Cart' });
   }
 
   orderTotal = () => {
@@ -82,16 +74,13 @@ class Cart extends React.Component {
     return `${this.formatMoney.format(total)}`;
   };
 
-  renderItemsPrevious = ({ item }) => (
-    <Order item={item} />
-  )
+  renderItemsPrevious = ({ item }) => <Order item={item} />;
 
   handleRefresh = async () => {
     this.setState({ refreshing: true });
 
     try {
       const response = await this.getDataPetition.getInfo(endPoints.orders, this.props.getOrders);
-
       if (response.restricted) {
         this.setState({ restricted: true });
       } else {
@@ -105,20 +94,25 @@ class Cart extends React.Component {
   };
 
   renderPreviousOrder = () => (
-    <ScrollView style={styles.cart}
-                refreshControl={<RefreshControl refreshing={this.state.refreshing} onRefresh={this.handleRefresh} />}
+    <ScrollView
+      style={styles.cart}
+      refreshControl={
+        <RefreshControl
+          refreshing={this.state.refreshing}
+          onRefresh={this.handleRefresh}
+        />
+      }
     >
-      <Block style={{ height: Platform.OS === 'ios' ? hp('59%') : hp('76%') }}>
-        {this.state.restricted ?
-            <Restricted /> :
-
+      <Block style={{ height: Platform.OS === 'ios' ? hp('70%') : hp('76%') }}>
+        {this.state.restricted ? (
+          <Restricted />
+        ) : (
           <ListData
             endpoint={endPoints.orders}
             renderItems={this.renderItemsPrevious}
             typeData={ORDERS}
           />
-
-        }
+        )}
       </Block>
     </ScrollView>
   );
@@ -130,10 +124,12 @@ class Cart extends React.Component {
           optionsTabsRender={[
             {
               labelTab: 'Your orders',
-              component: (<ListCart
-                onCheckoutPressed={() => this.onCheckoutPressed()}
-                orderTotal={() => this.orderTotal()}
-              />),
+              component: (
+                <ListCart
+                  onCheckoutPressed={() => this.onCheckoutPressed()}
+                  orderTotal={() => this.orderTotal()}
+                />
+              ),
             },
             {
               labelTab: 'Previous Orders',
@@ -173,10 +169,9 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => ({
   cartProducts: state.productsReducer.products,
-  orders: state.ordersReducer.orders
+  orders: state.ordersReducer.orders,
 });
 
 const mapDispatchToProps = { getOrders };
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);
