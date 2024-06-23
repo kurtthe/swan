@@ -77,7 +77,6 @@ class OrderPlaced extends React.Component {
                       textAlign: 'center',
                       marginLeft: 0,
                       fontFamily: 'montserrat-regular',
-                      fontFamily: 'montserrat-regular',
                     }}
                     row
                     muted
