@@ -23,9 +23,14 @@ const Header = ({
   const styles = makeStyles()
   const navigation = useNavigation()
 
+  const titleHeader = React.useMemo(()=> {
+    const invoiceId = scene?.route?.params?.invoiceNumber;
+    return `${invoiceId}` ?? title
+  }, [title, scene])
+
   const handleLeftPress = React.useCallback(() =>{
-      const routeName = scene?.route?.params?.nameRouteGoing;
-      console.log("routeName::", routeName)
+    const routeName = scene?.route?.params?.nameRouteGoing;
+
       if (!scene || !routeName) {
         navigation.goBack();
         return;
@@ -88,7 +93,7 @@ const Header = ({
     <SafeAreaInsetsContext.Consumer>
       {(insets) => (
           <NavBar
-            title={headerType === 'Home' ? '' : title}
+            title={headerType === 'Home' ? '' : titleHeader}
             style={[{ marginTop: (insets?.top || 0) + Platform.select({ ios: 0, default: 5 }) }, styles.navbar, bgColor && { backgroundColor: bgColor }]}
             transparent={transparent}
             right={<Icons
