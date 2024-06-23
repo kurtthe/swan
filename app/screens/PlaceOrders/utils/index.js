@@ -4,14 +4,13 @@ export const isFieldEmpty = (field) => !field || field === '';
 
 export const getDataPlaceOrder = (dataOrder, supplierId, items)=> {
   const date = new Date();
-  console.log("dataOrder==>notes", dataOrder.notes)
   return {
     data: {
       name: dataOrder.name,
         supplier: supplierId,
         job: dataOrder.job,
         issued_on: date.toISOString('2015-05-14').slice(0, 10),
-        swan_store_location_id: 20,
+        swan_store_location_id: dataOrder.idStore,
         description: dataOrder.notes,
         notes: dataOrder.notes,
         tax_exclusive: true,
