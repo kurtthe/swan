@@ -71,6 +71,12 @@ export const SearchProducts = ({route}) => {
     setShowLoadingMore(optionsProducts.page < products?.headers['x-pagination-page-count'])
   }, [products?.headers, optionsProducts.page])
 
+  useEffect(() => {
+    if (textSearchHome) {
+      handleSearch()
+    }
+  }, [textSearchHome]);
+
   const changeText = (text) => {
     setKeepData(false)
     setOptionsProducts({
@@ -101,9 +107,9 @@ export const SearchProducts = ({route}) => {
   }
 
   const handleSearch = () => {
-    console.log(textSearch)
-    if (textSearch) {
-      changeText(textSearch)
+    console.log(textSearchHome)
+    if (textSearchHome) {
+      changeText(textSearchHome)
     }
 
   };
