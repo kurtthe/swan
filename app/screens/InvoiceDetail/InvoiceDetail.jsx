@@ -242,7 +242,12 @@ export const InvoiceDetails = ({ route }) => {
               <Text>{invoiceDetail.storeLocation === null ? "" : validateEmptyField(invoiceDetail.storeLocation.name)}</Text>
             </Block>
           </Block>
-
+          <Block row>
+            <Block flex>
+              <Text style={styles.text}>{invoiceDetail?.type} Description</Text>
+              <Text>{validateEmptyField(invoiceDetail.description)}</Text>
+            </Block>
+          </Block>
         </Block>
         <Block card style={styles.content}
         >

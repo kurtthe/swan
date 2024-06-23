@@ -7,7 +7,7 @@ module.exports = {
       "ios",
       "android"
     ],
-    version: "1.0.3",
+    version: "1.0.6",
     orientation: "portrait",
     icon: "./assets/icon.png",
     splash: {
