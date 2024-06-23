@@ -5,7 +5,7 @@ import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 const { width } = Dimensions.get('screen');
 
-export const makeStyles = ()=> 
+export const makeStyles = ()=>
 StyleSheet.create({
   container: {
     flexGrow: 1,
@@ -19,6 +19,7 @@ StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+    marginBottom: 50
   },
   button: {
     width: width - theme.SIZES.BASE * 2,
