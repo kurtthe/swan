@@ -36,9 +36,9 @@ export const placeOrderSlice = createSlice({
       state.restricted = payload.restricted ? payload.restricted : false;
     },
     setDataStore: (state, {payload}) => {
-      state.emailStore = payload.email
-      state.nameStore = payload.name
-      state.notes= payload.notes;
+      state.emailStore = payload.email ?? state.emailStore
+      state.nameStore = payload.name ?? state.nameStore
+      state.notes= payload.notes ?? state.notes;
       state.restricted = payload.restricted ? payload.restricted : false;
 
     },

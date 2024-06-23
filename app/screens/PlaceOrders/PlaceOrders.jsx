@@ -12,6 +12,7 @@ import { endPoints } from '@shared/dictionaries/end-points';
 import { clear } from '@core/module/store/placeOrders/placeOrders';
 import { getSupplierId } from '@core/hooks/getSupplierId.service';
 import Restricted from '../../custom-elements/Restricted';
+import { getDataPlaceOrder, isFieldEmpty } from './utils';
 
 const generalRequest = GeneralRequestService.getInstance();
 
@@ -42,76 +43,51 @@ const PlaceOrders = () => {
     }));
   };
 
-  const verifyFields = () => {
+  const verifyFields = React.useCallback(() => {
     const someWithOutValue = dataFieldsValidations.some((item) => !item.value || item.value === '');
+    const { name, nameStore, delivery_instructions } = dataOrder;
+    const { delivery, date, time } = delivery_instructions;
 
-    const error =
-      !dataOrder.name ||
-      !dataOrder.delivery_instructions.delivery ||
-      !dataOrder.nameStore ||
-      !dataOrder.delivery_instructions.date ||
-      !dataOrder.delivery_instructions.time ||
-      (dataOrder.delivery_instructions.delivery === 'delivery' &&
-        !dataOrder.delivery_instructions.location);
+    const requiredFields = [
+      { field: name, message: 'Name is required' },
+      { field: nameStore, message: 'Name store is required' },
+      { field: delivery, message: 'Delivery is required' },
+      { field: date, message: 'Date is required' },
+      { field: time, message: 'Time is required' },
+    ];
 
-    if (error || someWithOutValue) {
-      alert('Fill in the required data *');
+    for (const { field, message } of requiredFields) {
+      if (isFieldEmpty(field)) {
+        alert(message);
+        return true;
+      }
     }
-    return error || someWithOutValue;
-  };
 
-  const placeOrderHandler = async () => {
+    if (someWithOutValue) {
+      alert('Fill in the required data *');
+      return true;
+    }
+
+    return false;
+
+  }, [dataFieldsValidations, dataOrder]);
+
+  const placeOrderHandler = React.useCallback(async () => {
     const supplierId = await getSupplierId();
     const items = serializeItems();
-    const date = new Date();
+    const missingFields = verifyFields();
 
-    let missingFields = verifyFields();
-
-    if (missingFields) {
-      return;
-    }
-
-    const data = {
-      data: {
-        name: dataOrder.name,
-        supplier: supplierId,
-        job: dataOrder.job,
-        issued_on: date.toISOString('2015-05-14').slice(0, 10),
-        swan_store_location_id: 20,
-        description: dataOrder.notes,
-        notes: dataOrder.notes,
-        tax_exclusive: true,
-        sections: [
-          {
-            items,
-            hide_section: false,
-            hide_section_price: false,
-            hide_section_items: false,
-            hide_item_qty: false,
-            hide_item_price: false,
-            hide_item_subtotal: false,
-            hide_item_total: false,
-          },
-        ],
-        delivery_instructions: {
-          delivery: dataOrder.delivery_instructions?.delivery,
-          location: dataOrder.delivery_instructions.location,
-          date: dataOrder.delivery_instructions.date?.value,
-          time: dataOrder?.delivery_instructions.value || '12.00 PM',
-          contact_number: dataOrder?.delivery_instructions.contact_number,
-          contact_name: dataOrder?.delivery_instructions.contact_name,
-        },
-        // burdens_data: dataFieldsValidations,
-      },
-    };
+    if (missingFields) return
+    const data = getDataPlaceOrder(dataOrder, supplierId, items)
     const placedOrder = await generalRequest.put(endPoints.generateOrder, data);
+
     if (placedOrder) {
-      handleOrderShare(placedOrder.order.id);
+      await handleOrderShare(placedOrder.order.id);
       resetFields();
       dispatch(clearProducts());
       navigation.navigate('OrderPlaced', { placedOrder: placedOrder.order });
     }
-  };
+  }, [dataOrder]);
 
   const resetFields = () => {
     dispatch(clear());
@@ -149,9 +125,6 @@ const PlaceOrders = () => {
       <Block flex center style={styles.cart}>
         <Block center>
           <JobsForm />
-          {/*<OrderValidationFields*/}
-          {/*  onChanges={(newDataFields) => changesValidationsField(newDataFields)}*/}
-          {/*/>*/}
           <DeliveryForm />
           <StoreForm />
           <DetailOrders cartProducts={cartProducts} orderHandler={placeOrderHandler} />

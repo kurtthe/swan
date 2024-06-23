@@ -3,8 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { Dimensions, StyleSheet } from 'react-native';
 import { nowTheme } from '@constants/index';
 import PickerButton from '@custom-elements/PickerButton';
-import { useGetStores, useGetPreferredStore } from '@core/hooks/PlaceOrders';
-import { setOptionsPicker, resetValueSelect } from '../utils';
+import { useGetStores } from '@core/hooks/PlaceOrders';
+import { setOptionsPicker } from '../utils';
 import {useSelector, useDispatch} from 'react-redux';
 import {setDataStore} from '@core/module/store/placeOrders/placeOrders'
 
@@ -17,36 +17,28 @@ const Store = () => {
   const [optionsSelectStores, setOptionsSelectStores] = useState()
   const nameStore = useSelector((state)=> state.placeOrderReducer.nameStore)
 
-
   const {data: stores } = useGetStores();
-  // const {data: preferredStore} = useGetPreferredStore();
 
   useEffect(()=>{
     if(!stores?.locations?.length){
       return
     }
 
-    console.log(stores.locations);
-
-    // const storesAsRadioButton = setOptionsPicker(stores.locations, preferredStore)
-    const storesAsRadioButton = setOptionsPicker(stores.locations)
+  const storesAsRadioButton = setOptionsPicker(stores.locations)
     setOptionsSelectStores(storesAsRadioButton)
-  // },[stores?.locations, preferredStore])
   },[stores?.locations])
 
-/*   useEffect(()=>{
-    // if(!preferredStore){
-    //   return
-    // }
-
-    // dispatch(setDataStore({...preferredStore, notes }))
-    dispatch(setDataStore({ notes }))
-  // },[preferredStore, notes])
-  },[notes]) */
 
   const handleChangeOptionSelected = (option) => {
     dispatch(setDataStore(option))
   }
+
+  const onChangeNotes = React.useCallback((newNotes)=> {
+    setNotes(newNotes)
+    setTimeout(()=> {
+      dispatch(setDataStore({notes: newNotes}))
+    },500)
+  }, [dispatch, setDataStore])
 
   return(
     <Block
@@ -61,7 +53,7 @@ const Store = () => {
       <PickerButton
         label="Store"
         errorLabel
-        placeholder={nameStore || 'Select store'}
+        placeholder={nameStore ?? 'Select store'}
         icon
         renderOptions={optionsSelectStores}
         onChangeOption={(option) => handleChangeOptionSelected(option)}
@@ -75,7 +67,7 @@ const Store = () => {
         style={styles.notes}
         placeholder="Type notes here"
         value={notes}
-        onChangeText={(t) => setNotes(t)}
+        onChangeText={onChangeNotes}
         placeholderTextColor={nowTheme.COLORS.PICKERTEXT}
         textInputStyle={{ flex: 1, height: 80 }}
         multiline
