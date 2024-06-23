@@ -30,6 +30,7 @@ const Store = () => {
 
 
   const handleChangeOptionSelected = (option) => {
+    console.log("option store selected==>", JSON.stringify(option))
     dispatch(setDataStore(option))
   }
 

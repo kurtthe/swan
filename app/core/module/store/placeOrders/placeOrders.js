@@ -6,6 +6,7 @@ const initialState = {
     notes: null,
     emailStore: null,
     nameStore: null,
+    idStore: null,
 
     delivery_instructions: {
       delivery: null,
@@ -38,6 +39,7 @@ export const placeOrderSlice = createSlice({
     setDataStore: (state, {payload}) => {
       state.emailStore = payload.email ?? state.emailStore
       state.nameStore = payload.name ?? state.nameStore
+      state.idStore = payload.store_id ?? state.idStore
       state.notes= payload.notes ?? state.notes;
       state.restricted = payload.restricted ? payload.restricted : false;
 
