@@ -1,7 +1,6 @@
 import React from 'react';
-import { TouchableOpacity, View, Platform } from 'react-native';
+import { TouchableOpacity, Platform } from 'react-native';
 import { Block, Text, theme } from 'galio-framework';
-import Icon from '@components/Icon';
 import { nowTheme } from '@constants';
 
 import { FormatMoneyService } from '@core/services/format-money.service';
@@ -28,6 +27,7 @@ export const Invoice = (props) => {
   const handleShowDetails = () => {
     navigation.navigate('InvoiceDetails', {
       invoice: props.invoice.id,
+      invoiceNumber: props.invoice.order_number,
       nameRouteGoing: !props.isAccount ? false : 'AccountInvoice',
     });
   };
@@ -46,13 +46,7 @@ export const Invoice = (props) => {
                 >
                   {validateEmptyField(props.invoice.order_number)}
                 </Text>
-                {/*<Text*/}
-                {/*  color={nowTheme.COLORS.DEFAULT}*/}
-                {/*  style={{ fontFamily: nowTheme.FONT.primaryBold }}*/}
-                {/*  size={14}*/}
-                {/*>*/}
-                {/*  {props.invoice.type}*/}
-                {/*</Text>*/}
+
               </Block>
               <Block row>
                 <Text
@@ -67,15 +61,7 @@ export const Invoice = (props) => {
                 </Text>
               </Block>
             </Block>
-            {/*<Block row justifyContent='space-between'>*/}
-            {/*<Text*/}
-            {/*  color={nowTheme.COLORS.DEFAULT}*/}
-            {/*  style={{ fontFamily: nowTheme.FONT.primaryBold }}*/}
-            {/*  size={14}*/}
-            {/*>*/}
-            {/*  {props.invoice.type}*/}
-            {/*</Text>*/}
-            {/*</Block>*/}
+
 
             <Block row justifyContent='space-between' style={{ top: 8 }}>
               <Text
@@ -95,30 +81,17 @@ export const Invoice = (props) => {
               >
                 View
               </Button>
-              {/*<View style={props.invoice.type !== 'Invoice' ? styles.bg_purple : styles.bg_green}>*/}
-              {/*  <Text*/}
-              {/*    style={{ fontFamily: nowTheme.FONT.primaryRegular, textAlign: 'center' }}*/}
-              {/*    size={theme.SIZES.BASE * 0.8}*/}
-              {/*    color={*/}
-              {/*      props.invoice.type !== 'Invoice'*/}
-              {/*        ? nowTheme.COLORS.PURPLEINVOICE*/}
-              {/*        : nowTheme.COLORS.SUCCESS*/}
-              {/*    }*/}
-              {/*  >*/}
-              {/*    {validateEmptyField(props.invoice.type)}*/}
-              {/*  </Text>*/}
-              {/*</View>*/}
+
             </Block>
             <Block row>
               <Text
                 style={{ fontFamily: nowTheme.FONT.primaryBold, marginTop: -25.5 }}
-                size={theme.SIZES.BASE * 1}
+                size={theme.SIZES.BASE}
                 color={nowTheme.COLORS.HEADER}
               >
                 {formatMoney.format(props.invoice.total_amount)}
               </Text>
             </Block>
-            {/*<View style={{flex: 1, height: 1, backgroundColor: '#dddddd', marginTop:10}} />*/}
           </Block>
         </Block>
       </TouchableOpacity>
