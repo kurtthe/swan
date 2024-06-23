@@ -45,7 +45,7 @@ const PlaceOrders = () => {
 
   const verifyFields = React.useCallback(() => {
     const someWithOutValue = dataFieldsValidations.some((item) => !item.value || item.value === '');
-    const { name, nameStore, delivery_instructions } = dataOrder;
+    const { name, nameStore, delivery_instructions, idStore } = dataOrder;
     const { delivery, date, time } = delivery_instructions;
 
     const requiredFields = [
