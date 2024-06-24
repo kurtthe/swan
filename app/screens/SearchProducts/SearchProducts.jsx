@@ -45,7 +45,7 @@ export const SearchProducts = ({ route }) => {
   useEffect(() => {
     setLoadingData(true);
     setTextSearch(textSearchHome);
-    handleSearch();
+    handleSearch(textSearchHome);
   }, [textSearchHome]);
 
   useEffect(() => {
@@ -73,7 +73,7 @@ export const SearchProducts = ({ route }) => {
 
   useEffect(() => {
     if (textSearchHome) {
-      handleSearch();
+      handleSearch(textSearchHome);
     }
   }, [textSearchHome]);
 
@@ -102,10 +102,11 @@ export const SearchProducts = ({ route }) => {
     return null;
   };
 
-  const handleSearch = () => {
-    if (textSearchHome) {
-      changeText(textSearchHome);
+  const handleSearch = (text) => {
+    if (text) {
+      changeText(text);
     }
+    
   };
 
   const renderItem = ({ item }) => (
@@ -151,7 +152,7 @@ export const SearchProducts = ({ route }) => {
         style={styles.search}
         inputStyle={{
           color: '#000000',
-          borderRadius: 0,
+          borderRadius: 5,
           borderColor: '#D9D9D9',
           borderWidth: 2,
         }}
@@ -172,7 +173,7 @@ export const SearchProducts = ({ route }) => {
           borderTopRightRadius: 5,
           paddingHorizontal: 10,
         }}
-        onPress={handleSearch}
+        onPress={() => handleSearch(textSearch)}
       >
         <Icon
           family="NowExtra"

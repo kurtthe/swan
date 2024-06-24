@@ -104,6 +104,8 @@ export const InvoiceDetails = ({ route }) => {
     const dataInvoice = await getDataPetition.getInfoWithHeaders(url);
     const dataTracking = await getDataPetition.getInfoWithHeaders(urlTracking);
 
+    console.log(dataInvoice);
+    console.log(invoice);
     setInvoiceDetail({
       ...dataInvoice.body,
       tracking: dataTracking.body.tracking,
