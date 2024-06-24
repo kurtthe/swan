@@ -2,23 +2,21 @@ import React from 'react';
 import { createStackNavigator } from "@react-navigation/stack";
 
 import Products from '@screens/TProduts';
-
 import Category from '@screens/Category';
 import Product from "@screens/Product";
 import SearchProducts from '@screens/SearchProducts';
-import {screensRoute} from './ConfigRoutes'
+import { screensRoute } from './ConfigRoutes';
 
 const Stack = createStackNavigator();
 
 function ProductsStack() {
-
   const screens = [
     {
       name: 'Products',
       component: Products,
       colorBackground: '#FFFFFF',
-      header:{
-        title: 'Products ',
+      header: {
+        title: 'Products',
       }
     },
     {
@@ -26,7 +24,7 @@ function ProductsStack() {
       component: Category,
       title: 'Category',
       colorBackground: '#FFFFFF',
-      header:{
+      header: {
         title: 'Products',
       }
     },
@@ -34,7 +32,7 @@ function ProductsStack() {
       name: 'Product',
       component: Product,
       colorBackground: '#FFFFFF',
-      header:{
+      header: {
         title: 'Product',
       }
     },
@@ -42,8 +40,8 @@ function ProductsStack() {
       name: 'SearchProducts',
       component: SearchProducts,
       colorBackground: '#FFFFFF',
-      header:{
-        title: 'Products  ',
+      header: {
+        title: 'Products',
       }
     }
   ];
@@ -55,4 +53,4 @@ function ProductsStack() {
   );
 }
 
-export default ProductsStack
+export default ProductsStack;

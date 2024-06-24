@@ -24,8 +24,11 @@ const Header = ({
   const navigation = useNavigation()
 
   const titleHeader = React.useMemo(()=> {
+
+    
     const invoiceId = scene?.route?.params?.invoiceNumber;
-    return `${invoiceId}` ?? title
+    return invoiceId ? `${invoiceId}` : title
+
   }, [title, scene])
 
   const handleLeftPress = React.useCallback(() =>{
@@ -93,7 +96,7 @@ const Header = ({
     <SafeAreaInsetsContext.Consumer>
       {(insets) => (
           <NavBar
-            title={headerType === 'Home' ? '' : titleHeader}
+            title={headerType === 'Home' ? '' : titleHeader ? titleHeader : title}
             style={[{ marginTop: (insets?.top || 0) + Platform.select({ ios: 0, default: 5 }) }, styles.navbar, bgColor && { backgroundColor: bgColor }]}
             transparent={transparent}
             right={<Icons
