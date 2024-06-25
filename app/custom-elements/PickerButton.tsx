@@ -12,10 +12,10 @@ const { width } = Dimensions.get('screen');
 
 type Props = {
   placeholder: string;
-  text: string;
-  label: string;
   renderOptions: any[];
-  pickDate: boolean;
+  text?: string;
+  label?: string;
+  pickDate?: boolean;
   sizeIcon?: number;
   deleteOption?:boolean;
   icon?: MaterialIconNames;
@@ -23,9 +23,10 @@ type Props = {
   onPress?: ()=> void;
   isRequired?: boolean;
   changeSearchText?: () => void;
+  onChangeOption?: (option: any)=> void;
 };
 
-const PickerButton: React.FC<Props> = ({label,  style, renderOptions= [], pickDate,  icon, deleteOption, placeholder,onPress,isRequired, sizeIcon= 20})=> {
+const PickerButton: React.FC<Props> = ({label,  style,text, renderOptions= [], pickDate,  icon, deleteOption, placeholder,onPress,isRequired, sizeIcon= 20})=> {
   const [optionSelected, setOptionSelected] = React.useState(null);
   const [picked, setPicked] = React.useState(false);
   const [showSheet, setShowSheet] = React.useState(false)
@@ -42,10 +43,18 @@ const PickerButton: React.FC<Props> = ({label,  style, renderOptions= [], pickDa
 
   return (
     <View style={{marginVertical: 5}}>
-      <View>
+      <>
         {label &&
           <Block row>
             <Text style={[styles.text, { fontWeight: 'bold' }]}>{label}</Text>
+            {isRequired && <Text style={styles.errorText}>*</Text>}
+          </Block>
+        }
+        {text &&
+          <Block row>
+            <Text size={14} style={[styles.text, styles.grayText]}>
+              {text}
+            </Text>
             {isRequired && <Text style={styles.errorText}>*</Text>}
           </Block>
         }
@@ -62,8 +71,7 @@ const PickerButton: React.FC<Props> = ({label,  style, renderOptions= [], pickDa
             onPress={optionSelected !== null && deleteOption ? () => onDeleteSelected() : () => openAction()}
           />
         </Block>
-      </View>
-
+      </>
       <ModalOptionPicker optionSelected={optionSelected}   renderOptions={renderOptions} visible={showSheet}/>
     </View>
 

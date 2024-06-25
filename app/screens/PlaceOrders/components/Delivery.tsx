@@ -12,16 +12,15 @@ import {
 import { Block, Input, Text } from 'galio-framework';
 import {useDispatch, useSelector} from 'react-redux'
 import {setUpDelivery} from '@core/module/store/placeOrders/placeOrders'
-
+import InputDate from '@components/InputDate';
 const { width } = Dimensions.get('screen');
-
 
 const Delivery = () => {
   const dispatch = useDispatch()
   const {first_name, last_name, phone_number} = useSelector((state: any)=> state.loginReducer)
 
-  const [optionDeliveries, setOptionsDeliveries] = useState()
-  const [optionHours, setOptionsHours] = useState()
+  const [optionDeliveries, setOptionsDeliveries] = useState<any>()
+  const [optionHours, setOptionsHours] = useState<any>()
   const [optionDeliverySelected, setOptionDeliverySelected] = useState()
   const [optionHourSelected, setOptionHourSelected] = useState()
   const [deliveryText, setDeliveryText] = useState()
@@ -29,13 +28,13 @@ const Delivery = () => {
   const [dateSelected, setDateSelected] = useState()
   const [isDatePickerVisible, setIsDatePickerVisible] = useState(false)
   const [contactPhone, setContactPhone] = useState()
-  const [contactName, setContactName] = useState()
+  const [contactName, setContactName] = useState<string>()
 
   useEffect(()=>{
     setOptionsDeliveries(radioButtonsDelivery)
     setOptionsHours(radioButtonsHour)
     setContactPhone(phone_number)
-    setContactName(first_name + ' ' + last_name)
+    setContactName(`${first_name} ${last_name}`)
   },[])
 
   useEffect(()=>{
@@ -57,6 +56,7 @@ const Delivery = () => {
   }
 
   const handleDatePicked = (date) => {
+    // @ts-ignore
     setDateSelected({
       label: date.toDateString(),
       value: date.toISOString('2015-05-14').slice(0, 10),
@@ -77,7 +77,7 @@ const Delivery = () => {
       <PickerButton
         label="Delivery Options"
         text="Delivery Type"
-        error
+        isRequired
         placeholder={deliveryText || 'Select delivery type'}
         renderOptions={optionDeliveries}
         onChangeOption={(option) => handleChangeDelivery(option)}
@@ -91,7 +91,6 @@ const Delivery = () => {
           <Input
             left
             color="black"
-            style={styles.orderName}
             placeholder="Enter your address"
             onChangeText={(t) => setLocationSelected(t)}
             placeholderTextColor={nowTheme.COLORS.PICKERTEXT}
@@ -100,13 +99,12 @@ const Delivery = () => {
         </>
       )}
       <>
-        <PickerButton
-          text={`${deliveryText || ''} Preferred Delivery Date`}
+        <InputDate
+          text={`${deliveryText ?? ''} Preferred Delivery Date`}
           placeholder={ !!dateSelected ? dateSelected?.label : "Select date"}
           pickDate={!!dateSelected}
-          isRequired
-          iconName={'calendar-today'}
-          size={25}
+          icon='calendar-today'
+          sizeIcon={25}
           onPress={()=>setIsDatePickerVisible(true)}
         />
 
@@ -121,11 +119,11 @@ const Delivery = () => {
         text={`${deliveryText || ''} Preferred Delivery Time`}
         placeholder={!optionHourSelected? 'Select time': optionHourSelected?.label}
         isRequired
-        iconName={'lock-clock'}
-        size={25}
+        icon={'lock-clock'}
+        sizeIcon={25}
         renderOptions={optionHours}
         onChangeOption={(option) => setOptionHourSelected(option)}
-      />
+        />
       {optionDeliverySelected?.value === 'delivery' && (
         <>
           <Block row>
@@ -135,7 +133,6 @@ const Delivery = () => {
           <Input
             left
             color="black"
-            style={styles.orderName}
             value={contactName}
             placeholder="Enter your name"
             onChangeText={(t) => setContactName(t)}
@@ -149,7 +146,6 @@ const Delivery = () => {
           <Input
             left
             color="black"
-            style={styles.orderName}
             value={contactPhone}
             placeholder="Enter your phone"
             onChangeText={(t) => setContactPhone(t)}

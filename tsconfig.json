@@ -17,7 +17,8 @@
       "@shared/*": ["app/shared/*"],
       "@core/*": ["app/core/*"],
       "@navigation/*": ["app/navigation/*"],
-      "@components/*": ["app/components/*"]
+      "@components/*": ["app/components/*"],
+      "@components": ["app/components/index"]
     }
   }
 }
