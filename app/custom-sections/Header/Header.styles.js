@@ -1,8 +1,9 @@
 import { StyleSheet, Dimensions, Platform } from 'react-native'
 import { theme } from 'galio-framework';
-const { width } = Dimensions.get('window');
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 import nowTheme from '@constants/Theme';
+
+const { width, height } = Dimensions.get('window');
 
 const iPhoneX = () =>
   Platform.OS === 'ios' && (height === 812 || width === 812 || height === 896 || width === 896);
@@ -16,7 +17,7 @@ export const makeStyles = () =>
     },
     title: {
       width: '150%',
-      fontSize: Dimensions.get('window').height < 670 ? 22 : 26,
+      fontSize: height  < 670 ? 22 : 26,
       fontWeight: 'bold',
       fontFamily: 'montserrat-bold',
       left: wp('-12.5%'),

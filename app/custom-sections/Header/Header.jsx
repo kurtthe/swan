@@ -25,7 +25,7 @@ const Header = ({
 
   const titleHeader = React.useMemo(()=> {
 
-    
+
     const invoiceId = scene?.route?.params?.invoiceNumber;
     return invoiceId ? `${invoiceId}` : title
 
