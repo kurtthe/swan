@@ -11,6 +11,7 @@
       "@assets/*": ["assets/*"],
       "@environment": ["environment/environment"],
       "@constants/*": ["app/shared/constants/*"],
+      "@constants": ["app/shared/constants/index"],
       "@custom-elements/*": ["app/custom-elements/*"],
       "@custom-sections/*": ["app/custom-sections/*"],
       "@screens/*": ["app/screens/*"],

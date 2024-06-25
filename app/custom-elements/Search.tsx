@@ -10,6 +10,7 @@ type Props = {
   onChangeText: any;
   style: any;
   inputStyle: any;
+  value: any;
 }
 const Search: React.FC<Props> = ({
                   placeholder = 'Search',

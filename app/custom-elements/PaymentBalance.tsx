@@ -80,13 +80,12 @@ const PaymentBalance = (props) => {
             Balance to Pay
           </Text>
 
-      <PickerButton
-          placeholder={!optionBalanceSelected?'Select an option': optionBalanceSelected.label}
-          renderOptions={optionsBalances}
-          onChangeOption={(option) =>  changeOptionBalancePay(option)}
-          icon={true}
-          errorLabel
-        />
+          <PickerButton
+            placeholder={!optionBalanceSelected?'Select an option': optionBalanceSelected.label}
+            renderOptions={optionsBalances}
+            onChangeOption={(option) =>  changeOptionBalancePay(option)}
+            isRequired
+          />
 
 
           <Text style={{ fontWeight: 'bold', paddingBottom: 3, paddingTop: 10 }}>Amount</Text>

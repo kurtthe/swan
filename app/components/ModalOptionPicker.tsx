@@ -47,7 +47,7 @@ const ModalOptionPicker: React.FC<Props> = ({changeSearchText, renderOptions,vis
               value={textSearch}
               onChangeText={(newText: string) => {
                 setTextSearch(newText);
-                changeSearchText(newText);
+                changeSearchText?.(newText);
               }}
               style={styles.search}
               inputStyle={styles.searchInput}
