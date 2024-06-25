@@ -13,6 +13,7 @@ import App from '@screens/AppFeedback2';
 import BookTrakDemo from '@screens/BookTrakDemo';
 
 import { screensRoute } from './ConfigRoutes';
+import { SearchProducts } from '@screens/SearchProducts/SearchProducts';
 
 const Stack = createStackNavigator();
 
@@ -25,6 +26,14 @@ function HomeStack() {
       header: {
         title: 'Home',
         search: true,
+      }
+    },
+    {
+      name: 'SearchProductsHome',
+      component: SearchProducts,
+      colorBackground: '#FFFFFF',
+      header: {
+        title: 'Products',
       }
     },
     {
