@@ -1,4 +1,4 @@
-import { Block, Input, Text } from 'galio-framework';
+
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import React, { useEffect, useState } from 'react';
 import PickerButton from '@custom-elements/PickerButton';
@@ -8,7 +8,8 @@ import {
   radioButtonsDelivery,
   radioButtonsHour,
 } from '@shared/dictionaries/radio-buttons-delivery';
-
+// @ts-ignore
+import { Block, Input, Text } from 'galio-framework';
 import {useDispatch, useSelector} from 'react-redux'
 import {setUpDelivery} from '@core/module/store/placeOrders/placeOrders'
 
@@ -17,8 +18,8 @@ const { width } = Dimensions.get('screen');
 
 const Delivery = () => {
   const dispatch = useDispatch()
-  const {first_name, last_name, phone_number} = useSelector((state)=> state.loginReducer)
-  
+  const {first_name, last_name, phone_number} = useSelector((state: any)=> state.loginReducer)
+
   const [optionDeliveries, setOptionsDeliveries] = useState()
   const [optionHours, setOptionsHours] = useState()
   const [optionDeliverySelected, setOptionDeliverySelected] = useState()
@@ -78,7 +79,6 @@ const Delivery = () => {
         text="Delivery Type"
         error
         placeholder={deliveryText || 'Select delivery type'}
-        icon
         renderOptions={optionDeliveries}
         onChangeOption={(option) => handleChangeDelivery(option)}
       />
@@ -104,8 +104,7 @@ const Delivery = () => {
           text={`${deliveryText || ''} Preferred Delivery Date`}
           placeholder={ !!dateSelected ? dateSelected?.label : "Select date"}
           pickDate={!!dateSelected}
-          icon
-          error
+          isRequired
           iconName={'calendar-today'}
           size={25}
           onPress={()=>setIsDatePickerVisible(true)}
@@ -121,8 +120,7 @@ const Delivery = () => {
       <PickerButton
         text={`${deliveryText || ''} Preferred Delivery Time`}
         placeholder={!optionHourSelected? 'Select time': optionHourSelected?.label}
-        icon
-        error
+        isRequired
         iconName={'lock-clock'}
         size={25}
         renderOptions={optionHours}
