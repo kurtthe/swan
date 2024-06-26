@@ -34,15 +34,10 @@ const PickerButton: React.FC<Props> = ({label, search,  text, renderOptions= [],
   const [picked, setPicked] = React.useState(false);
   const [showSheet, setShowSheet] = React.useState(false)
 
-
-  const onDeleteSelected = ()=> {
-  }
-
   const openAction = ()=> {
     setShowSheet(true)
     onPress?.()
   }
-
 
   return (
     <View style={{marginVertical: 5}}>
@@ -69,12 +64,22 @@ const PickerButton: React.FC<Props> = ({label, search,  text, renderOptions= [],
               name={icon ? icon : optionSelected !== null && deleteOption ? 'clear' : 'expand-more'}
               color={nowTheme.COLORS.ICONPICKER}
               size={sizeIcon ? sizeIcon : optionSelected !== null && deleteOption ? 20 : 30}
-              onPress={optionSelected !== null && deleteOption ? () => onDeleteSelected() : () => openAction()}
+              onPress={openAction}
             />
         </TouchableOpacity >
 
       </>
-      <ModalOptionPicker page={page} handleSearch={handleSearch} changeSearchText={changeSearchText} search={search} setVisible={setShowSheet} optionSelected={optionSelected}   renderOptions={renderOptions} visible={showSheet}/>
+      <ModalOptionPicker
+        page={page}
+        handleSearch={handleSearch}
+        changeSearchText={changeSearchText}
+        search={search}
+        setVisible={setShowSheet}
+        optionSelected={optionSelected}
+        renderOptions={renderOptions}
+        setOptionSelected={setOptionSelected}
+        visible={showSheet}
+      />
     </View>
 
   )
@@ -103,7 +108,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   container: {
-    backgroundColor: 'red',
     alignItems: 'center',
     borderWidth: 1,
     borderColor: nowTheme.COLORS.PICKERTEXT,

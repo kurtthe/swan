@@ -11,6 +11,7 @@ const { width, height } = Dimensions.get('screen');
 
 type Props = {
   optionSelected: any;
+  setOptionSelected: (newValue: any)=> void;
   renderOptions: any[];
   changeSearchText?: (newValue: string)=> void;
   visible: boolean;
@@ -21,7 +22,16 @@ type Props = {
   page?: any;
 }
 
-const ModalOptionPicker: React.FC<Props> = ({changeSearchText, page,setVisible, renderOptions,visible,optionSelected, handleSearch, search})=> {
+const ModalOptionPicker: React.FC<Props> = ({
+                                              changeSearchText,
+                                              page,
+                                              setVisible,
+                                              renderOptions,
+                                              visible,
+                                              handleSearch,
+                                              setOptionSelected,
+                                              optionSelected,
+                                              search})=> {
   const [textSearch, setTextSearch]= React.useState<string>('')
   const refBottomSheet = React.createRef<BottomSheetRef>();
 
@@ -34,9 +44,10 @@ const ModalOptionPicker: React.FC<Props> = ({changeSearchText, page,setVisible, 
   }, [visible])
 
 
-  const onPressRadioButton = (valueSelected: any) => {
-    console.log("valueSelected==>{}", valueSelected);
-  }
+  const onPressRadioButton = React.useCallback((valueSelected: any) => {
+    const getOptionSelected = renderOptions.find((dataOption)=> valueSelected === dataOption.id )
+    setOptionSelected(getOptionSelected)
+  }, [renderOptions, setOptionSelected])
 
   if(!visible) return null
 
@@ -47,7 +58,7 @@ const ModalOptionPicker: React.FC<Props> = ({changeSearchText, page,setVisible, 
             <Search
               placeholder="Search..."
               value={textSearch}
-              onSearch={(newText: any)=> handleSearch?.(newText)}
+              onSearch={()=> handleSearch?.(page)}
               onChangeText={(newText: string) => {
                 setTextSearch(newText);
                 changeSearchText?.(newText);
@@ -59,6 +70,7 @@ const ModalOptionPicker: React.FC<Props> = ({changeSearchText, page,setVisible, 
         <ScrollView
           style={StyleSheet.flatten([styles.scrollOptions, search && {height: '95%'}])}
           contentContainerStyle={styles.sortContent}
+          nestedScrollEnabled
         >
           {renderOptions?.length === 0 ? (
             <Text>No exists options</Text>
@@ -66,6 +78,7 @@ const ModalOptionPicker: React.FC<Props> = ({changeSearchText, page,setVisible, 
             <RadioGroup
               radioButtons={renderOptions}
               color={nowTheme.COLORS.INFO}
+              selectedId={optionSelected?.id}
               onPress={(newValue) => onPressRadioButton(newValue)}
               containerStyle={styles.radioStyle}
             />
