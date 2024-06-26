@@ -121,7 +121,7 @@ const PlaceOrders = () => {
   }
 
   return (
-    <ScrollView>
+    <ScrollView nestedScrollEnabled>
       <Block flex center style={styles.cart}>
         <Block center>
           <JobsForm />

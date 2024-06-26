@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+// @ts-ignore
 import { Block, Input, Text } from 'galio-framework';
 import PickerButton from '@custom-elements/PickerButton';
 import { nowTheme } from '@constants/index';
@@ -7,10 +8,9 @@ import { useGetJobs } from '@core/hooks/PlaceOrders';
 import { Dimensions, StyleSheet, ActivityIndicator } from 'react-native';
 import {useDispatch} from 'react-redux'
 import {setUpOrder} from '@core/module/store/placeOrders/placeOrders'
-import Restricted from '../../../custom-elements/Restricted';
+import Restricted from '@custom-elements/Restricted';
 
 const { width } = Dimensions.get('screen');
-
 
 const Jobs = () => {
   const dispatch = useDispatch()
@@ -19,7 +19,7 @@ const Jobs = () => {
   const [orderName, setOrderName] = useState()
   const {data: jobs, refetch, isLoading} = useGetJobs(textSearchJob, page);
   const [jobSelected, setJobSelected] = useState()
-  const [optionsSelectJobs, setOptionsSelectJobs] = useState()
+  const [optionsSelectJobs, setOptionsSelectJobs] = useState<any>([])
 
   useEffect(()=>{
     setTimeout(()=>refetch(), 500)
@@ -61,21 +61,18 @@ const Jobs = () => {
       marginBottom={20}
     >
     {isLoading && <ActivityIndicator/> }
-      {jobs?.restricted ? <Restricted horizontal /> :
+      {(jobs as any)?.restricted ? <Restricted horizontal /> :
       <>
         <PickerButton
           label="Detail Order"
           text="Select Job"
-          placeholder={jobSelected?.value || 'Select or search job'}
+          placeholder={jobSelected?.value ?? 'Select or search job'}
           renderOptions={optionsSelectJobs}
           onChangeOption={(option) => setJobSelected(option)}
           handleSearch={(page) => handleSearch(page)}
           changeSearchText={(text) => setTextSearchJob(text)}
-          search={true}
-          icon={true}
+          search
           page={page}
-          textSearch={textSearchJob}
-          deleteOption
         />
         <Block row>
           <Text style={styles.text}>Order name</Text>
@@ -84,7 +81,6 @@ const Jobs = () => {
         <Input
           left
           color="black"
-          style={styles.orderName}
           placeholder="Enter your order name"
           onChangeText={(t) => setOrderName(t)}
           value={orderName}

@@ -1,26 +1,29 @@
 import React from 'react';
-import {
-  Dimensions,
-  StyleSheet,
-  TouchableWithoutFeedback,
-} from 'react-native';
-import { Block, theme } from 'galio-framework';
+import {Dimensions,  StyleSheet} from 'react-native';
 import { Icon, Input } from '@components';
-
+// @ts-ignore
+import { Block, theme } from 'galio-framework';
 const { width } = Dimensions.get('screen');
 
-class Search extends React.Component {
-  render() {
-    const {
-      placeholder = 'Search', 
-      onChangeText, 
-      style, 
-      inputStyle, 
-    } = this.props;
+type Props = {
+  placeholder: any;
+  onChangeText: any;
+  style: any;
+  inputStyle: any;
+  value: any;
+  onSearch: (newValue: any) => void;
+}
+const Search: React.FC<Props> = ({
+                  placeholder = 'Search',
+                  onChangeText,
+                  style,
+                  inputStyle,
+  ...props
+}) =>  {
     return (
       <Block flex center style={[styles.searchContainer, style]}>
           <Input
-            {...this.props}
+            {...props}
             right
             color="#000000"
             autoFocus={false}
@@ -35,7 +38,6 @@ class Search extends React.Component {
           />
       </Block>
     );
-  }
 }
 
 const styles = StyleSheet.create({

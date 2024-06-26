@@ -1,0 +1,13 @@
+diff --git a/node_modules/react-native-radio-buttons-group/lib/RadioButton.tsx b/node_modules/react-native-radio-buttons-group/lib/RadioButton.tsx
+index 9e95130..679eb4f 100644
+--- a/node_modules/react-native-radio-buttons-group/lib/RadioButton.tsx
++++ b/node_modules/react-native-radio-buttons-group/lib/RadioButton.tsx
+@@ -102,6 +102,8 @@ const styles = StyleSheet.create({
+     alignItems: 'center',
+     marginHorizontal: 10,
+     marginVertical: 5,
++    width: '100%',
++    paddingVertical: 5,
+   },
+   border: {
+     justifyContent: 'center',

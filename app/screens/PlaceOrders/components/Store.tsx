@@ -53,9 +53,8 @@ const Store = () => {
     >
       <PickerButton
         label="Store"
-        errorLabel
+        isRequired
         placeholder={nameStore ?? 'Select store'}
-        icon
         renderOptions={optionsSelectStores}
         onChangeOption={(option) => handleChangeOptionSelected(option)}
       />
