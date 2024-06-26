@@ -61,20 +61,18 @@ const Jobs = () => {
       marginBottom={20}
     >
     {isLoading && <ActivityIndicator/> }
-      {jobs?.restricted ? <Restricted horizontal /> :
+      {(jobs as any)?.restricted ? <Restricted horizontal /> :
       <>
         <PickerButton
           label="Detail Order"
           text="Select Job"
-          placeholder={jobSelected?.value || 'Select or search job'}
+          placeholder={jobSelected?.value ?? 'Select or search job'}
           renderOptions={optionsSelectJobs}
           onChangeOption={(option) => setJobSelected(option)}
           handleSearch={(page) => handleSearch(page)}
           changeSearchText={(text) => setTextSearchJob(text)}
           search
           page={page}
-          textSearch={textSearchJob}
-          deleteOption
         />
         <Block row>
           <Text style={styles.text}>Order name</Text>

@@ -17,7 +17,6 @@ type Props = {
   label?: string;
   pickDate?: boolean;
   sizeIcon?: number;
-  deleteOption?:boolean;
   icon?: MaterialIconNames;
   style?: ViewStyle;
   onPress?: ()=> void;
@@ -29,9 +28,21 @@ type Props = {
   page?: any;
 };
 
-const PickerButton: React.FC<Props> = ({label, search,  text, renderOptions= [], pickDate,  icon, deleteOption, handleSearch, placeholder,onPress, page,isRequired, changeSearchText, sizeIcon= 20})=> {
+const PickerButton: React.FC<Props> = ({
+                                         label,
+                                         search,
+                                         text,
+                                         renderOptions= [],
+                                         pickDate,
+                                         icon,
+                                         handleSearch,
+                                         placeholder,onPress,
+                                         page,isRequired,
+                                         onChangeOption,
+                                         changeSearchText,
+                                         sizeIcon= 20
+})=> {
   const [optionSelected, setOptionSelected] = React.useState(null);
-  const [picked, setPicked] = React.useState(false);
   const [showSheet, setShowSheet] = React.useState(false)
 
   const openAction = ()=> {
@@ -57,13 +68,13 @@ const PickerButton: React.FC<Props> = ({label, search,  text, renderOptions= [],
           </Block>
         }
         <TouchableOpacity   activeOpacity={1} onPress={() => openAction()} style={styles.container}>
-            <Text style={[styles.placeholder, (picked || pickDate) && styles.pickedPlaceholder]}>
-              {(!picked || !pickDate) ? placeholder : optionSelected?.label}
+            <Text style={[styles.placeholder, (optionSelected || pickDate) && styles.pickedPlaceholder]}>
+              {!optionSelected ? placeholder : optionSelected?.label}
             </Text>
             <MaterialIcons
-              name={icon ? icon : optionSelected !== null && deleteOption ? 'clear' : 'expand-more'}
+              name={icon ? icon : optionSelected !== null ? 'clear' : 'expand-more'}
               color={nowTheme.COLORS.ICONPICKER}
-              size={sizeIcon ? sizeIcon : optionSelected !== null && deleteOption ? 20 : 30}
+              size={sizeIcon ? sizeIcon : optionSelected !== null ? 20 : 30}
               onPress={openAction}
             />
         </TouchableOpacity >
@@ -77,7 +88,11 @@ const PickerButton: React.FC<Props> = ({label, search,  text, renderOptions= [],
         setVisible={setShowSheet}
         optionSelected={optionSelected}
         renderOptions={renderOptions}
-        setOptionSelected={setOptionSelected}
+        setOptionSelected={(newOption) => {
+          setOptionSelected(newOption);
+          onChangeOption?.(newOption);
+          setShowSheet(false);
+        }}
         visible={showSheet}
       />
     </View>
