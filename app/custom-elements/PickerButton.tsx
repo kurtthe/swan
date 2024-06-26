@@ -1,5 +1,5 @@
 import React from 'react'
-import { Dimensions, View, ViewStyle, StyleSheet, TouchableWithoutFeedback } from 'react-native';
+import { Dimensions, View, ViewStyle, StyleSheet, TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
 import nowTheme from '@constants/Theme';
 import { MaterialIcons } from '@expo/vector-icons';
 
@@ -22,11 +22,14 @@ type Props = {
   style?: ViewStyle;
   onPress?: ()=> void;
   isRequired?: boolean;
-  changeSearchText?: () => void;
+  changeSearchText?: (newValueSearch: any) => void;
   onChangeOption?: (option: any)=> void;
+  search?: boolean;
+  handleSearch?: (numberPage: any) => void;
+  page?: any;
 };
 
-const PickerButton: React.FC<Props> = ({label,  style,text, renderOptions= [], pickDate,  icon, deleteOption, placeholder,onPress,isRequired, sizeIcon= 20})=> {
+const PickerButton: React.FC<Props> = ({label, search,  text, renderOptions= [], pickDate,  icon, deleteOption, handleSearch, placeholder,onPress, page,isRequired, changeSearchText, sizeIcon= 20})=> {
   const [optionSelected, setOptionSelected] = React.useState(null);
   const [picked, setPicked] = React.useState(false);
   const [showSheet, setShowSheet] = React.useState(false)
@@ -58,21 +61,20 @@ const PickerButton: React.FC<Props> = ({label,  style,text, renderOptions= [], p
             {isRequired && <Text style={styles.errorText}>*</Text>}
           </Block>
         }
-        <Block row space={'between'} style={styles.container}>
-          <TouchableWithoutFeedback style={StyleSheet.flatten([styles.button, style])} onPress={() => openAction()}>
+        <TouchableOpacity   activeOpacity={1} onPress={() => openAction()} style={styles.container}>
             <Text style={[styles.placeholder, (picked || pickDate) && styles.pickedPlaceholder]}>
               {(!picked || !pickDate) ? placeholder : optionSelected?.label}
             </Text>
-          </TouchableWithoutFeedback>
-          <MaterialIcons
-            name={icon ? icon : optionSelected !== null && deleteOption ? 'clear' : 'expand-more'}
-            color={nowTheme.COLORS.ICONPICKER}
-            size={sizeIcon ? sizeIcon : optionSelected !== null && deleteOption ? 20 : 30}
-            onPress={optionSelected !== null && deleteOption ? () => onDeleteSelected() : () => openAction()}
-          />
-        </Block>
+            <MaterialIcons
+              name={icon ? icon : optionSelected !== null && deleteOption ? 'clear' : 'expand-more'}
+              color={nowTheme.COLORS.ICONPICKER}
+              size={sizeIcon ? sizeIcon : optionSelected !== null && deleteOption ? 20 : 30}
+              onPress={optionSelected !== null && deleteOption ? () => onDeleteSelected() : () => openAction()}
+            />
+        </TouchableOpacity >
+
       </>
-      <ModalOptionPicker optionSelected={optionSelected}   renderOptions={renderOptions} visible={showSheet}/>
+      <ModalOptionPicker page={page} handleSearch={handleSearch} changeSearchText={changeSearchText} search={search} setVisible={setShowSheet} optionSelected={optionSelected}   renderOptions={renderOptions} visible={showSheet}/>
     </View>
 
   )
@@ -100,10 +102,8 @@ const styles = StyleSheet.create({
     color: 'black',
     fontWeight: 'bold',
   },
-  button: {
-    width: 'auto',
-  },
   container: {
+    backgroundColor: 'red',
     alignItems: 'center',
     borderWidth: 1,
     borderColor: nowTheme.COLORS.PICKERTEXT,
@@ -111,6 +111,8 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     paddingLeft: 10,
     height: 45,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   },
   shadow: {
     shadowColor: 'black',

@@ -11,6 +11,7 @@ type Props = {
   style: any;
   inputStyle: any;
   value: any;
+  onSearch: (newValue: any) => void;
 }
 const Search: React.FC<Props> = ({
                   placeholder = 'Search',

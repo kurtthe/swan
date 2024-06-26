@@ -13,11 +13,15 @@ type Props = {
   optionSelected: any;
   renderOptions: any[];
   changeSearchText?: (newValue: string)=> void;
+  visible: boolean;
+  setVisible: (newValue: boolean)=> void;
   search?: boolean;
   picked?: boolean;
-  visible: boolean;
+  handleSearch?: (newValue: any) => void;
+  page?: any;
 }
-const ModalOptionPicker: React.FC<Props> = ({changeSearchText, renderOptions,visible,optionSelected, search})=> {
+
+const ModalOptionPicker: React.FC<Props> = ({changeSearchText, page,setVisible, renderOptions,visible,optionSelected, handleSearch, search})=> {
   const [textSearch, setTextSearch]= React.useState<string>('')
   const refBottomSheet = React.createRef<BottomSheetRef>();
 
@@ -36,15 +40,14 @@ const ModalOptionPicker: React.FC<Props> = ({changeSearchText, renderOptions,vis
 
   if(!visible) return null
 
-  console.log("renderOptions==>", renderOptions)
-
   return (
-    <BottomSheet height={500} ref={refBottomSheet} headerAlwaysVisible>
+    <BottomSheet draggable={false} height={500} ref={refBottomSheet} headerAlwaysVisible onCloseStart={()=> setVisible(false)}>
       <Block left style={{ height: search ? height / 2 : 'auto', padding: 5, paddingBottom: 40}}>
         {search && (
             <Search
               placeholder="Search..."
               value={textSearch}
+              onSearch={(newText: any)=> handleSearch?.(newText)}
               onChangeText={(newText: string) => {
                 setTextSearch(newText);
                 changeSearchText?.(newText);
