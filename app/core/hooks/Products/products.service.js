@@ -22,6 +22,7 @@ export const getProducts = async (options) => {
       'per-page': 20,
       // update_prices: true,
       favourites_only: only_favourite || false,
+      source : 'swan',
       // expand: 'price',
       //supplier_id: supplierId,
       ...paramsPetition
