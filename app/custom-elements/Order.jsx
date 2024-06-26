@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, TouchableWithoutFeedback, Platform } from 'react-native';
 import { Block, Text } from 'galio-framework';
 import { nowTheme } from '@constants';
 import { validateEmptyField } from '@core/utils/validate-empty-field';
@@ -27,14 +27,14 @@ const Order = ({item}) => {
               <Text
                   color={nowTheme.COLORS.DEFAULT}
                   style={{ fontFamily: nowTheme.FONT.primaryBold }}
-                  size={14}
+                  size={Platform.OS === 'ios' ? 14 : 12}
                 >
                   Material Order No
                 </Text>
                 <Text
                   color={nowTheme.COLORS.INFO}
                   style={{ fontFamily: nowTheme.FONT.primaryBold, left: 10 }}
-                  size={14}
+                  size={Platform.OS === 'ios' ? 14 : 12}
                 >
                   {validateEmptyField(item.order_number)}
                 </Text>
@@ -46,7 +46,7 @@ const Order = ({item}) => {
                     fontFamily: nowTheme.FONT.primaryRegular,
                     paddingRight: 10,
                   }}
-                  size={14}
+                  size={Platform.OS === 'ios' ? 14 : 12}
                 >
                   {validateEmptyField(item.issued_on)}
                 </Text>

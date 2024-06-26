@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, FlatList, Pressable } from 'react-native';
+import { View, StyleSheet, FlatList, Pressable, Platform } from 'react-native';
 import { Block, Text } from 'galio-framework';
 
 import FilterButton from '@components/FilterButton';
@@ -253,7 +253,7 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     paddingHorizontal: 10,
     flexDirection: 'column',
-    height: '25%'
+    height: Platform.OS === 'ios' ? '25%' : '30%'
   },
   searchInput: {
     color: '#000000',
