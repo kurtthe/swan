@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, FlatList, Pressable } from 'react-native';
+import { View, StyleSheet, FlatList, Pressable, Platform } from 'react-native';
 import { Block, Text } from 'galio-framework';
 
 import FilterButton from '@components/FilterButton';
@@ -69,7 +69,7 @@ const Filters = ({getValues, hideFilterType}) => {
     setDateStartValue('')
     setDateEndValue('')
     setType('')
-    setTextSearch('')
+    setTextSearch('');
     setIdSelectedType(null)
   };
 
@@ -95,19 +95,20 @@ const Filters = ({getValues, hideFilterType}) => {
     }
     if (!whoChange) {
       resetFilters();
+      getDataFilters('');
+      return;
     }
     getDataFilters();
   };
 
-  const getDataFilters = () => {
+  const getDataFilters = (textSearchData = null) => {
     const data = {
       start_date: dateStartValue,
       end_date: dateEndValue,
       type,
-      search: textSearch,
+      search: textSearchData != null ? textSearchData : textSearch,
     };
 
-    console.log("getDataFilters:: data", data)
     getValues && getValues(data);
   };
   const changeSelectedTypeButton = (optionSelected) => {
@@ -144,7 +145,7 @@ const Filters = ({getValues, hideFilterType}) => {
               onPress={() => handleOpenDatePicker(false)}
             />
             <FilterButton
-              text={dateEndValue === '' ? 'X' : dateEndValue}
+              text={'X'}
               onPress={() => debouncedOnChange()}
             />
           </Block>
@@ -213,6 +214,7 @@ const Filters = ({getValues, hideFilterType}) => {
           placeholder="By description or invoice number"
           onChangeText={setTextSearch}
           onSubmitEditing={() => changeValuesFilters('text', textSearch)}
+          value={textSearch}
         />
         <Pressable
           style={{
@@ -251,7 +253,7 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     paddingHorizontal: 10,
     flexDirection: 'column',
-    height: '25%'
+    height: Platform.OS === 'ios' ? '25%' : '30%'
   },
   searchInput: {
     color: '#000000',
