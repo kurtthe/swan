@@ -55,15 +55,14 @@ const TAccount = () => {
   };
   const switchTabs = () => {
     if (tabRef.current) {
-      // Switch to Tab 1
+
       tabRef.current.changeIndexSelected(1);
-  
-      // Set a timeout to switch back to Tab 0 after 2 seconds
+
       setTimeout(() => {
         tabRef.current.changeIndexSelected(0);
       }, 4000);
     } else {
-      console.warn("Tabs component not yet rendered or reference not assigned");
+      console.log("Tabs component not yet rendered or reference not assigned");
     }
   };
 
@@ -80,14 +79,14 @@ const TAccount = () => {
           <PaymentDetail />
           <Balance />
           {/* ListData component for statements if not restricted */}
-          {!restricted && (
+          {/* {!restricted && (
             <ListData
               endpoint={endPoints.statements}
               renderItems={renderItemsStatement}
               actionData={(data) => dispatch(getStatements(data))}
               typeData={STATEMENTS}
             />
-          )}
+          )} */}
         </>
       )}
     </>
