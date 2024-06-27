@@ -9,6 +9,10 @@ import { getTransaction } from '@core/hooks/Transactions/transaction.service'
 import ButtonLoadingMore from '@custom-elements/ButtonLoadingMore'
 import LoadingComponent from '@custom-elements/Loading';
 import Restricted from '@custom-elements/Restricted';
+import { endPoints } from '../../shared/dictionaries/end-points';
+import { GeneralRequestService } from '@core/services/general-request.service';
+
+const generalRequestService = GeneralRequestService.getInstance();
 
 export const ListTransactions = () => {
   const [dataTransactions, setDataTransaction] = useState([]);
@@ -57,6 +61,8 @@ export const ListTransactions = () => {
 
   const onRefresh = async () => {
     setRefreshing(true);
+    const responseRefresh = await generalRequestService.get(endPoints.refresh);
+    console.log(responseRefresh);
     const response = await getTransaction({ ...optionsTransactions, ...valuesFilters, page: 1 });
     setOptionsTransactions({ ...optionsTransactions, page: 1 });
     setTransaction(response);
