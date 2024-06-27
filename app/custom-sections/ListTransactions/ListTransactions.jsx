@@ -109,7 +109,7 @@ export const ListTransactions = () => {
     return <ButtonLoadingMore
       loading={loadingMoreData}
       handleLoadMore={handleLoadingMore}
-    />
+    /> 
   }
 
   console.log("valuesFilters::", JSON.stringify(valuesFilters))
@@ -138,6 +138,7 @@ export const ListTransactions = () => {
             keyExtractor={(item, index) => `${index}-transaction-${item?.id}`}
             ListEmptyComponent={renderNotFound}
             ListFooterComponent={getButtonLoadingMore}
+            style={{top:30}}
           />}
 
         </>
