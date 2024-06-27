@@ -40,5 +40,6 @@ export const endPoints = {
   // estimatorRoofing:
   //   'https://burdenstradetrakroofestimator.paperform.co/?email=:emailUser&name=:fullName&company=:companyName&burdens_account=:accountNumber',
   forgotPassword: `${apiService}reset-password`,
+  refresh: `${apiService}swan/refresh`,
   // getValidationRules: `${apiService}swan/validation-rules`,
 };
