@@ -1,8 +1,69 @@
 diff --git a/node_modules/react-native-radio-buttons-group/lib/RadioButton.tsx b/node_modules/react-native-radio-buttons-group/lib/RadioButton.tsx
-index 9e95130..679eb4f 100644
+index 9e95130..e5ba0d7 100644
 --- a/node_modules/react-native-radio-buttons-group/lib/RadioButton.tsx
 +++ b/node_modules/react-native-radio-buttons-group/lib/RadioButton.tsx
-@@ -102,6 +102,8 @@ const styles = StyleSheet.create({
+@@ -67,32 +67,37 @@ export default function RadioButton({
+         ]}
+         testID={testID}
+       >
+-        <View
+-          style={[
+-            styles.border,
+-            {
+-              borderColor: borderColor || color,
+-              borderWidth,
+-              width: sizeFull,
+-              height: sizeFull,
+-              borderRadius: sizeHalf,
+-            },
+-          ]}
+-        >
+-          {selected && (
++        <View style={{flexDirection: 'column', alignItems: 'flex-start'}}>
++          <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 8}}>
+             <View
+-              style={{
+-                backgroundColor: color,
+-                width: sizeHalf,
+-                height: sizeHalf,
+-                borderRadius: sizeHalf,
+-              }}
+-            />
+-          )}
++              style={[
++                styles.border,
++                {
++                  borderColor: borderColor || color,
++                  borderWidth,
++                  width: sizeFull,
++                  height: sizeFull,
++                  borderRadius: sizeHalf,
++                },
++              ]}
++            >
++              {selected && (
++                <View
++                  style={{
++                    backgroundColor: color,
++                    width: sizeHalf,
++                    height: sizeHalf,
++                    borderRadius: sizeHalf,
++                  }}
++                />
++              )}
++            </View>
++            {labelComp}
++          </View>
++
++          {descComp}
+         </View>
+-        {labelComp}
+       </Pressable>
+-      {descComp}
+     </>
+   );
+ }
+@@ -102,6 +107,8 @@ const styles = StyleSheet.create({
      alignItems: 'center',
      marginHorizontal: 10,
      marginVertical: 5,
