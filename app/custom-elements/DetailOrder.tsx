@@ -1,12 +1,15 @@
 import React from 'react';
 import { FormatMoneyService } from '@core/services/format-money.service';
 import { StyleSheet, Platform } from 'react-native';
+//@ts-ignore
 import { Block, Text } from 'galio-framework';
 import { nowTheme } from '@constants/index';
 
 const formatMoney = FormatMoneyService.getInstance();
-
-const DetailOrder = (props) => {
+type Props = {
+  order: any
+}
+const DetailOrder: React.FC<Props> = (props) => {
 
   if (!props?.order) {
     return null
@@ -47,7 +50,7 @@ const styles = StyleSheet.create({
   },
   detailPrice: {
     color: '#6A825D',
-    fontWeight: Platform.OS == 'android' ? 'bold' : '500',
+    fontWeight: Platform.OS === 'android' ? 'bold' : '500',
     top: -25,
   },
 });
