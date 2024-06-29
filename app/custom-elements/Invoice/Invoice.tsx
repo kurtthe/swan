@@ -1,5 +1,6 @@
 import React from 'react';
 import { TouchableOpacity, Platform } from 'react-native';
+// @ts-ignore
 import { Block, Text, theme } from 'galio-framework';
 import { nowTheme } from '@constants';
 
@@ -10,7 +11,12 @@ import { useNavigation } from '@react-navigation/native';
 import { makeStyles } from './Invoice.styles';
 import { Button } from '../../components';
 
-export const Invoice = (props) => {
+type Props = {
+  invoice: any;
+  isAccount: any;
+}
+
+export const Invoice: React.FC<Props> = (props) => {
   const navigation = useNavigation();
   const styles = makeStyles();
 
@@ -25,6 +31,7 @@ export const Invoice = (props) => {
   const formatMoney = FormatMoneyService.getInstance();
 
   const handleShowDetails = () => {
+    // @ts-ignore
     navigation.navigate('InvoiceDetails', {
       invoice: props.invoice.id,
       invoiceNumber: props.invoice.order_number,
