@@ -126,7 +126,6 @@ class Home extends React.Component {
 
           <ListInvoices
             data={this.props.invoices}
-            title={true}
             restricted={this.props.restricted}
           />
 
