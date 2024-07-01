@@ -38,16 +38,12 @@ const TAccount = () => {
 
   useEffect(() => {
     (async() => {
-      setIsLoading(true);
-      if(customStyleIndex === 1) return;
-      const responseRefresh = await generalRequestService.get(endPoints.refresh);
-      console.log(responseRefresh);
-      setIsLoading(false);
-      // const response = await generalRequestService.get(endPoints.statements);
-      // if(response.restricted) {
-      //   setRestricted(true)
-      //   setCustomStyleIndex(1)
-      // }
+      if(customStyleIndex === 1) return
+      const response = await generalRequestService.get(endPoints.statements);
+      if(response.restricted) {
+        setRestricted(true)
+        setCustomStyleIndex(1)
+      }
     })()
   }, [customStyleIndex])
 
@@ -79,7 +75,7 @@ const TAccount = () => {
   );
 
   const renderInvoices = () => (
-    <ListTransactions/>
+    <ListTransactions />
   );
 
   return (
@@ -128,7 +124,6 @@ const styles = StyleSheet.create({
     flex: 0.7, // Ocupa el 60% de la altura
   },
 });
-
 
 export default TAccount
 
