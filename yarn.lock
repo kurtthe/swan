@@ -2444,6 +2444,14 @@
     "@types/prop-types" "*"
     csstype "^3.0.2"
 
+"@types/react@^18.3.3":
+  version "18.3.3"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-18.3.3.tgz#9679020895318b0915d7a3ab004d92d33375c45f"
+  integrity sha512-hti/R0pS0q1/xx+TsI73XIqk26eBsISZ2R0wUijXIngRK9R/e7Xw/cXVxQK7R5JjW+SV4zGcn5hXjudkN/pLIw==
+  dependencies:
+    "@types/prop-types" "*"
+    csstype "^3.0.2"
+
 "@types/stack-utils@^2.0.0":
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/@types/stack-utils/-/stack-utils-2.0.3.tgz#6209321eb2c1712a7e7466422b8cb1fc0d9dd5d8"
@@ -6124,7 +6132,7 @@ lodash.debounce@^4.0.8:
   resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
   integrity sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==
 
-lodash.isequal@4.5.0, lodash.isequal@^4.5.0:
+lodash.isequal@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.isequal/-/lodash.isequal-4.5.0.tgz#415c4478f2bcc30120c22ce10ed3226f7d3e18e0"
   integrity sha512-pDo3lu8Jhfjqls6GkMgpahsF9kCyayhgykjyLMNFTKWrpVdAQtYyB4muAMWozBB4ig/dtWAmsMxLEI8wuz+DYQ==
@@ -7426,12 +7434,10 @@ react-native-progress@^4.1.2:
     "@react-native-community/art" "^1.1.2"
     prop-types "^15.7.2"
 
-react-native-radio-buttons-group@^2.2.4:
-  version "2.3.2"
-  resolved "https://registry.yarnpkg.com/react-native-radio-buttons-group/-/react-native-radio-buttons-group-2.3.2.tgz#3dd50e9137b722d98543ae038671308af1421a9c"
-  integrity sha512-ebYKTddyon/+8OxZIfuowB2/0gDcRnc+H0Jn5JBjIBqh5Zo2atIbXt1RrblA5V7dAvwlLCP4B/uzR2kFcLi8VA==
-  dependencies:
-    lodash.isequal "4.5.0"
+react-native-radio-buttons-group@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-radio-buttons-group/-/react-native-radio-buttons-group-3.1.0.tgz#b19d383fc2dece17eba1ce37b9f357c47431aded"
+  integrity sha512-DiNM1yI6WfRygUZ+Z/bsjggyLypXsxRNXPNYpPHXSEVbRD6uF5Aei+HMIwyeRbfMKPtHwLq7cGsmUDV01i+rOQ==
 
 react-native-render-html@^6.3.4:
   version "6.3.4"
@@ -8756,6 +8762,11 @@ typedarray.prototype.slice@^1.0.3:
     es-errors "^1.3.0"
     typed-array-buffer "^1.0.2"
     typed-array-byte-offset "^1.0.2"
+
+typescript@^5.5.2:
+  version "5.5.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.5.2.tgz#c26f023cb0054e657ce04f72583ea2d85f8d0507"
+  integrity sha512-NcRtPEOsPFFWjobJEtfihkLCZCXZt/os3zf8nTxjVH3RvTSxjrCamJpbExGvYOF+tFHc3pA65qpdwPbzjohhew==
 
 ua-parser-js@^1.0.35:
   version "1.0.37"

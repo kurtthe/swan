@@ -1,0 +1,25 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "jsx": "react",
+    "allowSyntheticDefaultImports": true ,
+    "strict": true,
+    "allowJs": true,
+    "baseUrl": "./",
+    "paths": {
+      "@assets/*": ["assets/*"],
+      "@environment": ["environment/environment"],
+      "@constants/*": ["app/shared/constants/*"],
+      "@constants": ["app/shared/constants/index"],
+      "@custom-elements/*": ["app/custom-elements/*"],
+      "@custom-sections/*": ["app/custom-sections/*"],
+      "@screens/*": ["app/screens/*"],
+      "@shared/*": ["app/shared/*"],
+      "@core/*": ["app/core/*"],
+      "@navigation/*": ["app/navigation/*"],
+      "@components/*": ["app/components/*"],
+      "@components": ["app/components/index"]
+    }
+  }
+}

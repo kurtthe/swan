@@ -10,7 +10,8 @@ StyleSheet.create({
   container: {
     flexGrow: 1,
     padding: 5,
-    height: hp('63%'),
+    height: hp('60%'),
+    paddingBottom : 30,
   },
   content: {
     backgroundColor: nowTheme.COLORS.BACKGROUND,

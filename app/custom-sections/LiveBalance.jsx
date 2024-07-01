@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     borderWidth: 0,
   },
   categoryTitle: {
-    height: '100%',
+    height: '80%',
     paddingHorizontal: 13,
     backgroundColor: 'rgba(0, 0, 0, 0.1)',
     justifyContent: 'center',

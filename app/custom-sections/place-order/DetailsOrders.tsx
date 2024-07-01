@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Dimensions, FlatList, Platform } from 'react-native';
+// @ts-ignore
 import { Block, Text, theme, Button } from 'galio-framework';
 import { nowTheme } from '@constants/index';
 import DetailOrder from '@custom-elements/DetailOrder';
@@ -8,7 +9,12 @@ import { FormatMoneyService } from '@core/services/format-money.service';
 const { width } = Dimensions.get('screen');
 const formatMoney = FormatMoneyService.getInstance();
 
-const DetailsOrders = (props) => {
+type Props = {
+  cartProducts: any[]
+  orderHandler: any
+}
+
+const DetailsOrders: React.FC<Props> = (props) => {
   const [loading, setLoading] = useState(false);
 
   const orderTotal = () => {
@@ -27,6 +33,7 @@ const DetailsOrders = (props) => {
   };
 
   const renderOrder = ({ item }) => (
+    // @ts-ignore
     <DetailOrder order={item} />
   )
 
