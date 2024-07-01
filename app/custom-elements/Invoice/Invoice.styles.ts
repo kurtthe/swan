@@ -7,7 +7,7 @@ export const makeStyles = () => StyleSheet.create({
   container: {
     backgroundColor: "transparent",
     flex: 1,
-    paddingVertical: 10,
+    paddingVertical: 5,
     height: 'auto',
     borderRadius: 3
   },
@@ -24,7 +24,7 @@ export const makeStyles = () => StyleSheet.create({
     borderBottomColor: 'lightgrey',
     alignSelf: 'center',
     width: '95%',
-    marginTop: 14,
+    marginTop: 4,
   },
   bg_green: {
     width: wp('20%'),

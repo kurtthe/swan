@@ -205,7 +205,7 @@ const Filters = ({getValues, hideFilterType}) => {
     <View style={styles.container}>
       {rangeDate()}
       {typeSearch()}
-      <View style={{flex: 1}}>
+      <View style={{flex: 1, bottom: 5}}>
         <Search
           inputStyle={{color: '#000000',
             borderRadius: 5,
@@ -250,7 +250,7 @@ const Filters = ({getValues, hideFilterType}) => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 5,
+    paddingTop: 2.5,
     paddingHorizontal: 10,
     flexDirection: 'column',
     height: Platform.OS === 'ios' ? '25%' : '30%'

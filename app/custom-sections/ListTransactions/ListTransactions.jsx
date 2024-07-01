@@ -138,7 +138,7 @@ export const ListTransactions = () => {
             keyExtractor={(item, index) => `${index}-transaction-${item?.id}`}
             ListEmptyComponent={renderNotFound}
             ListFooterComponent={getButtonLoadingMore}
-            style={{top:30}}
+            style={{top:30, marginBottom : 25}}
           />}
 
         </>

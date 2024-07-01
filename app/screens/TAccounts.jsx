@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
   },
   liveBalanceContainer: {
-    flex: 0.17, // Ocupa el 30% de la altura
+    flex: 0.16, // Ocupa el 30% de la altura
   },
   tabsContainer: {
     flex: 0.7, // Ocupa el 60% de la altura
