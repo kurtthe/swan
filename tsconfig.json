@@ -9,7 +9,7 @@
     "baseUrl": "./",
     "paths": {
       "@assets/*": ["assets/*"],
-      "@environment": ["environment/environment"],
+      "@env": ["environment/environment"],
       "@constants/*": ["app/shared/constants/*"],
       "@constants": ["app/shared/constants/index"],
       "@custom-elements/*": ["app/custom-elements/*"],
