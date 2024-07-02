@@ -1,4 +1,5 @@
-import { environment } from '@env';
+// @ts-ignore
+import { environment } from "@environment";
 
 const apiService =
   environment.env === 'staging'
