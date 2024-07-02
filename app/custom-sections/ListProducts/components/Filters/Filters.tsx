@@ -1,6 +1,6 @@
-import React, { useEffect, useState,  useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import {View} from 'react-native';
-import { BottomSheet } from 'react-native-sheet';
+import { BottomSheet, BottomSheetRef } from 'react-native-sheet';
 import FilterButton from '@components/FilterButton';
 import {AlertService} from '@core/services/alert.service';
 
@@ -20,21 +20,21 @@ import {useSelector, useDispatch} from 'react-redux';
 
 export const FilterProducts = () => {
   const dispatch = useDispatch();
-  const categoryParentSelected = useSelector((state) => state.filterReducer.categorySelected)
-  const favoriteFilter = useSelector((state) => state.filterReducer.onlyFavourites)
-  const dataProducts = useSelector((state) => state.filterReducer.products)
-  const isLoadingFilter = useSelector((state) => state.filterReducer.isLoading)
-  const restricted = useSelector((state) => state.filterReducer.restricted)
+  const categoryParentSelected = useSelector((state: any) => state.filterReducer.categorySelected)
+  const favoriteFilter = useSelector((state: any) => state.filterReducer.onlyFavourites)
+  const dataProducts = useSelector((state: any)=> state.filterReducer.products)
+  const isLoadingFilter = useSelector((state: any) => state.filterReducer.isLoading)
+  const restricted = useSelector((state: any) => state.filterReducer.restricted)
 
   const alertService = new AlertService()
-  const [categories, setCategories] = useState([])
-  const [subCategories, setSubCategories] = useState([])
+  const [categories, setCategories] = useState<any[]>([])
+  const [subCategories, setSubCategories] = useState<any[]>([])
   const [categoryActive, setCategoryActive] = useState(categoryParentSelected !== '')
   const [subCategoryActive, setSubCategoryActive] = useState(false)
   const [noSubCategoriesFound, setNoSubCategoriesFound] = useState(false)
 
-  const bottomSheet = useRef(null)
-  const bottomSheet2 = useRef(null)
+  const bottomSheet = React.createRef<BottomSheetRef>()
+  const bottomSheet2 = React.createRef<BottomSheetRef>()
 
   const styles = makeStyles()
 
@@ -48,6 +48,7 @@ export const FilterProducts = () => {
       setCategoryActive(true)
       setNoSubCategoriesFound(category?.sub_categories?.length === 0)
       const subCategoriesSerialized = categoriesToRadioButton(category?.sub_categories)
+      if(!subCategoriesSerialized) return
       setSubCategories(subCategoriesSerialized)
       return true;
     }
@@ -83,13 +84,13 @@ export const FilterProducts = () => {
 
   const initialCategories = (categoriesGet) => {
     const categoriesSerialized = categoriesToRadioButton(categoriesGet)
+    if(!categoriesSerialized) return;
     setCategories(categoriesSerialized)
   }
 
   useEffect(() => {
-    if (listCategories?.length > 0) {
+    if(!listCategories || listCategories.length === 0) return;
       initialCategories(listCategories)
-    }
   }, [listCategories])
 
   const handleShowCategories = () => {
@@ -123,6 +124,7 @@ export const FilterProducts = () => {
       return
     }
     const subCategoriesSerialized = categoriesToRadioButton(optionSelected?.sub_categories)
+    if(!subCategoriesSerialized) return;
     setSubCategories(subCategoriesSerialized)
 
     dispatch(toggleLoading(true))
