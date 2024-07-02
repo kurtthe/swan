@@ -8,7 +8,6 @@ export const getCategoriesService = async () => {
     {
       expand: 'sub_categories',
     })
-
   return Promise.resolve(response.body)
 }
 

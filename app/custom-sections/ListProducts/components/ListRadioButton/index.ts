@@ -1,3 +1,3 @@
-import { ListRadioButton } from './ListRadioButton'
+import { default as  ListRadioButton } from './ListRadioButton'
 
 export default ListRadioButton

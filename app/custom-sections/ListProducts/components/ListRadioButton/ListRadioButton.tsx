@@ -8,12 +8,14 @@ import { Block, Text } from 'galio-framework';
 
 type Props = {
   onChange: (newValue:any)=> void;
-  options: any[]
+  options: any[];
+  idSelected?: any;
 }
 
-export const ListRadioButton: React.FC<Props> = ({
+const ListRadioButton: React.FC<Props> = ({
   onChange,
-  options
+  options,
+  idSelected
 }) => {
   const styles = makeStyles()
 
@@ -26,18 +28,24 @@ export const ListRadioButton: React.FC<Props> = ({
   }
 
   const handleOnChange = (newValue: any)=> {
-    console.log("change radio button list", newValue)
-    onChange(newValue)
+    if(!options) return;
+    const optionSelected = options.find(optionData => optionData.id === newValue)
+    if(!optionSelected) return;
+    onChange(optionSelected)
   }
 
+
   return (
-    <ScrollView style={styles.actionSheet}>
+    <ScrollView style={styles.actionSheet} nestedScrollEnabled>
       <RadioGroup
         containerStyle={styles.listRadios}
         radioButtons={options}
         color={nowTheme.COLORS.INFO}
+        selectedId={idSelected}
         onPress={handleOnChange}
       />
     </ScrollView>
   )
 }
+
+export default  React.memo(ListRadioButton)

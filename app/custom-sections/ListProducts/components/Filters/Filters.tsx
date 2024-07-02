@@ -6,7 +6,6 @@ import {AlertService} from '@core/services/alert.service';
 
 import {makeStyles} from './Filters.styles'
 import {useGetCategories} from '@core/hooks/Categories'
-import ListRadioButton from '../ListRadioButton'
 import {nowTheme} from '@constants';
 
 import {
@@ -17,6 +16,8 @@ import {
 } from '@core/module/store/filter/filter';
 
 import {useSelector, useDispatch} from 'react-redux';
+import ListRadioButton from '@custom-sections/ListProducts/components/ListRadioButton';
+import { sortNameCategories } from '@shared/dictionaries/sort';
 
 export const FilterProducts = () => {
   const dispatch = useDispatch();
@@ -55,23 +56,14 @@ export const FilterProducts = () => {
     return false;
   }
 
-  const sortNameCategories = (x, y) => {
-    const first = x.name?.toLowerCase();
-    const second = y.name?.toLowerCase();
 
-    if (first < second) {
-      return -1;
-    }
-    if (first > second) {
-      return 1;
-    }
-    return 0;
-  }
 
   const categoriesToRadioButton = (categoriesList = []) => {
+    if(!categoriesList || !categoriesList.length) return [];
+
     return categoriesList
-      ?.sort(sortNameCategories)
-      ?.map((category) => ({
+      .sort(sortNameCategories)
+      .map((category) => ({
         ...category,
         color: nowTheme.COLORS.INFO,
         labelStyle: {fontWeight: 'bold'},
@@ -105,15 +97,9 @@ export const FilterProducts = () => {
     bottomSheet.current?.show();
   }
 
-  const categorySelected = (options) => {
-    dispatch(reset())
-    const optionSelected = options.find((option) => option.selected);
-    dispatch(selectedCategory(optionSelected.id))
-    return optionSelected
-  }
 
-  const onPressRadioButtonCategory = (options) => {
-    const optionSelected = categorySelected(options);
+  const onPressRadioButtonCategory = (optionSelected: any) => {
+    dispatch(selectedCategory(optionSelected.id))
 
     if (optionSelected.sub_categories?.length === 0) {
       setNoSubCategoriesFound(true)
@@ -133,8 +119,8 @@ export const FilterProducts = () => {
     bottomSheet.current?.hide()
   };
 
-  const onPressRadioButtonSubCategory = (options) => {
-    categorySelected(options);
+  const onPressRadioButtonSubCategory = (optionSelected: any) => {
+    console.log("onPressRadioButtonSubCategory==optionSelected", optionSelected)
     bottomSheet2.current?.hide();
     setSubCategoryActive(true)
     dispatch(toggleLoading(true))
@@ -176,6 +162,8 @@ export const FilterProducts = () => {
     <View style={styles.container}></View>)
   }
 
+  console.log("==>categories", JSON.stringify(categories))
+  console.log("==>subCategories", JSON.stringify(subCategories))
   return (
     <>
       <View style={styles.container}>
@@ -221,6 +209,7 @@ export const FilterProducts = () => {
         <ListRadioButton
           onChange={(option) => onPressRadioButtonCategory(option)}
           options={categories}
+          idSelected={categoryParentSelected}
         />
       </BottomSheet>
 
