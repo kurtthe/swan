@@ -33,9 +33,10 @@ export const FilterProducts = () => {
   const [categoryActive, setCategoryActive] = useState(categoryParentSelected !== '')
   const [subCategoryActive, setSubCategoryActive] = useState(false)
   const [noSubCategoriesFound, setNoSubCategoriesFound] = useState(false)
+  const [subCategorySelected, setSubCategorySelected] = useState<undefined | any>(undefined)
 
-  const bottomSheet = React.createRef<BottomSheetRef>()
-  const bottomSheet2 = React.createRef<BottomSheetRef>()
+  const bottomSheetCategoriesRef = React.createRef<BottomSheetRef>()
+  const bottomSheetSubCategoriesRef = React.createRef<BottomSheetRef>()
 
   const styles = makeStyles()
 
@@ -85,16 +86,12 @@ export const FilterProducts = () => {
       initialCategories(listCategories)
   }, [listCategories])
 
-  const handleShowCategories = () => {
-    bottomSheet.current?.show();
-  }
-
   const handleShowSubCategories = () => {
     if (noSubCategoriesFound) {
       alertService.show('Alert!', 'No sub categories found');
       return;
     }
-    bottomSheet.current?.show();
+    bottomSheetSubCategoriesRef.current?.show();
   }
 
 
@@ -116,14 +113,14 @@ export const FilterProducts = () => {
     dispatch(toggleLoading(true))
     setCategoryActive(true)
     setNoSubCategoriesFound(false)
-    bottomSheet.current?.hide()
+    bottomSheetCategoriesRef.current?.hide()
   };
 
   const onPressRadioButtonSubCategory = (optionSelected: any) => {
-    console.log("onPressRadioButtonSubCategory==optionSelected", optionSelected)
-    bottomSheet2.current?.hide();
+    setSubCategorySelected(optionSelected)
     setSubCategoryActive(true)
     dispatch(toggleLoading(true))
+    bottomSheetSubCategoriesRef.current?.hide();
   }
 
   const clearFilterSelected = (listData = []) => {
@@ -155,22 +152,17 @@ export const FilterProducts = () => {
     );
   }
 
-  if(categoryParentSelected === "Pools") return null
-
   if(restricted) {
-    return (
-    <View style={styles.container}></View>)
+    return <View style={styles.container} />
   }
 
-  console.log("==>categories", JSON.stringify(categories))
-  console.log("==>subCategories", JSON.stringify(subCategories))
   return (
     <>
       <View style={styles.container}>
         <View style={styles.contentFilters}>
           <FilterButton
             text={'Category'}
-            onPress={() => handleShowCategories()}
+            onPress={() => bottomSheetCategoriesRef.current?.show()}
             isActive={categoryActive}
             isLoading={isLoading}
             disabled={isLoadingFilter}
@@ -205,7 +197,7 @@ export const FilterProducts = () => {
         </View>
       </View>
 
-      <BottomSheet height={500} ref={bottomSheet}>
+      <BottomSheet height={500} ref={bottomSheetCategoriesRef}>
         <ListRadioButton
           onChange={(option) => onPressRadioButtonCategory(option)}
           options={categories}
@@ -213,10 +205,11 @@ export const FilterProducts = () => {
         />
       </BottomSheet>
 
-      <BottomSheet height={500} ref={bottomSheet2}>
+      <BottomSheet height={500} ref={bottomSheetSubCategoriesRef}>
         <ListRadioButton
           onChange={(option) => onPressRadioButtonSubCategory(option)}
           options={subCategories}
+          idSelected={subCategorySelected?.id}
         />
       </BottomSheet>
     </>

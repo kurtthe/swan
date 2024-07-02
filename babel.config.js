@@ -8,7 +8,7 @@ module.exports = function (api) {
         {
           root: ['./'],
           alias: {
-            '@env': './environments/environment',
+            '@environment': './environments/environment',
             '@constants': './app/shared/constants',
             '@custom-elements': './app/custom-elements',
             '@custom-sections': './app/custom-sections',
