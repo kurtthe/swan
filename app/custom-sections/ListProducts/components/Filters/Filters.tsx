@@ -106,6 +106,7 @@ export const FilterProducts = () => {
       );
       return
     }
+
     const subCategoriesSerialized = categoriesToRadioButton(optionSelected?.sub_categories)
     if(!subCategoriesSerialized) return;
     setSubCategories(subCategoriesSerialized)
@@ -119,7 +120,6 @@ export const FilterProducts = () => {
   const onPressRadioButtonSubCategory = (optionSelected: any) => {
     setSubCategorySelected(optionSelected)
     setSubCategoryActive(true)
-    dispatch(toggleLoading(true))
     bottomSheetSubCategoriesRef.current?.hide();
   }
 
@@ -133,7 +133,7 @@ export const FilterProducts = () => {
   const handleResetFilter = () => {
     setCategories(clearFilterSelected(categories))
     setSubCategories(clearFilterSelected(subCategories))
-
+    setSubCategorySelected(undefined)
     setCategoryActive(false)
     setSubCategoryActive(false)
     dispatch(reset())
@@ -193,7 +193,6 @@ export const FilterProducts = () => {
               disabled={isLoadingFilter}
             />
           )}
-
         </View>
       </View>
 
