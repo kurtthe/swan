@@ -4,8 +4,8 @@ import { Block, Text } from 'galio-framework';
 import Invoice from '@custom-elements/Invoice';
 import { makeStyles } from './ListInvoices.styles';
 import Restricted from '@custom-elements/Restricted';
-import CardPromotion from '@components/CardPromotion';
 import { FlatList } from 'react-native';
+import Promotions from '@custom-elements/Promotions';
 
 export const ListInvoices = ({ data: dataInvoice, backAccount, restricted }) => {
   const styles = makeStyles();
@@ -16,7 +16,7 @@ export const ListInvoices = ({ data: dataInvoice, backAccount, restricted }) => 
 
   return (
     <>
-      <CardPromotion/>
+      <Promotions/>
       {dataInvoice && dataInvoice.length > 0 ? (
         <Block style={styles.card}>
           {restricted ? <Restricted horizontal /> : (
