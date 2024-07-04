@@ -42,5 +42,7 @@ export const endPoints = {
   //   'https://burdenstradetrakroofestimator.paperform.co/?email=:emailUser&name=:fullName&company=:companyName&burdens_account=:accountNumber',
   forgotPassword: `${apiService}reset-password`,
   refresh: `${apiService}swan/refresh`,
+  promotions: `${apiService}swan/promotions`,
+
   // getValidationRules: `${apiService}swan/validation-rules`,
 };

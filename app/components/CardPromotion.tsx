@@ -1,9 +1,20 @@
 import React from 'react';
-import {View, Image, Text, StyleSheet} from 'react-native'
+import { View, Image, Text, StyleSheet, Linking } from 'react-native';
 import { imagePromotion } from '@assets/imgs/prom';
-import { Colors } from 'react-native-paper';
 
-const CardPromotion = ({}) => {
+type Props = {
+  title: string;
+  link: string;
+  description: string;
+  image: string;
+  addedDate: string;
+}
+
+const CardPromotion: React.FC<Props> = ({title, link, description, image, addedDate}) => {
+
+  const openUrl = ()=> {
+    Linking.openURL(link).catch(()=> console.log("Failed to open"));
+  }
 
   return (
     <View style={styles.container}>
@@ -14,20 +25,18 @@ const CardPromotion = ({}) => {
         />
 
       <View style={{marginTop: 10}}>
-        <Text style={styles.description}>
-          Purchase any eligible model via the Swan Plumbing Portal during the purchase period and you will go into the draw to win a Garmin Forerunner® 55 Smart Watch (valued at RRP $349).
+        <Text style={styles.description}>{title}
         </Text>
         <Text style={styles.disclaimer}>
-          *Purchase period: 1 June to 31 August 2024
+          *Purchase period: {addedDate}
         </Text>
 
-        <Text style={styles.link}>
+        <Text style={styles.link} onPress={openUrl}>
           Learn more
         </Text>
       </View>
     </View>
   )
-
 }
 
 const styles = StyleSheet.create({
