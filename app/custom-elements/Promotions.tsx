@@ -19,7 +19,7 @@ const Promotions = () => {
       <CardPromotion
         link={item.link}
         title={item.title}
-        image={item.image}
+        image={item.preview.image}
         addedDate={item.added_date}
         description={item.description}/>
     )

@@ -5,7 +5,7 @@ const generalRequestService = GeneralRequestService.getInstance()
 
 export const getPromotionsService = async ()=> {
   const response = await generalRequestService.get(endPoints.promotions)
-  return Promise.resolve(response.body)
+  return Promise.resolve(response)
 }
 
 
