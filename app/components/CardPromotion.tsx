@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Image, Text, StyleSheet, Linking } from 'react-native';
-import { imagePromotion } from '@assets/imgs/prom';
+import nowTheme from '@constants/Theme';
 
 type Props = {
   title: string;
@@ -18,11 +18,11 @@ const CardPromotion: React.FC<Props> = ({title, link, description, image, addedD
 
   return (
     <View style={styles.container}>
-        <Image
-          resizeMode="stretch"
-          source={imagePromotion}
-          style={styles.image}
-        />
+      <Image
+        resizeMode="cover"
+        source={{uri: image}}
+        style={styles.image}
+      />
 
       <View style={{marginTop: 10}}>
         <Text style={styles.description}>{title}
@@ -41,26 +41,26 @@ const CardPromotion: React.FC<Props> = ({title, link, description, image, addedD
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 20
+    paddingHorizontal: 20,
   },
   image: {
     width: '100%',
     height: 250
   },
   description: {
-    fontSize: 22,
+    fontSize: 18,
     textAlign: 'center',
     marginBottom: 20
   },
   disclaimer: {
     textAlign: 'center',
-    marginBottom: 20
+    marginBottom: 15
   },
   link: {
     textAlign: 'center',
-    marginBottom: 20,
+    marginBottom: 60,
     textDecorationLine: "underline",
-    color: "#F22020"
+    color: nowTheme.COLORS.INFO
   }
 })
 

@@ -25,14 +25,12 @@ const Promotions = () => {
     )
   }
 
-  console.log("==>promotionsList", JSON.stringify(promotionsList))
-
   return (
     <FlatList
       keyExtractor={(item, index)=> `card-promotion${item.id}-${index}`}
       data={promotionsList}
       renderItem={renderItem}
-      horizontal
+      scrollEnabled={false}
     />
   )
 }

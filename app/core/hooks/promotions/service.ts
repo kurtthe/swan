@@ -8,7 +8,6 @@ export const getPromotionsService = async ()=> {
   return Promise.resolve(response)
 }
 
-
 export const queryKey = {
   get_promotions: 'get_promotions'
 }
