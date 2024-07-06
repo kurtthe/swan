@@ -94,6 +94,8 @@ export const Products = () => {
 
   const onRefresh = async () => {
     setRefreshing(true);
+    dispatch(getProducts([]));
+    dispatch(getAllPages(1));
     await refetch();
     setRefreshing(false);
   };

@@ -23,36 +23,37 @@ const LiveBalance = (props) => {
           height: 132,
         }}
       >
-        <Block style={styles.categoryTitle}>
+        
           {props.company || balance.restricted ? (
-            <Text size={35} bold color={theme.COLORS.BLACK}>
-              {balance.company}
-            </Text>
+            <Block style={styles.categoryTitle}>
+              <Text size={32} bold color={theme.COLORS.BLACK}>
+                {balance.company}
+              </Text>
+            </Block>
           ) : (
-            <>
-              <Block
-                row
-                middle
-                space="between"
-                style={{ marginBottom: theme.SIZES.BASE, paddingLeft: 0, paddingRight: 6 }}
-              >
-                <Text size={28} bold color={theme.COLORS.BLACK}>
-                  {formatMoney.format(balance.total)}
-                </Text>
-              </Block>
-              <Block row middle space="between" style={styles.bottomView}>
-                <Text size={14} bold color={theme.COLORS.WHITE} style={{ left: 0 }}>
-                  {' '}
-                  Overdue Balance{' '}
-                </Text>
-                <Text size={14} bold color={theme.COLORS.WHITE} style={{ left: 0 }}>
-                  {' '}
-                  {formatMoney.format(balance.overdue)}{' '}
-                </Text>
-              </Block>
-            </>
+            <Block style={styles.categoryTitle2}>
+                <Block
+                  row
+                  middle
+                  space="between"
+                  style={{ marginBottom: theme.SIZES.BASE, paddingLeft: 0, paddingRight: 6 }}
+                >
+                  <Text size={28} bold color={theme.COLORS.BLACK}>
+                    {formatMoney.format(balance.total)}
+                  </Text>
+                </Block>
+                <Block row middle space="between" style={styles.bottomView}>
+                  <Text size={14} bold color={theme.COLORS.WHITE} style={{ left: 0 }}>
+                    {' '}
+                    Overdue Balance{' '}
+                  </Text>
+                  <Text size={14} bold color={theme.COLORS.WHITE} style={{ left: 0 }}>
+                    {' '}
+                    {formatMoney.format(balance.overdue)}{' '}
+                  </Text>
+                </Block>
+            </Block>
           )}
-        </Block>
       </ImageBackground>
     </Block>
   );
@@ -73,7 +74,15 @@ const styles = StyleSheet.create({
     borderWidth: 0,
   },
   categoryTitle: {
-    height: '80%',
+    height: '100%',
+    paddingHorizontal: 13,
+    backgroundColor: 'rgba(0, 0, 0, 0.1)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlign: 'center'
+  },
+  categoryTitle2: {
+    height: '100%',
     paddingHorizontal: 13,
     backgroundColor: 'rgba(0, 0, 0, 0.1)',
     justifyContent: 'center',
