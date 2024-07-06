@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Dimensions, StyleSheet } from 'react-native';
 import { nowTheme } from '@constants/index';
 import PickerButton from '@custom-elements/PickerButton';
-import { useGetStores } from '@core/hooks/PlaceOrders';
+import { useGetPreferredStore, useGetStores } from '@core/hooks/PlaceOrders';
 import { setOptionsPicker } from '../utils';
 import {useSelector, useDispatch} from 'react-redux';
 import {setDataStore} from '@core/module/store/placeOrders/placeOrders'
@@ -18,16 +18,24 @@ const Store = () => {
   const nameStore = useSelector((state)=> state.placeOrderReducer.nameStore)
 
   const {data: stores } = useGetStores();
+  const {data: preferredStore} = useGetPreferredStore();
 
   useEffect(()=>{
     if(!stores?.locations?.length){
       return
     }
 
-  const storesAsRadioButton = setOptionsPicker(stores.locations)
+  const storesAsRadioButton = setOptionsPicker(stores.locations, preferredStore)
     setOptionsSelectStores(storesAsRadioButton)
-  },[stores?.locations])
+  },[stores?.locations, preferredStore])
 
+  useEffect(()=>{
+    if(!preferredStore){
+      return
+    }
+
+    dispatch(setDataStore({...preferredStore, notes }))
+  },[preferredStore, notes])
 
   const handleChangeOptionSelected = (option) => {
     console.log("option store selected==>", JSON.stringify(option))
