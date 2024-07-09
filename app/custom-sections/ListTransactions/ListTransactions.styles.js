@@ -1,4 +1,4 @@
-import {StyleSheet, Dimensions} from 'react-native'
+import {StyleSheet, Dimensions, Platform} from 'react-native'
 import { theme } from 'galio-framework';
 import nowTheme from '@constants/Theme';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
@@ -10,7 +10,7 @@ StyleSheet.create({
   container: {
     flexGrow: 1,
     padding: 5,
-    height: hp('60%'),
+    height: Platform.OS === 'ios' ? hp('60%') : hp('65%'),
     paddingBottom : 30,
   },
   content: {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ScrollView, View, StyleSheet } from 'react-native';
+import { ScrollView, View, StyleSheet, Platform } from 'react-native';
 
 import { endPoints } from '@shared/dictionaries/end-points';
 import LiveBalance from '@custom-sections/LiveBalance';
@@ -118,10 +118,34 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
   },
   liveBalanceContainer: {
-    flex: 0.16, // Ocupa el 30% de la altura
+    flex: Platform.OS === 'ios' ? 0.21 : 0.18,
   },
   tabsContainer: {
-    flex: 0.7, // Ocupa el 60% de la altura
+    flex: Platform.OS === 'ios' ? 0.7 : 0.8
+  },
+  // tabsContainer: {
+  //   flexDirection: 'column',
+  //   flex: 1,
+  // },
+  tab: {
+    flex: 1,
+    padding: 10,
+    alignItems: 'center',
+    borderBottomWidth: 2,
+    borderBottomColor: 'transparent',
+  },
+  selectedTab: {
+    backgroundColor: '#d0d0d0',
+    borderBottomColor: 'blue',
+  },
+  tabText: {
+    color: 'black',
+  },
+  selectedTabText: {
+    color: 'blue',
+  },
+  tabContent: {
+    flex: 1,
   },
 });
 
