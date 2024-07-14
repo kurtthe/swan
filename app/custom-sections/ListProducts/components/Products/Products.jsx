@@ -10,6 +10,7 @@ import {
   getProducts,
   nextPage,
   getAllPages,
+  setProductCount,
 } from '@core/module/store/filter/filter';
 import Restricted from '@custom-elements/Restricted';
 
@@ -63,11 +64,16 @@ export const Products = () => {
     if(products?.body?.length){
       setIsLoading(false)
       dispatch(getProducts(products?.body))
+      dispatch(setProductCount(dataProducts.length));
       setLoadingMoreData(false)
     }
 
     return () => setIsLoading(true)
   }, [products])
+
+  useEffect(() =>{
+    dispatch(setProductCount(dataProducts.length));
+  }, [dataProducts.length])
 
   const renderItem = ({ item }) => {
     return (<Product

@@ -26,6 +26,8 @@ export const FilterProducts = () => {
   const dataProducts = useSelector((state: any)=> state.filterReducer.products)
   const isLoadingFilter = useSelector((state: any) => state.filterReducer.isLoading)
   const restricted = useSelector((state: any) => state.filterReducer.restricted)
+  const productCount = useSelector((state) => state.filterReducer.productCount)
+
 
   const alertService = new AlertService()
   const [categories, setCategories] = useState<any[]>([])
@@ -183,6 +185,11 @@ export const FilterProducts = () => {
             nameIcon={!favoriteFilter ? 'staro' : 'star'}
             sizeIcon={15}
             disabled={isLoadingFilter}
+          />
+
+          <FilterButton
+            text={`${productCount}`}
+            disabled={true}
           />
 
           {categoryActive && (

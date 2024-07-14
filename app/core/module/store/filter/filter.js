@@ -8,6 +8,7 @@ const initialState = {
   onlyFavourites: false,
   isLoading: true,
   restricted: false,
+  productCount: 0,
 }
 
 export const filterStatementsSlice = createSlice({
@@ -54,6 +55,9 @@ export const filterStatementsSlice = createSlice({
       state.onlyFavourites = false
       state.restricted = false
     },
+    setProductCount: (state, action) => {
+      state.productCount = action.payload;
+    },
   }
 })
 
@@ -65,6 +69,7 @@ export const {
   reset,
   toggleFavorites,
   toggleLoading,
+  setProductCount,
 } = filterStatementsSlice.actions
 
 export default filterStatementsSlice.reducer

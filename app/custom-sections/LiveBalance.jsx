@@ -1,5 +1,5 @@
 import React from 'react';
-import { ImageBackground, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
+import { ImageBackground, TouchableOpacity, StyleSheet, Dimensions, Platform } from 'react-native';
 import { Block, theme, Text } from 'galio-framework';
 
 import { nowTheme } from '@constants';
@@ -17,7 +17,7 @@ const LiveBalance = (props) => {
     <Block flex card center shadow style={styles.category}>
       <ImageBackground
         source={require('../../assets/imgs/swan-banner.png')}
-        style={[styles.imageBlock, { width: width - theme.SIZES.BASE * 0.1, height: 132 }]}
+        style={[styles.imageBlock, { width: width - theme.SIZES.BASE * 0.1, height: Platform.OS === 'ios' ? 132 : 130 }]}
         imageStyle={{
           width: width - theme.SIZES.BASE * 0.1,
           height: 132,
