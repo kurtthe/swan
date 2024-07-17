@@ -118,10 +118,10 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
   },
   liveBalanceContainer: {
-    flex: Platform.OS === 'ios' ? 0.21 : 0.18,
+    flex: Platform.OS === 'ios' ? 0.21 : 0.20,
   },
   tabsContainer: {
-    flex: Platform.OS === 'ios' ? 0.7 : 0.8
+    flex: Platform.OS === 'ios' ? 0.7 : 1
   },
   // tabsContainer: {
   //   flexDirection: 'column',
@@ -150,4 +150,3 @@ const styles = StyleSheet.create({
 });
 
 export default TAccount
-
