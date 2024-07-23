@@ -7,7 +7,7 @@ module.exports = {
       "ios",
       "android"
     ],
-    version: "1.1",
+    version: "1.3",
     orientation: "portrait",
     icon: "./assets/icon.png",
     splash: {
@@ -23,6 +23,8 @@ module.exports = {
       "**/*"
     ],
     plugins: [
+      "@config-plugins/react-native-blob-util",
+      "@config-plugins/react-native-pdf",
       [
         "expo-secure-store",
         "expo-font"
@@ -74,7 +76,7 @@ module.exports = {
         "android.permission.ACCESS_FINE_LOCATION",
         "android.permission.FOREGROUND_SERVICE",
       ],
-      versionCode: 9,
+      versionCode:11,
       googleServicesFile: "./GoogleAnalytics/google-services.json"
     },
     description: "Coded by Digital Basis",
