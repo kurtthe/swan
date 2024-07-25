@@ -43,6 +43,6 @@ export const endPoints = {
   forgotPassword: `${apiService}reset-password`,
   refresh: `${apiService}swan/refresh`,
   promotions: `${apiService}swan/promotions`,
-
+  swanVersion: `${apiService}app-version/swan-app`
   // getValidationRules: `${apiService}swan/validation-rules`,
 };
