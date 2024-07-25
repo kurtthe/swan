@@ -187,10 +187,10 @@ export const FilterProducts = () => {
             disabled={isLoadingFilter}
           />
 
-          <FilterButton
+          {/* <FilterButton
             text={`${productCount}`}
             disabled={true}
-          />
+          /> */}
 
           {categoryActive && (
             <FilterButton

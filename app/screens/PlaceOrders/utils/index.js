@@ -30,7 +30,7 @@ export const getDataPlaceOrder = (dataOrder, supplierId, items)=> {
         delivery: dataOrder.delivery_instructions?.delivery,
           location: dataOrder.delivery_instructions.location,
           date: dataOrder.delivery_instructions.date?.value,
-          time: dataOrder?.delivery_instructions.value || '12.00 PM',
+          time: dataOrder?.delivery_instructions.time?.value || '12.00 PM',
           contact_number: dataOrder?.delivery_instructions.contact_number,
           contact_name: dataOrder?.delivery_instructions.contact_name,
       },

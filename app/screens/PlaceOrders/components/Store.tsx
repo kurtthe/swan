@@ -27,6 +27,7 @@ const Store = () => {
 
   const storesAsRadioButton = setOptionsPicker(stores.locations, preferredStore)
     setOptionsSelectStores(storesAsRadioButton)
+    console.log(storesAsRadioButton)
   },[stores?.locations, preferredStore])
 
   useEffect(()=>{
