@@ -15,6 +15,7 @@ const Promotions = () => {
   }
 
   const renderItem = ({item}: {item: any})=> {
+    console.log(item);
     return (
       <CardPromotion
         link={item.link}

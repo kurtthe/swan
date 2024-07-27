@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Dimensions, View, ViewStyle, StyleSheet, TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
 import nowTheme from '@constants/Theme';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -26,6 +26,7 @@ type Props = {
   search?: boolean;
   handleSearch?: (numberPage: any) => void;
   page?: any;
+  selectedDefaultOption?: any;
 };
 
 const PickerButton: React.FC<Props> = ({
@@ -40,10 +41,15 @@ const PickerButton: React.FC<Props> = ({
                                          page,isRequired,
                                          onChangeOption,
                                          changeSearchText,
-                                         sizeIcon= 20
+                                         sizeIcon= 20,
+                                         selectedDefaultOption
 })=> {
-  const [optionSelected, setOptionSelected] = React.useState(null);
+  const [optionSelected, setOptionSelected] = React.useState();
   const [showSheet, setShowSheet] = React.useState(false)
+
+  useEffect(() => {  
+    setOptionSelected(selectedDefaultOption)
+  }, [selectedDefaultOption]);
 
   const openAction = ()=> {
     setShowSheet(true)

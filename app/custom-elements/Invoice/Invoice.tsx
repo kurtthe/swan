@@ -102,7 +102,7 @@ export const Invoice: React.FC<Props> = (props) => {
           </Block>
         </Block>
       </TouchableOpacity>
-      {Platform.OS === 'ios' && <Block style={styles.line} />}
+      <Block style={styles.line}></Block>
     </>
   );
 };
