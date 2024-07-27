@@ -15,6 +15,7 @@ const Store = () => {
 
   const [notes, setNotes] = useState()
   const [optionsSelectStores, setOptionsSelectStores] = useState()
+  const [preferredStoreData, setPreferredStoreData] = useState()
   const nameStore = useSelector((state)=> state.placeOrderReducer.nameStore)
 
   const {data: stores } = useGetStores();
@@ -26,8 +27,15 @@ const Store = () => {
     }
 
   const storesAsRadioButton = setOptionsPicker(stores.locations, preferredStore)
-    setOptionsSelectStores(storesAsRadioButton)
-    console.log(storesAsRadioButton)
+    setOptionsSelectStores(storesAsRadioButton);
+    if (optionsSelectStores) {
+      const preferredStoreData = optionsSelectStores.find((option) => option.id === preferredStore.id);
+      setPreferredStoreData(preferredStoreData)
+      console.log(preferredStoreData);
+    }
+    
+    
+    // console.log(storesAsRadioButton)
   },[stores?.locations, preferredStore])
 
   useEffect(()=>{
@@ -66,6 +74,7 @@ const Store = () => {
         placeholder={nameStore ?? 'Select store'}
         renderOptions={optionsSelectStores}
         onChangeOption={(option) => handleChangeOptionSelected(option)}
+        selectedDefaultOption={preferredStoreData}
       />
       <Text style={{ fontSize: 14, paddingVertical: 10, color: nowTheme.COLORS.PRETEXT }}>
         Notes to Store
