@@ -117,7 +117,7 @@ export const Products = () => {
           </View>
         ): (
           <>
-            <View style={{ padding: 10 }}>
+            <View style={{ padding: 10, flexDirection: 'row' }}>
               <Text style={{ fontSize: 20, color: nowTheme.COLORS.INFO }}>{totalProducts + ' '}</Text><Text style={{ fontSize: 20 }}>Products</Text>
             </View>
             <FlatList
