@@ -50,7 +50,10 @@ export const Products = () => {
     if (products?.headers && products?.headers['x-pagination-page-count']) {
       const currentlyTotal = parseInt(page)
       const newTotalPages = parseInt(products?.headers['x-pagination-page-count']);
-      setTotalProducts(parseInt(products?.headers['x-pagination-total-count']));
+      
+      const totalProductsData = parseInt(products?.headers['x-pagination-total-count'], 10);
+      const formattedTotalProducts = totalProductsData.toLocaleString('en-US');
+      setTotalProducts(formattedTotalProducts);
 
       setShowLoadingMore(currentlyTotal < newTotalPages);
       if (currentlyTotal !== newTotalPages) {
@@ -101,6 +104,16 @@ export const Products = () => {
     return null
   }
 
+  const getProductCounter = () => {
+    if (totalProducts > 0) {
+      return (
+        <View style={{ padding: 10, flexDirection: 'row' }}>
+          <Text style={{ fontSize: 20, color: nowTheme.COLORS.INFO }}>{totalProducts + ' '}</Text><Text style={{ fontSize: 20 }}>Products</Text>
+        </View>
+      )
+    }
+  }
+
   const onRefresh = async () => {
     setRefreshing(true);
     await refetch();
@@ -117,9 +130,6 @@ export const Products = () => {
           </View>
         ): (
           <>
-            <View style={{ padding: 10, flexDirection: 'row' }}>
-              <Text style={{ fontSize: 20, color: nowTheme.COLORS.INFO }}>{totalProducts + ' '}</Text><Text style={{ fontSize: 20 }}>Products</Text>
-            </View>
             <FlatList
               onRefresh={onRefresh}
               refreshing={refreshing || isLoading}
@@ -128,6 +138,7 @@ export const Products = () => {
               keyExtractor={(item, index) => `${item.sku}-${index}`}
               numColumns={2}
               contentContainerStyle={styles.container}
+              ListHeaderComponent={getProductCounter}
               ListFooterComponent={getButtonLoadingMore}
               />
           </>
