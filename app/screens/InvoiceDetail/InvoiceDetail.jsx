@@ -49,6 +49,7 @@ export const InvoiceDetails = ({ route }) => {
   const [generalRequestService] = useState(GeneralRequestService.getInstance())
   const [urlDownloadFile, setUrlDownloadFile] = useState()
   const [urlWebView, setUrlWebView] = useState()
+  const [isOrderOrQuote, setIsOrderOrQuote] = useState(false)
 
   const openViewerPdf = async () => {
     setLoadingLoadPdf(true)
@@ -95,6 +96,7 @@ export const InvoiceDetails = ({ route }) => {
 
   const handleGetData = async () => {
 
+    setIsOrderOrQuote(false);
     setInvoiceDetail(null)
     const { invoice, nameRouteGoing } = route.params;
     const url = endPoints.invoicesDetail.replace(':id', invoice);
@@ -104,8 +106,14 @@ export const InvoiceDetails = ({ route }) => {
     const dataInvoice = await getDataPetition.getInfoWithHeaders(url);
     const dataTracking = await getDataPetition.getInfoWithHeaders(urlTracking);
 
-    console.log(dataInvoice);
+    console.log('data',dataInvoice.body.order_number);
     console.log(invoice);
+
+    console.log('sí?', dataInvoice.body.order_number.startsWith('SO'))
+    if (dataInvoice.body.order_number.startsWith('SO') || dataInvoice.body.order_number.startsWith('QT')) {
+      setIsOrderOrQuote(true)
+    }
+
     setInvoiceDetail({
       ...dataInvoice.body,
       tracking: dataTracking.body.tracking,
@@ -252,12 +260,14 @@ export const InvoiceDetails = ({ route }) => {
           </Block>
         </Block>
         <Block card style={styles.lastCard} >
-          <Block row style={styles.totalPrices}>
-            <Text size={12}>Delivery Fee</Text>
-            <Text style={styles.receiptPrice}>
-              {formatMoney.format(invoiceDetail.delivery_charge || 0)}
-            </Text>
-          </Block>
+            {isOrderOrQuote ? <></> : 
+              <Block row style={styles.totalPrices}>
+                <Text size={12}>Delivery Fee</Text>
+                <Text style={styles.receiptPrice}>
+                  {formatMoney.format(invoiceDetail.delivery_charge || 0)}
+                </Text>
+              </Block>
+            }
           <Block row style={styles.totalPrices}>
             <Text size={12}>Total ex-GST</Text>
             <Text style={styles.receiptPrice}>
@@ -277,7 +287,7 @@ export const InvoiceDetails = ({ route }) => {
             style={styles.contentTotalAmount}
           />
           <Block row style={styles.contentTotal}>
-            <Text size={14}>Total Due</Text>
+            <Text size={14}>{ isOrderOrQuote ? 'Total' : 'Total Due' }</Text>
             <Text
               size={16}
               color={nowTheme.COLORS.INFO}
@@ -286,18 +296,23 @@ export const InvoiceDetails = ({ route }) => {
               {formatMoney.format(invoiceDetail.total_amount)}
             </Text>
           </Block>
-          <Block row style={styles.contentTotal}>
-            <Text size={12}>Paid</Text>
-            <Text style={styles.receiptPrice}>
-              {formatMoney.format(invoiceDetail.total_amount - invoiceDetail.balance)}
-            </Text>
-          </Block>
-          <Block row style={styles.contentTotal}>
-            <Text size={12}>Balance Owing</Text>
-            <Text style={styles.receiptPrice}>
-              {formatMoney.format(invoiceDetail.balance)}
-            </Text>
-          </Block>
+          {isOrderOrQuote ? <></> : 
+              <Block row style={styles.contentTotal}>
+                <Text size={12}>Paid</Text>
+                <Text style={styles.receiptPrice}>
+                  {formatMoney.format(invoiceDetail.total_amount - invoiceDetail.balance)}
+                </Text>
+              </Block>
+            }
+
+            {isOrderOrQuote ? <></> : 
+              <Block row style={styles.contentTotal}>
+                <Text size={12}>Balance Owing</Text>
+                <Text style={styles.receiptPrice}>
+                  {formatMoney.format(invoiceDetail.balance)}
+                </Text>
+              </Block>
+            }
         </Block>
       </ScrollView>
       <BottomModal
