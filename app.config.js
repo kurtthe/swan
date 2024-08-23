@@ -7,7 +7,7 @@ module.exports = {
       "ios",
       "android"
     ],
-    version: "1.4",
+    version: "1.6",
     orientation: "portrait",
     icon: "./assets/icon.png",
     splash: {
@@ -50,7 +50,7 @@ module.exports = {
       },
       supportsTablet: true,
       bundleIdentifier: "co.splumbings.SwanPluming",
-      buildNumber: "2",
+      buildNumber: "1",
       googleServicesFile: "./GoogleAnalytics/GoogleService-Info.plist",
       userInterfaceStyle: "light",
       infoPlist: {
@@ -76,7 +76,7 @@ module.exports = {
         "android.permission.ACCESS_FINE_LOCATION",
         "android.permission.FOREGROUND_SERVICE",
       ],
-      versionCode:14,
+      versionCode:15,
       googleServicesFile: "./GoogleAnalytics/google-services.json"
     },
     description: "Coded by Digital Basis",
