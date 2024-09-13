@@ -7,7 +7,7 @@ module.exports = {
       "ios",
       "android"
     ],
-    version: "1.6",
+    version: "1.7",
     orientation: "portrait",
     icon: "./assets/icon.png",
     splash: {
@@ -17,7 +17,7 @@ module.exports = {
     },
     updates: {
       fallbackToCacheTimeout: 0,
-      url: "https://u.expo.dev/aaa753a7-a92a-40c6-af95-d9859fbe899a"
+      url: "https://u.expo.dev/27ee5839-71d0-44b3-bc25-e86c40742718"
     },
     assetBundlePatterns: [
       "**/*"
@@ -76,7 +76,7 @@ module.exports = {
         "android.permission.ACCESS_FINE_LOCATION",
         "android.permission.FOREGROUND_SERVICE",
       ],
-      versionCode:15,
+      versionCode:16,
       googleServicesFile: "./GoogleAnalytics/google-services.json"
     },
     description: "Coded by Digital Basis",
