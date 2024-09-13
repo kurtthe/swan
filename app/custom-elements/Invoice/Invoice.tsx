@@ -76,7 +76,7 @@ export const Invoice: React.FC<Props> = (props) => {
                 size={13}
                 style={{ fontFamily: nowTheme.FONT.primaryRegular }}
               >
-                {validateEmptyField(props.invoice.description)}
+                {validateEmptyField(props.invoice.name)}
               </Text>
             </Block>
             <Block bottom>

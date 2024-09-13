@@ -72,6 +72,8 @@ export const InvoiceDetails = ({ route }) => {
   useEffect(() => {
     const mappingData = () => {
 
+      console.log(invoiceDetail);
+
       if (invoiceDetail === null || invoiceDetail?.structure?.items?.length === 0) {
         return
       }
@@ -106,10 +108,6 @@ export const InvoiceDetails = ({ route }) => {
     const dataInvoice = await getDataPetition.getInfoWithHeaders(url);
     const dataTracking = await getDataPetition.getInfoWithHeaders(urlTracking);
 
-    console.log('data',dataInvoice.body.order_number);
-    console.log(invoice);
-
-    console.log('sí?', dataInvoice.body.order_number.startsWith('SO'))
     if (dataInvoice.body.order_number.startsWith('SO') || dataInvoice.body.order_number.startsWith('QT')) {
       setIsOrderOrQuote(true)
     }
@@ -119,6 +117,9 @@ export const InvoiceDetails = ({ route }) => {
       tracking: dataTracking.body.tracking,
       company: dataInvoice.headers['tradetrak-company']
     })
+
+    
+    console.log(invoiceDetail);
 
     setUrlDownloadFile(urlDownloadFile)
     navigation.setParams({
@@ -245,7 +246,7 @@ export const InvoiceDetails = ({ route }) => {
           <Block row>
             <Block flex>
               <Text style={styles.text}>{invoiceDetail?.type} Name</Text>
-              <Text>{validateEmptyField(invoiceDetail.description)}</Text>
+              <Text>{validateEmptyField(invoiceDetail.name)}</Text>
             </Block>
             <Block flex>
               <Text style={styles.text}>Branch</Text>
