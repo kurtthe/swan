@@ -20,7 +20,7 @@ export const endPoints = {
   // statements: `${apiService}swan/statements?sort=id_desc`,
   // statements: `${apiService}swan/statements?sort=id_desc`,
   // downloadStatementDetail: `${apiService}swan/statements/:id/download?base64=true`,
-  searchInvoices: `${apiService}swan/search?sort=id_desc`,
+  searchInvoices: `${apiService}swan/search?sort=date_desc`,
   payment: `${apiService}swan/payment`,
   generateOrder: `${apiService}material-orders`,
   supplierId: `${apiService}swan/supplier`,
