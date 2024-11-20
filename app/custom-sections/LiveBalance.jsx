@@ -11,10 +11,7 @@ const formatMoney = FormatMoneyService.getInstance();
 const { width } = Dimensions.get('screen');
 
 const LiveBalance = (props) => {
-  const balanceFromRedux = useSelector((state) => state.liveBalanceReducer);
-  const balance = props || balanceFromRedux;
-  console.log('company', balance.company)
-  console.log('company', balance)
+  const balance = useSelector((state) => state.liveBalanceReducer);
 
   return (
     <Block flex card center shadow style={styles.category}>
