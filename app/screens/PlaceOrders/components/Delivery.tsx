@@ -50,6 +50,33 @@ const Delivery = () => {
     dispatch(setUpDelivery(dataDelivery))
   },[optionHourSelected, locationSelected, optionHourSelected, optionDeliverySelected, dateSelected, contactName, contactPhone])
 
+  useEffect(() => {
+    if (dateSelected) {
+      filterHours();
+    }
+  }, [dateSelected]);
+
+  const filterHours = () => {
+    const currentDate = new Date().toISOString().slice(0, 10);
+    const selectedDate = dateSelected?.value;
+  
+    if (selectedDate === currentDate) {
+      const currentHour = new Date().getHours();
+  
+      const filteredHours = radioButtonsHour.filter((hour) => {
+        const hourValue = parseInt(hour.label.split(' ')[0], 10);
+        const isPM = hour.label.includes('PM');
+        const hourIn24Format = isPM && hourValue !== 12 ? hourValue + 12 : hourValue;
+  
+        return hourIn24Format >= currentHour;
+      });
+  
+      setOptionsHours(filteredHours);
+    } else {
+      setOptionsHours(radioButtonsHour);
+    }
+  };
+
   const handleChangeDelivery = (optionSelected) => {
     setOptionDeliverySelected(optionSelected)
     setDeliveryText(optionSelected?.label)
@@ -113,16 +140,22 @@ const Delivery = () => {
           isVisible={isDatePickerVisible}
           onConfirm={handleDatePicked}
           onCancel={()=>setIsDatePickerVisible(false)}
+          minimumDate={new Date()}
         />
       </>
       <PickerButton
         text={`${deliveryText || ''} Preferred Delivery Time`}
-        placeholder={!optionHourSelected? 'Select time': optionHourSelected?.label}
+        placeholder={
+          dateSelected
+            ? (!optionHourSelected ? 'Select time' : optionHourSelected?.label)
+            : 'Select a date first'
+        }
         isRequired
         icon={'lock-clock'}
         sizeIcon={25}
         renderOptions={optionHours}
         onChangeOption={(option) => setOptionHourSelected(option)}
+        disabled={!dateSelected}
         />
       {optionDeliverySelected?.value === 'delivery' && (
         <>
