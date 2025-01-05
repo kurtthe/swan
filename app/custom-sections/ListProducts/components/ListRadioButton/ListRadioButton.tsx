@@ -27,12 +27,12 @@ const ListRadioButton: React.FC<Props> = ({
     )
   }
 
-  const handleOnChange = (newValue: any)=> {
-    if(!options) return;
-    const optionSelected = options.find(optionData => optionData.id === newValue)
-    if(!optionSelected) return;
-    onChange(optionSelected)
-  }
+  // const handleOnChange = (newValue: any)=> {
+  //   if(!options) return;
+  //   const optionSelected = options.find(optionData => optionData.id === newValue)
+  //   if(!optionSelected) return;
+  //   onChange(optionSelected)
+  // }
 
 
   return (
@@ -42,7 +42,7 @@ const ListRadioButton: React.FC<Props> = ({
         radioButtons={options}
         color={nowTheme.COLORS.INFO}
         selectedId={idSelected}
-        onPress={handleOnChange}
+        onPress={pick => onChange(pick)}
       />
     </ScrollView>
   )
