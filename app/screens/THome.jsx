@@ -64,7 +64,7 @@ class Home extends React.Component {
     const responseRefresh = await generalRequestService.get(endPoints.refresh);
     console.log(responseRefresh)
 
-    if (response.latestVersion != expo.version) {
+    if (parseFloat(response.latestVersion) > parseFloat(expo.version)) {
 
       Toast.show({
         type: 'success',
