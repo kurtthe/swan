@@ -262,6 +262,20 @@ const handleSelectCategory = (options) => {
 
   };
 
+  const handleResetFilter = () => {
+
+    setTextSearch('');
+  
+    setOptionsProducts({
+      ...optionsProducts,
+      page: 1,
+      search: '',
+      category_id: null,
+    });
+
+    dispatch(reset());
+  };
+
   const renderItem = ({ item }) => (
     <Product product={item} myPrice={clientFriendly} />
   );
@@ -291,6 +305,12 @@ const handleSelectCategory = (options) => {
               onPress={handleShowCategories}
               isLoading={loadingCategories}
               isActive={!!categorySelected}
+            />
+            <FilterButton
+              text=""
+              onPress={() => handleResetFilter()}
+              icon={require('@assets/nuk-icons/png/2x/clear.png')}
+              disabled={isLoading}
             />
           </View>
         </View>
