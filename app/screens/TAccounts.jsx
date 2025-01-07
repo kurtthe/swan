@@ -18,6 +18,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { GeneralRequestService } from '@core/services/general-request.service';
 import Restricted from '@custom-elements/Restricted';
 import { useRoute } from '@react-navigation/native';
+import { useFocusEffect } from '@react-navigation/native';  // Importar useFocusEffect
 
 const generalRequestService = GeneralRequestService.getInstance();
 
@@ -35,6 +36,20 @@ const TAccount = () => {
       setCustomStyleIndex(route.params?.tabIndexSelected ?? 0)
     })()
   }, [])
+
+  useFocusEffect(
+    React.useCallback(() => {
+      const fetchRefreshData = async () => {
+        try {
+          const responseRefresh = await generalRequestService.get(endPoints.refresh);
+          console.log(responseRefresh);
+        } catch (error) {
+          console.error('Error fetching refresh data:', error);
+        }
+      };
+      fetchRefreshData();
+    }, [])
+  );
 
   useEffect(() => {
     (async() => {

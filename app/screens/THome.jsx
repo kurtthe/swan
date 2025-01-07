@@ -48,6 +48,12 @@ class Home extends React.Component {
 
   async componentDidMount() {
     await this.fetchData();
+
+    this.focusListener = this.props.navigation.addListener('focus', async () => {
+      const responseRefresh = await generalRequestService.get(endPoints.refresh);
+      console.log(responseRefresh)
+    });
+    
   }
 
   fetchData = async () => {
@@ -55,6 +61,8 @@ class Home extends React.Component {
     await this.getDataPetition.getInfo(endPoints.searchInvoices, this.props.getInvoices);
     await this.getDataPetition.getInfo(endPoints.news, this.props.getNews);
     const response = await generalRequestService.get(endPoints.swanVersion);
+    const responseRefresh = await generalRequestService.get(endPoints.refresh);
+    console.log(responseRefresh)
 
     if (parseFloat(response.latestVersion) > parseFloat(expo.version)) {
 
