@@ -21,3 +21,5 @@ android/
 
 build**
 dist/**
+*.ipa
+*.abb
