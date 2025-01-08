@@ -19,6 +19,7 @@ import { BottomSheet } from 'react-native-sheet';
 
 import { GeneralRequestService } from '@core/services/general-request.service';
 import { endPoints } from '@shared/dictionaries/end-points';
+import LoadingComponent from '@custom-elements/Loading';
 const generalRequestService = GeneralRequestService.getInstance();
 
 export const SearchProducts = ({ route }) => {
@@ -288,6 +289,12 @@ export const SearchProducts = ({ route }) => {
         </View>
       </View>
 
+      {loadingData || isFetching || isLoading ? (
+        <View style={{ flex: 1, padding: 10 }}>
+          <LoadingComponent />
+        </View>
+      ) : (
+        <>
       <FlatList
         data={dataProducts}
         renderItem={renderItem}
@@ -307,6 +314,8 @@ export const SearchProducts = ({ route }) => {
         )}
         ListEmptyComponent={renderNotFound}
       />
+      </>
+    )}
 
       <BottomSheet height={500} ref={bottomSheet}>
         <ListRadioButton
@@ -314,6 +323,7 @@ export const SearchProducts = ({ route }) => {
           options={categories}
         />
       </BottomSheet>
+
     </View>
   );
 };
