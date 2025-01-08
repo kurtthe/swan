@@ -62,7 +62,6 @@ class Home extends React.Component {
     await this.getDataPetition.getInfo(endPoints.news, this.props.getNews);
     const response = await generalRequestService.get(endPoints.swanVersion);
     const responseRefresh = await generalRequestService.get(endPoints.refresh);
-    console.log(responseRefresh)
 
     if (parseFloat(response.latestVersion) > parseFloat(expo.version)) {
 
