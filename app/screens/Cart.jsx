@@ -17,6 +17,7 @@ import Restricted from '@custom-elements/Restricted';
 import {useRoute} from '@react-navigation/native';
 
 const {width} = Dimensions.get('screen');
+const listHeight = Platform.OS === 'ios' ? hp('59%') : hp('76%');
 
 const Cart = ({navigation}) => {
   const [customStyleIndex, setCustomStyleIndex] = useState(0);
@@ -67,41 +68,37 @@ const Cart = ({navigation}) => {
     return formatMoney.format(total);
   }, [productCartService, formatMoney]);
 
-  const renderDataList = useCallback(() => {
-    if (restricted) return <Restricted />;
-
-    const listHeight = Platform.OS === 'ios' ? hp('59%') : hp('76%');
-
-    switch (customStyleIndex) {
-      case 1:
-        return (
-          <Block style={{height: listHeight}}>
-            <ListOrders />
-          </Block>
-        );
-      case 2:
-        return (
-          <Block style={{height: listHeight}}>
-            <ListTemplates />
-          </Block>
-        );
-      default:
-        return (
-          <ListCart
-            onCheckoutPressed={onCheckoutPressed}
-            orderTotal={orderTotal}
-          />
-        );
-    }
-  }, [customStyleIndex, restricted, onCheckoutPressed, orderTotal]);
+  if (restricted) return <Restricted />;
 
   return (
     <Block style={styles.container}>
       <Tabs
         optionsTabsRender={[
-          {labelTab: 'Cart', component: renderDataList()},
-          {labelTab: 'Online Orders', component: renderDataList()},
-          {labelTab: 'Templates', component: renderDataList()},
+          {
+            labelTab: 'Cart',
+            component: (
+              <ListCart
+                onCheckoutPressed={onCheckoutPressed}
+                orderTotal={orderTotal}
+              />
+            ),
+          },
+          {
+            labelTab: 'Online Orders',
+            component: (
+              <Block style={{height: listHeight}}>
+                <ListOrders />
+              </Block>
+            ),
+          },
+          {
+            labelTab: 'Templates',
+            component: (
+              <Block style={{height: listHeight}}>
+                <ListTemplates />
+              </Block>
+            ),
+          },
         ]}
         tabIndexSelected={customStyleIndex}
         changeIndexSelected={setCustomStyleIndex}
