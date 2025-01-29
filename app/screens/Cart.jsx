@@ -1,148 +1,116 @@
-import React from 'react';
-import { StyleSheet, Dimensions, Platform, RefreshControl, ScrollView } from 'react-native';
-import { Block } from 'galio-framework';
-import { connect } from 'react-redux';
-import { FormatMoneyService } from '@core/services/format-money.service';
-import { ProductCart as ProductCartService } from '@core/services/product-cart.service';
-import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import React, {useState, useEffect, useCallback} from 'react';
+import {StyleSheet, Dimensions, Platform} from 'react-native';
+import {Block} from 'galio-framework';
+import {useSelector, useDispatch} from 'react-redux';
+import {FormatMoneyService} from '@core/services/format-money.service';
+import {ProductCart as ProductCartService} from '@core/services/product-cart.service';
+import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import Tabs from '@custom-elements/Tabs';
-import { AlertService } from '@core/services/alert.service';
-import Order from '@custom-elements/Order';
+import {AlertService} from '@core/services/alert.service';
 import ListCart from '@custom-sections/ListCart';
-import { getOrders } from '@core/module/store/orders/orders';
-import { GetDataPetitionService } from '@core/services/get-data-petition.service';
-import { endPoints } from '@shared/dictionaries/end-points';
-import ListData from '@custom-sections/ListData';
-import { ORDERS } from '@shared/dictionaries/typeDataSerialize';
+import ListOrders from '@custom-sections/ListOrders';
+import ListTemplates from '@custom-sections/ListTemplates';
+import {getOrders} from '@core/module/store/orders/orders';
+import {GetDataPetitionService} from '@core/services/get-data-petition.service';
+import {endPoints} from '@shared/dictionaries/end-points';
 import Restricted from '@custom-elements/Restricted';
+import {useRoute} from '@react-navigation/native';
 
-const { width } = Dimensions.get('screen');
+const {width} = Dimensions.get('screen');
 
-class Cart extends React.Component {
-  constructor(props) {
-    super(props);
+const Cart = ({navigation}) => {
+  const [customStyleIndex, setCustomStyleIndex] = useState(0);
+  const [myPrice, setMyPrice] = useState(false);
+  const [restricted, setRestricted] = useState(false);
 
-    this.state = {
-      customStyleIndex: 0,
-      deleteAction: false,
-      myPrice: false,
-      restricted: false,
-      refreshing: false,
-    };
+  const cartProducts = useSelector(state => state.productsReducer.products);
+  const dispatch = useDispatch();
+  const route = useRoute();
 
-    this.alertService = new AlertService();
-    this.formatMoney = FormatMoneyService.getInstance();
-    this.productCartService = ProductCartService.getInstance(props.cartProducts);
-    this.getDataPetition = GetDataPetitionService.getInstance();
-  }
+  const alertService = new AlertService();
+  const formatMoney = FormatMoneyService.getInstance();
+  const getDataPetition = GetDataPetitionService.getInstance();
 
-  async componentDidMount() {
-    if (this.props.cartProducts[0]?.myPrice) {
-      this.setState({ myPrice: this.props.cartProducts[0]?.myPrice });
-    }
+  const productCartService = ProductCartService.getInstance(cartProducts);
 
-    const response = await this.getDataPetition.getInfo(endPoints.orders, this.props.getOrders);
-    if (response.restricted) {
-      this.setState({ restricted: true });
-      return;
-    }
-    this.setState({ restricted: false });
-  }
+  useEffect(() => {
+    (async () => {
+      setCustomStyleIndex(route.params?.indexSelectedTap ?? 0);
+    })();
+  }, [route.params?.indexSelectedTap]);
 
-  componentDidUpdate(prevProps) {
-    if (JSON.stringify(this.props.cartProducts) !== JSON.stringify(prevProps.cartProducts)) {
-      this.productCartService = ProductCartService.getInstance(this.props.cartProducts);
-
-      if (
-        this.props.cartProducts[0]?.myPrice !== prevProps.cartProducts[0]?.myPrice
-      ) {
-        this.setState({ myPrice: this.props.cartProducts[0]?.myPrice });
-      }
-    }
-  }
-
-  onCheckoutPressed() {
-    if (this.state.myPrice) {
-      this.alertService.show('Alert!', 'Cannot checkout in client mode, please disable');
-      return;
-    }
-    this.props.navigation.navigate('PlaceOrders', { nameRouteGoing: 'Cart' });
-  }
-
-  orderTotal = () => {
-    const total = this.productCartService.totalOrder();
-    return `${this.formatMoney.format(total)}`;
-  };
-
-  renderItemsPrevious = ({ item }) => <Order item={item} />;
-
-  handleRefresh = async () => {
-    this.setState({ refreshing: true });
-
-    try {
-      const response = await this.getDataPetition.getInfo(endPoints.orders, this.props.getOrders);
-      if (response.restricted) {
-        this.setState({ restricted: true });
-      } else {
-        this.setState({ restricted: false });
-      }
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    } finally {
-      this.setState({ refreshing: false });
-    }
-  };
-
-  renderPreviousOrder = () => (
-    <ScrollView
-      style={styles.cart}
-      refreshControl={
-        <RefreshControl
-          refreshing={this.state.refreshing}
-          onRefresh={this.handleRefresh}
-        />
-      }
-    >
-      <Block style={{ height: Platform.OS === 'ios' ? hp('70%') : hp('76%') }}>
-        {this.state.restricted ? (
-          <Restricted />
-        ) : (
-          <ListData
-            endpoint={endPoints.orders}
-            renderItems={this.renderItemsPrevious}
-            typeData={ORDERS}
-          />
-        )}
-      </Block>
-    </ScrollView>
-  );
-
-  render() {
-    return (
-      <Block style={styles.container}>
-        <Tabs
-          optionsTabsRender={[
-            {
-              labelTab: 'Your orders',
-              component: (
-                <ListCart
-                  onCheckoutPressed={() => this.onCheckoutPressed()}
-                  orderTotal={() => this.orderTotal()}
-                />
-              ),
-            },
-            {
-              labelTab: 'Previous Orders',
-              component: this.renderPreviousOrder(),
-            },
-          ]}
-          tabIndexSelected={this.state.customStyleIndex}
-          changeIndexSelected={(index) => this.setState({ customStyleIndex: index })}
-        />
-      </Block>
+  const fetchOrdersData = useCallback(async () => {
+    const response = await getDataPetition.getInfo(endPoints.orders, () =>
+      dispatch(getOrders()),
     );
-  }
-}
+    setRestricted(response.restricted || false);
+  }, [dispatch, getDataPetition]);
+
+  useEffect(() => {
+    if (cartProducts[0]?.myPrice !== undefined) {
+      setMyPrice(cartProducts[0]?.myPrice);
+    }
+    fetchOrdersData();
+  }, [cartProducts, fetchOrdersData]);
+
+  const onCheckoutPressed = () => {
+    if (myPrice) {
+      alertService.show(
+        'Alert!',
+        'Cannot checkout in client mode, please disable',
+      );
+      return;
+    }
+    navigation.navigate('PlaceOrders', {nameRouteGoing: 'Cart'});
+  };
+
+  const orderTotal = useCallback(() => {
+    const total = productCartService.totalOrder();
+    return formatMoney.format(total);
+  }, [productCartService, formatMoney]);
+
+  const renderDataList = useCallback(() => {
+    if (restricted) return <Restricted />;
+
+    const listHeight = Platform.OS === 'ios' ? hp('59%') : hp('76%');
+
+    switch (customStyleIndex) {
+      case 1:
+        return (
+          <Block style={{height: listHeight}}>
+            <ListOrders />
+          </Block>
+        );
+      case 2:
+        return (
+          <Block style={{height: listHeight}}>
+            <ListTemplates />
+          </Block>
+        );
+      default:
+        return (
+          <ListCart
+            onCheckoutPressed={onCheckoutPressed}
+            orderTotal={orderTotal}
+          />
+        );
+    }
+  }, [customStyleIndex, restricted, onCheckoutPressed, orderTotal]);
+
+  return (
+    <Block style={styles.container}>
+      <Tabs
+        optionsTabsRender={[
+          {labelTab: 'Cart', component: renderDataList()},
+          {labelTab: 'Online Orders', component: renderDataList()},
+          {labelTab: 'Templates', component: renderDataList()},
+        ]}
+        tabIndexSelected={customStyleIndex}
+        changeIndexSelected={setCustomStyleIndex}
+      />
+    </Block>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -160,18 +128,11 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
     shadowColor: 'black',
-    shadowOffset: { width: 0, height: 7 },
+    shadowOffset: {width: 0, height: 7},
     elevation: 2,
     shadowRadius: 10,
     shadowOpacity: 0.3,
   },
 });
 
-const mapStateToProps = (state) => ({
-  cartProducts: state.productsReducer.products,
-  orders: state.ordersReducer.orders,
-});
-
-const mapDispatchToProps = { getOrders };
-
-export default connect(mapStateToProps, mapDispatchToProps)(Cart);
+export default Cart;
