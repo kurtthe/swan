@@ -84,7 +84,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.16.0",
     "jshint": "^2.10.3",
-    "typescript": "^5.5.2"
+    "typescript": "^5.3.0"
   },
   "author": "",
   "homepage": ""
