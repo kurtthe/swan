@@ -41,6 +41,7 @@ export const getOrdersService = async page => {
       },
     },
   );
+  console.log('===>supplierId::', supplierId);
   const totalPages =
     parseInt(responseOrders.headers['x-pagination-page-count']) || 2;
   const dataToResponse = {
