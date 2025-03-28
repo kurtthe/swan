@@ -25,7 +25,6 @@ export const FilterProducts = () => {
   const categoryParentSelected = useSelector((state: any) => state.filterReducer.categorySelected)
   const favoriteFilter = useSelector((state: any) => state.filterReducer.onlyFavourites)
   const dataProducts = useSelector((state: any)=> state.filterReducer.products)
-  const isLoadingFilter = useSelector((state: any) => state.filterReducer.isLoading)
   const restricted = useSelector((state: any) => state.filterReducer.restricted)
   // const productCount = useSelector((state) => state.filterReducer.productCount)
 
@@ -122,9 +121,9 @@ export const FilterProducts = () => {
   //   bottomSheetCategoriesRef.current?.hide()
   // };
 
-  const onPressRadioButtonCategory = (options) => {
+  const onPressRadioButtonCategory = (optionId: number) => {
     console.log('asdasd')
-    const selectedOption = options.find((option) => option.selected);
+    const selectedOption = categories.find((category) => category.id == optionId);
     console.log(selectedOption);
     dispatch(selectedCategory(selectedOption.id))
     if (selectedOption.sub_categories?.length === 0) {
@@ -175,7 +174,7 @@ export const FilterProducts = () => {
     dispatch(toggleLoading(true))
   }
 
-  if(favoriteFilter && dataProducts.length === 0 && !isLoadingFilter && categoryParentSelected !== ''){
+  if(favoriteFilter && dataProducts.length === 0  && categoryParentSelected !== ''){
     alertService.show(
       'Alert!',
       `There are not favorite products for this category`,
@@ -195,7 +194,6 @@ export const FilterProducts = () => {
             onPress={() => bottomSheetCategoriesRef.current?.show()}
             isActive={categoryActive}
             isLoading={isLoading}
-            disabled={isLoadingFilter}
           />
 
           {categoryActive && (
@@ -203,7 +201,6 @@ export const FilterProducts = () => {
               text='Sub Category'
               onPress={() => handleShowSubCategories()}
               isActive={subCategoryActive}
-              disabled={isLoadingFilter}
             />
           )}
 
@@ -212,7 +209,6 @@ export const FilterProducts = () => {
             onPress={() => handleToggleFavorite()}
             nameIcon={!favoriteFilter ? 'staro' : 'star'}
             sizeIcon={15}
-            disabled={isLoadingFilter}
           />
 
           {/* <FilterButton
@@ -225,7 +221,6 @@ export const FilterProducts = () => {
               text=''
               onPress={() => handleResetFilter()}
               icon={require('@assets/nuk-icons/png/2x/clear.png')}
-              disabled={isLoadingFilter}
             />
           )}
         </View>
