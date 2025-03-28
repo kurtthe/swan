@@ -21,12 +21,12 @@ import { sortNameCategories } from '@shared/dictionaries/sort';
 
 export const FilterProducts = () => {
   const dispatch = useDispatch();
+  const filterState = useSelector((state: any) => state.filterReducer);
   const categoryParentSelected = useSelector((state: any) => state.filterReducer.categorySelected)
   const favoriteFilter = useSelector((state: any) => state.filterReducer.onlyFavourites)
   const dataProducts = useSelector((state: any)=> state.filterReducer.products)
-  const isLoadingFilter = useSelector((state: any) => state.filterReducer.isLoading)
   const restricted = useSelector((state: any) => state.filterReducer.restricted)
-  const productCount = useSelector((state) => state.filterReducer.productCount)
+  // const productCount = useSelector((state) => state.filterReducer.productCount)
 
 
   const alertService = new AlertService()
@@ -97,19 +97,43 @@ export const FilterProducts = () => {
   }
 
 
-  const onPressRadioButtonCategory = (optionSelected: any) => {
-    dispatch(selectedCategory(optionSelected.id))
+  // const onPressRadioButtonCategory = (optionSelected: any) => {
+  //   console.log('asdasd')
+  //   console.log(optionSelected);
+  //   dispatch(selectedCategory(optionSelected.id))
 
-    if (optionSelected.sub_categories?.length === 0) {
+  //   if (optionSelected.sub_categories?.length === 0) {
+  //     setNoSubCategoriesFound(true)
+  //     alertService.show(
+  //       'Alert!',
+  //       `Category ${optionSelected.name?.toLowerCase()} haven't subCategories`,
+  //     );
+  //     return
+  //   }
+
+  //   const subCategoriesSerialized = categoriesToRadioButton(optionSelected?.sub_categories)
+  //   if(!subCategoriesSerialized) return;
+  //   setSubCategories(subCategoriesSerialized)
+
+  //   dispatch(toggleLoading(true))
+  //   setCategoryActive(true)
+  //   setNoSubCategoriesFound(false)
+  //   bottomSheetCategoriesRef.current?.hide()
+  // };
+
+  const onPressRadioButtonCategory = (options) => {
+    const selectedOption = options.find((option) => option.selected);
+    dispatch(selectedCategory(selectedOption.id))
+    if (selectedOption.sub_categories?.length === 0) {
       setNoSubCategoriesFound(true)
       alertService.show(
         'Alert!',
-        `Category ${optionSelected.name?.toLowerCase()} haven't subCategories`,
+        `Category ${selectedOption.name?.toLowerCase()} haven't subCategories`,
       );
       return
     }
 
-    const subCategoriesSerialized = categoriesToRadioButton(optionSelected?.sub_categories)
+    const subCategoriesSerialized = categoriesToRadioButton(selectedOption?.sub_categories)
     if(!subCategoriesSerialized) return;
     setSubCategories(subCategoriesSerialized)
 
@@ -117,6 +141,7 @@ export const FilterProducts = () => {
     setCategoryActive(true)
     setNoSubCategoriesFound(false)
     bottomSheetCategoriesRef.current?.hide()
+    
   };
 
   const onPressRadioButtonSubCategory = (optionSelected: any) => {
@@ -147,7 +172,7 @@ export const FilterProducts = () => {
     dispatch(toggleLoading(true))
   }
 
-  if(favoriteFilter && dataProducts.length === 0 && !isLoadingFilter && categoryParentSelected !== ''){
+  if(favoriteFilter && dataProducts.length === 0  && categoryParentSelected !== ''){
     alertService.show(
       'Alert!',
       `There are not favorite products for this category`,
@@ -167,7 +192,6 @@ export const FilterProducts = () => {
             onPress={() => bottomSheetCategoriesRef.current?.show()}
             isActive={categoryActive}
             isLoading={isLoading}
-            disabled={isLoadingFilter}
           />
 
           {categoryActive && (
@@ -175,7 +199,6 @@ export const FilterProducts = () => {
               text='Sub Category'
               onPress={() => handleShowSubCategories()}
               isActive={subCategoryActive}
-              disabled={isLoadingFilter}
             />
           )}
 
@@ -184,7 +207,6 @@ export const FilterProducts = () => {
             onPress={() => handleToggleFavorite()}
             nameIcon={!favoriteFilter ? 'staro' : 'star'}
             sizeIcon={15}
-            disabled={isLoadingFilter}
           />
 
           {/* <FilterButton
@@ -197,7 +219,6 @@ export const FilterProducts = () => {
               text=''
               onPress={() => handleResetFilter()}
               icon={require('@assets/nuk-icons/png/2x/clear.png')}
-              disabled={isLoadingFilter}
             />
           )}
         </View>
