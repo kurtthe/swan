@@ -21,12 +21,13 @@ import { sortNameCategories } from '@shared/dictionaries/sort';
 
 export const FilterProducts = () => {
   const dispatch = useDispatch();
+  const filterState = useSelector((state: any) => state.filterReducer);
   const categoryParentSelected = useSelector((state: any) => state.filterReducer.categorySelected)
   const favoriteFilter = useSelector((state: any) => state.filterReducer.onlyFavourites)
   const dataProducts = useSelector((state: any)=> state.filterReducer.products)
   const isLoadingFilter = useSelector((state: any) => state.filterReducer.isLoading)
   const restricted = useSelector((state: any) => state.filterReducer.restricted)
-  const productCount = useSelector((state) => state.filterReducer.productCount)
+  // const productCount = useSelector((state) => state.filterReducer.productCount)
 
 
   const alertService = new AlertService()
@@ -97,19 +98,45 @@ export const FilterProducts = () => {
   }
 
 
-  const onPressRadioButtonCategory = (optionSelected: any) => {
-    dispatch(selectedCategory(optionSelected.id))
+  // const onPressRadioButtonCategory = (optionSelected: any) => {
+  //   console.log('asdasd')
+  //   console.log(optionSelected);
+  //   dispatch(selectedCategory(optionSelected.id))
 
-    if (optionSelected.sub_categories?.length === 0) {
+  //   if (optionSelected.sub_categories?.length === 0) {
+  //     setNoSubCategoriesFound(true)
+  //     alertService.show(
+  //       'Alert!',
+  //       `Category ${optionSelected.name?.toLowerCase()} haven't subCategories`,
+  //     );
+  //     return
+  //   }
+
+  //   const subCategoriesSerialized = categoriesToRadioButton(optionSelected?.sub_categories)
+  //   if(!subCategoriesSerialized) return;
+  //   setSubCategories(subCategoriesSerialized)
+
+  //   dispatch(toggleLoading(true))
+  //   setCategoryActive(true)
+  //   setNoSubCategoriesFound(false)
+  //   bottomSheetCategoriesRef.current?.hide()
+  // };
+
+  const onPressRadioButtonCategory = (options) => {
+    console.log('asdasd')
+    const selectedOption = options.find((option) => option.selected);
+    console.log(selectedOption);
+    dispatch(selectedCategory(selectedOption.id))
+    if (selectedOption.sub_categories?.length === 0) {
       setNoSubCategoriesFound(true)
       alertService.show(
         'Alert!',
-        `Category ${optionSelected.name?.toLowerCase()} haven't subCategories`,
+        `Category ${selectedOption.name?.toLowerCase()} haven't subCategories`,
       );
       return
     }
 
-    const subCategoriesSerialized = categoriesToRadioButton(optionSelected?.sub_categories)
+    const subCategoriesSerialized = categoriesToRadioButton(selectedOption?.sub_categories)
     if(!subCategoriesSerialized) return;
     setSubCategories(subCategoriesSerialized)
 
@@ -117,6 +144,7 @@ export const FilterProducts = () => {
     setCategoryActive(true)
     setNoSubCategoriesFound(false)
     bottomSheetCategoriesRef.current?.hide()
+    
   };
 
   const onPressRadioButtonSubCategory = (optionSelected: any) => {

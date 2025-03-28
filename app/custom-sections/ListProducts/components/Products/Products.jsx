@@ -63,19 +63,21 @@ export const Products = () => {
   }, [products?.headers, page])
 
   useEffect(() => {
-    if(!products?.body){
-      refetch()
+    setIsLoading(true);
+  
+    if (!products?.body) {
+      refetch();
     }
-
-    if(products?.body?.length){
-      setIsLoading(false)
-      dispatch(getProducts(products?.body))
-      dispatch(setProductCount(dataProducts.length));
-      setLoadingMoreData(false)
+  
+    if (products?.body) {
+      setIsLoading(false);
+      dispatch(getProducts(products.body));
+      dispatch(setProductCount(products.body.length || 0));
+      setLoadingMoreData(false);
     }
-
-    return () => setIsLoading(true)
-  }, [products])
+  
+    return () => setIsLoading(false);
+  }, [products]);
 
   useEffect(() =>{
     dispatch(setProductCount(dataProducts.length));
@@ -128,7 +130,7 @@ export const Products = () => {
           <View style={styles.contentLoading}>
             <LoadingComponent size='large' />
           </View>
-        ): (
+        ) : (
           <>
             <FlatList
               onRefresh={onRefresh}
@@ -140,6 +142,11 @@ export const Products = () => {
               contentContainerStyle={styles.container}
               ListHeaderComponent={getProductCounter}
               ListFooterComponent={getButtonLoadingMore}
+              ListEmptyComponent={
+                <View style={styles.notfound}>
+                  <Text style={styles.textNotFount}>No results found for search.</Text>
+                </View>
+              }
               />
           </>
         )
