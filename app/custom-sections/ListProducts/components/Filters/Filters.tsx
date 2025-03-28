@@ -121,10 +121,8 @@ export const FilterProducts = () => {
   //   bottomSheetCategoriesRef.current?.hide()
   // };
 
-  const onPressRadioButtonCategory = (optionId: number) => {
-    console.log('asdasd')
-    const selectedOption = categories.find((category) => category.id == optionId);
-    console.log(selectedOption);
+  const onPressRadioButtonCategory = (options) => {
+    const selectedOption = options.find((option) => option.selected);
     dispatch(selectedCategory(selectedOption.id))
     if (selectedOption.sub_categories?.length === 0) {
       setNoSubCategoriesFound(true)
