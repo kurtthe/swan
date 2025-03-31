@@ -96,33 +96,8 @@ export const FilterProducts = () => {
     bottomSheetSubCategoriesRef.current?.show();
   }
 
-
-  // const onPressRadioButtonCategory = (optionSelected: any) => {
-  //   console.log('asdasd')
-  //   console.log(optionSelected);
-  //   dispatch(selectedCategory(optionSelected.id))
-
-  //   if (optionSelected.sub_categories?.length === 0) {
-  //     setNoSubCategoriesFound(true)
-  //     alertService.show(
-  //       'Alert!',
-  //       `Category ${optionSelected.name?.toLowerCase()} haven't subCategories`,
-  //     );
-  //     return
-  //   }
-
-  //   const subCategoriesSerialized = categoriesToRadioButton(optionSelected?.sub_categories)
-  //   if(!subCategoriesSerialized) return;
-  //   setSubCategories(subCategoriesSerialized)
-
-  //   dispatch(toggleLoading(true))
-  //   setCategoryActive(true)
-  //   setNoSubCategoriesFound(false)
-  //   bottomSheetCategoriesRef.current?.hide()
-  // };
-
-  const onPressRadioButtonCategory = (options) => {
-    const selectedOption = options.find((option) => option.selected);
+  const onPressRadioButtonCategory = (optionId: number) => {
+    const selectedOption = categories.find((category) => category.id == optionId);
     dispatch(selectedCategory(selectedOption.id))
     if (selectedOption.sub_categories?.length === 0) {
       setNoSubCategoriesFound(true)
