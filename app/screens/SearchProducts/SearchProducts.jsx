@@ -214,11 +214,12 @@ export const SearchProducts = ({ route }) => {
     bottomSheet.current?.show();
   };
 
-  const handleSelectCategory = (options) => {
-    const selectedOption = options.find((option) => option.selected);
+  const handleSelectCategory = (optionId) => {
+    
+    const selectedOption = categories.find((category) => category.id == optionId);
     if (selectedOption) {
       dispatch(reset());
-      dispatch(selectedCategory(selectedOption.value));
+      dispatch(selectedCategory(selectedOption.id));
       setOptionsProducts({
         ...optionsProducts,
         page: 1,
