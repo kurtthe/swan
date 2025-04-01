@@ -98,6 +98,7 @@ export const FilterProducts = () => {
 
   const onPressRadioButtonCategory = (optionId: number) => {
     const selectedOption = categories.find((category) => category.id == optionId);
+    setSubCategoryActive(false)
     dispatch(selectedCategory(selectedOption.id))
     if (selectedOption.sub_categories?.length === 0) {
       setNoSubCategoriesFound(true)
@@ -120,6 +121,7 @@ export const FilterProducts = () => {
   };
 
   const onPressRadioButtonSubCategory = (optionSelected: any) => {
+    dispatch(selectedCategory(optionSelected))
     setSubCategorySelected(optionSelected)
     setSubCategoryActive(true)
     bottomSheetSubCategoriesRef.current?.hide();
@@ -211,7 +213,7 @@ export const FilterProducts = () => {
         <ListRadioButton
           onChange={(option) => onPressRadioButtonSubCategory(option)}
           options={subCategories}
-          idSelected={subCategorySelected?.id}
+          idSelected={subCategorySelected}
         />
       </BottomSheet>
     </>
